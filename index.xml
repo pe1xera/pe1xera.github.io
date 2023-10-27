@@ -6,6 +6,35 @@
     <description>Recent content on pe1xera</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright><atom:link href="https://pe1xera.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Fri, 27 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://pe1xera.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Piloto, ou: &#34;A Apologia de Devaneios Neurais&#34;</title>
+      <link>https://pe1xera.github.io/posts/apologia/</link>
+      <pubDate>Fri, 27 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://pe1xera.github.io/posts/apologia/</guid>
+      <description>“[…] as palavras podem ser extremamente perigosas. O que você define pode se tornar realidade, mas o que você insinua também pode… Mesmo que você não perceba que está fazendo isso.” (Alan Wake’s American Nightmare, Pg. 11: The Dangers of Creation)
+0x01 A despeito de todas as discussões e questionamentos, a Ciência da Computação já provou que, antes do um, temos o número mais importantes de todos, ainda que este não tenha valor nenhum, o zero.</description>
+    </item>
+    
+    <item>
+      <title>Hello World</title>
+      <link>https://pe1xera.github.io/posts/hello_world/</link>
+      <pubDate>Thu, 26 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://pe1xera.github.io/posts/hello_world/</guid>
+      <description>Hello World</description>
+    </item>
+    
+    <item>
+      <title>Sobre</title>
+      <link>https://pe1xera.github.io/sobre/about/</link>
+      <pubDate>Thu, 26 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://pe1xera.github.io/sobre/about/</guid>
+      <description>Oi, meu chapa!</description>
+    </item>
+    
   </channel>
 </rss>
