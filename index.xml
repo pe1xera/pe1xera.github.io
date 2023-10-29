@@ -20,5 +20,15 @@ Em 30 de novembro, comemoram-se datas importantes, que marcaram a humanidade pro
 o Dia Internacional da Segurança da Informação; o nascimento de Winston Churchill, que liderou o mundo livre na WWII; o Dia do Teólogo, estudioso da Palavra de Deus; o lançamento da música Thriller de Michael Jackson, uma das melhores da história; o nascimento do lendário comediante Ben Stiller, de Uma Noite no Museu.</description>
     </item>
     
+    <item>
+      <title>Piloto, ou: &#34;A Apologia de Devaneios Neurais&#34;</title>
+      <link>https://pe1xera.github.io/posts/ddos-101/</link>
+      <pubDate>Tue, 17 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://pe1xera.github.io/posts/ddos-101/</guid>
+      <description>#Introdução Como parte do desafio de 30 dias de Cybersecurity (#30daysofcybersecurity) do servidor @MeninaDeCybersec, em seu 14º dia, fomos desafiados a postar um resumo sobre um ataque DDoS. Vejamos a descrição do challenge:
+Pesquise sobre um ataque DDoS, veja como é possível identificá-lo e como mitigar (pelo menos uma forma de mitigação). Poste um resumo do que você pesquisou aqui, pode ser curiosidade, sua opinião etc, mas POSTE! Não precisa ser a análise mais completa de todas, lembre-se: você está estudando.</description>
+    </item>
+    
   </channel>
 </rss>

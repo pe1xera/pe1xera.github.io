@@ -57,5 +57,94 @@ por muitos assuntos, que por vezes têm pouca ou nenhuma conexão entre si.
 </code></pre>]]></content>
         </item>
         
+        <item>
+            <title>Piloto, ou: &#34;A Apologia de Devaneios Neurais&#34;</title>
+            <link>https://pe1xera.github.io/posts/ddos-101/</link>
+            <pubDate>Tue, 17 Jan 2023 00:00:00 +0000</pubDate>
+            
+            <guid>https://pe1xera.github.io/posts/ddos-101/</guid>
+            <description>#Introdução Como parte do desafio de 30 dias de Cybersecurity (#30daysofcybersecurity) do servidor @MeninaDeCybersec, em seu 14º dia, fomos desafiados a postar um resumo sobre um ataque DDoS. Vejamos a descrição do challenge:
+Pesquise sobre um ataque DDoS, veja como é possível identificá-lo e como mitigar (pelo menos uma forma de mitigação). Poste um resumo do que você pesquisou aqui, pode ser curiosidade, sua opinião etc, mas POSTE! Não precisa ser a análise mais completa de todas, lembre-se: você está estudando.</description>
+            <content type="html"><![CDATA[<h1 id="introdução">#Introdução</h1>
+<p>Como parte do desafio de 30 dias de Cybersecurity (#30daysofcybersecurity) do servidor @MeninaDeCybersec, em seu 14º dia, fomos desafiados a postar um resumo sobre um ataque DDoS. Vejamos a descrição do challenge:</p>
+<blockquote>
+<p><em>Pesquise sobre um ataque DDoS, veja como é possível identificá-lo e como mitigar (pelo menos uma forma de mitigação). Poste um resumo do que você pesquisou aqui, pode ser curiosidade, sua opinião etc, mas POSTE! Não precisa ser a análise mais completa de todas, lembre-se: você está estudando.</em></p>
+</blockquote>
+<p>Tendo isso em mente, vejamos de forma simplicada como funciona esse tipo de ataque, possíveis formas de prevenção, assim como métodos de mitigação do mesmo.</p>
+<blockquote>
+<p><em>Todas as imagens deste artigo foram geradas utilizando um pouco de imaginação e a Midjourney AI.</em></p>
+</blockquote>
+<hr>
+<h1 id="conceitos-chave">#Conceitos-chave</h1>
+<p><img src="ddos1.png" alt=""></p>
+<p>Para entender um DDoS, primeiro é necessário entender dois conceitos-chave, que estão diretamente relacionados ao tema. Vejamos alguns deles de forma simplificada e com exemplos didáticos fora da tecnologia.</p>
+<blockquote>
+<p>Denial of Service</p>
+</blockquote>
+<p>Denial of Service, Negação de Serviço ou simplesmente DoS, consiste basicamente em tornar um sistema indisponível pela sobrecarga. Como analogia, podemos usar uma estrada bloqueada. É importante que os carros passem, mas não é possível, porque há um motorista que atrasa o fluxo dos demais carros.</p>
+<blockquote>
+<p>Botnet</p>
+</blockquote>
+<p>Uma botnet, como o nome já indica, é uma rede de robôs ou, como deve-se imaginar, computadores que — ainda que os donos das máquinas não saibam — são controladas de forma central por um atacante. A analogia, neste caso, seria um grupo de carros que está bloqueando uma parte da estrada, porque os motoristas perderam o controle.</p>
+<hr>
+<h1 id="o-grande-problema">#O grande problema</h1>
+<blockquote>
+<p>Suponhamos agora que vários estradas estão bloqueadas, por diversos carros de diversos locais, ao longo do país inteiro. Esse é o DDoS.
+<img src="ddos2.png" alt=""></p>
+</blockquote>
+<p>Um Distributed Denial of Service (DDoS) é uma espécie de DoS mais avançado, distribuído. Nesse caso, o inimigo usa uma botnet a seu favor, para aumentar a efetividade do ataque.</p>
+<p>Como o atacante tem acesso a várias máquinas, espalhadas ao redor do mundo, os danos do ataque são muito maiores. Ele pode fazer com que o sistema simplesmente pare de funcionar ou pior.</p>
+<p>Nem é preciso mencionar que os danos de um ataque desse tipo são enormes. Abaixo, vemos algumas das atitudes que esse invasor poderia tomar, aproveitando a instabilidade:</p>
+<ul>
+<li>Roubar informações, aproveitando a indisponibilidade;</li>
+<li>Instalar malwares no sistema;</li>
+<li>Usar o sistema-alvo como um novo bot na sua botnet, a fim de causar um ataque ainda maior;</li>
+<li>Ameaçar a empresa, pedindo dinheiro para interromper o ataque;</li>
+<li>E muito mais…</li>
+</ul>
+<hr>
+<h1 id="exemplos-reais-e-recentes">#Exemplos reais (e recentes)</h1>
+<p><img src="ddos3.png" alt=""></p>
+<p>A princípio, pode parecer um problema distante ou que ocorre com baixa frequência, mas o DDoS tem sido cada vez mais frequente nas manchetes.</p>
+<blockquote>
+<p>Veja comigo alguns exemplos recentes de DDoS. É possível que você se lembre ou até mesmo tenha sofrido com algum desses.</p>
+</blockquote>
+<ul>
+<li>Dezembro de 2014 — A PlayStation Network (PSN) sofre um ataque DDoS em pleno natal, impedindo que os usuários joguem ou comprem na loja.</li>
+<li>Outubro de 2016 — O provedor de DNS chamado Dyn sofre um ataque DDoS massivo que afeta vários sites populares, incluindo Twitter, Spotify, Netflix e Reddit.</li>
+<li>Setembro de 2017 — O Google sofre um dos maiores ataques DDoS da história.</li>
+<li>Fevereiro de 2020 — a gigante AWS informa que conseguiu mitigar um forte ataque DDoS em seus serviços.
+Convivemos com o DDoS no dia-a-dia e, por vezes, não percebemos. Isso se dá porque há uma grande equipe trabalhando nos bastidores, para que a disponibilidade — ela mesma, da tríade CIA — seja reestabelecida.</li>
+</ul>
+<hr>
+<h1 id="prevenção-e-mitigação">#Prevenção e Mitigação</h1>
+<p><img src="ddos4.png" alt=""></p>
+<blockquote>
+<p>Mas, então, como se proteger? Como evitar que um ataque de tão grandes proporções ocorra ou, ainda que ocorra, evitar que atrapalhe as operações do negócio?</p>
+</blockquote>
+<p>É recomendado, para evitar ou mitigar esse tipo de ataque, que seja implementada alguma solução que monitore a atividade na rede, a fim de bloquear o máximo de tráfego suspeito possível. Essas soluções incluem:</p>
+<ul>
+<li>Firewalls com regras de controle de acesso, IPS (Intrusion Prevention Systems), para automaticamente bloquear o tráfego indesejado;</li>
+<li>Usar um sistema de Load Balance, para que o tráfego da rede seja distribuído e não fique concentrado em um único servidor. Assim, evitamos um ponto único de falha.</li>
+<li>Treinamento, afinal, há sempre o fator humano na equação. Os funcionários, a equipe de redes e de resposta a incidentes devem estar preparados para que, ainda que ocorra um DDoS, ele tenha o mínimo de impacto na companhia.</li>
+<li>E, claro, manter todos os sistemas atualizados com os patches mais recentes, a fim de minimizar as vulnerabilidades.
+Com isso, é possível diminuir as chances desse tipo de ataque, ainda que “segurança total” ou “zero falhas” sejam termos quase folclóricos.</li>
+</ul>
+<h1 id="conclusão">#Conclusão</h1>
+<p>Concluo propondo a seguinte reflexão:</p>
+<blockquote>
+<p><em>Muito se fala sobre a importância da disponibilidade do sistema, e com razão. De fato, esse tema deveria ser muito mais propagado e debatido.</em></p>
+</blockquote>
+<blockquote>
+<p><em>Mesmo assim, devemos lembrar que a Segurança é a maior aliada da Disponibilidade. Sem segurança, qualquer ataque ou incidente pode causar interrupções no funcionamento dos serviços para os usuários, amplificando ainda mais os danos e o prejuízo, que pode ser irreversível.</em></p>
+</blockquote>
+<blockquote>
+<p><strong>Pode, nos dias de hoje, uma empresa sobreviver sem cybersecurity?</strong></p>
+</blockquote>
+<hr>
+<p>Muito obrigado pela sua companhia até aqui, querido(a) leitor(a)!</p>
+]]></content>
+        </item>
+        
     </channel>
 </rss>
