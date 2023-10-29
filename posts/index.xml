@@ -76,7 +76,10 @@ Pesquise sobre um ataque DDoS, veja como é possível identificá-lo e como miti
 </blockquote>
 <hr>
 <h1 id="conceitos-chave">#Conceitos-chave</h1>
-<p>&lt; image src=&quot;../static/ddos1.png&quot; position=&ldquo;center&rdquo; style=&ldquo;border-radius: 8px;&rdquo; &gt;</p>
+
+    <img src="../static/ddos1.png"  class="center"  style="border-radius: 8px;"  />
+
+
 <p>Para entender um DDoS, primeiro é necessário entender dois conceitos-chave, que estão diretamente relacionados ao tema. Vejamos alguns deles de forma simplificada e com exemplos didáticos fora da tecnologia.</p>
 <blockquote>
 <p>Denial of Service</p>
@@ -89,12 +92,12 @@ Pesquise sobre um ataque DDoS, veja como é possível identificá-lo e como miti
 <hr>
 <h1 id="o-grande-problema">#O grande problema</h1>
 <blockquote>
-<p>Suponhamos agora que vários estradas estão bloqueadas, por diversos carros de diversos locais, ao longo do país inteiro. Esse é o DDoS.
+<p>Suponhamos agora que vários estradas estão bloqueadas, por diversos carros de diversos locais, ao longo do país inteiro. Esse é o DDoS.</p>
+</blockquote>
 
     <img src="../static/ddos2.png"  class="center"  style="border-radius: 8px;"  />
 
-</p>
-</blockquote>
+
 <p>Um Distributed Denial of Service (DDoS) é uma espécie de DoS mais avançado, distribuído. Nesse caso, o inimigo usa uma botnet a seu favor, para aumentar a efetividade do ataque.</p>
 <p>Como o atacante tem acesso a várias máquinas, espalhadas ao redor do mundo, os danos do ataque são muito maiores. Ele pode fazer com que o sistema simplesmente pare de funcionar ou pior.</p>
 <p>Nem é preciso mencionar que os danos de um ataque desse tipo são enormes. Abaixo, vemos algumas das atitudes que esse invasor poderia tomar, aproveitando a instabilidade:</p>
@@ -107,7 +110,10 @@ Pesquise sobre um ataque DDoS, veja como é possível identificá-lo e como miti
 </ul>
 <hr>
 <h1 id="exemplos-reais-e-recentes">#Exemplos reais (e recentes)</h1>
-<p><img src="/static/ddos3.png" alt=""></p>
+
+    <img src="ddos3.png"  class="center"  style="border-radius: 8px;"  />
+
+
 <p>A princípio, pode parecer um problema distante ou que ocorre com baixa frequência, mas o DDoS tem sido cada vez mais frequente nas manchetes.</p>
 <blockquote>
 <p>Veja comigo alguns exemplos recentes de DDoS. É possível que você se lembre ou até mesmo tenha sofrido com algum desses.</p>
@@ -121,7 +127,10 @@ Pesquise sobre um ataque DDoS, veja como é possível identificá-lo e como miti
 <p>Convivemos com o DDoS no dia-a-dia e, por vezes, não percebemos. Isso se dá porque há uma grande equipe trabalhando nos bastidores, para que a disponibilidade — ela mesma, da tríade CIA — seja reestabelecida.</p>
 <hr>
 <h1 id="prevenção-e-mitigação">#Prevenção e Mitigação</h1>
-<p><img src="../static/ddos4.png" alt=""></p>
+
+    <img src="../static/ddos4.png"  class="center"  style="border-radius: 8px;"  />
+
+
 <blockquote>
 <p>Mas, então, como se proteger? Como evitar que um ataque de tão grandes proporções ocorra ou, ainda que ocorra, evitar que atrapalhe as operações do negócio?</p>
 </blockquote>
