@@ -77,7 +77,7 @@ Pesquise sobre um ataque DDoS, veja como é possível identificá-lo e como miti
 <hr>
 <h1 id="conceitos-chave">#Conceitos-chave</h1>
 
-    <img src="../../../static/ddos1.png"  class="center"  style="border-radius: 8px;"  />
+    <img src="../../../blog/static/ddos1.png"  class="center"  style="border-radius: 8px;"  />
 
 
 <p>Para entender um DDoS, primeiro é necessário entender dois conceitos-chave, que estão diretamente relacionados ao tema. Vejamos alguns deles de forma simplificada e com exemplos didáticos fora da tecnologia.</p>
@@ -95,7 +95,7 @@ Pesquise sobre um ataque DDoS, veja como é possível identificá-lo e como miti
 <p>Suponhamos agora que vários estradas estão bloqueadas, por diversos carros de diversos locais, ao longo do país inteiro. Esse é o DDoS.</p>
 </blockquote>
 
-    <img src="../../../static/ddos2.png"  class="center"  style="border-radius: 8px;"  />
+    <img src="../../../blog/static/ddos2.png"  class="center"  style="border-radius: 8px;"  />
 
 
 <p>Um Distributed Denial of Service (DDoS) é uma espécie de DoS mais avançado, distribuído. Nesse caso, o inimigo usa uma botnet a seu favor, para aumentar a efetividade do ataque.</p>
