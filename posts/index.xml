@@ -6,97 +6,13 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Mon, 30 Oct 2023 00:00:00 +0000</lastBuildDate>
+        <lastBuildDate>Mon, 20 Nov 2023 00:00:00 +0000</lastBuildDate>
         <atom:link href="https://pe1xera.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
-        
-        <item>
-            <title>Whoami</title>
-            <link>https://pe1xera.github.io/posts/whoami/</link>
-            <pubDate>Mon, 30 Oct 2023 00:00:00 +0000</pubDate>
-            
-            <guid>https://pe1xera.github.io/posts/whoami/</guid>
-            <description>Este sou eu, Rodrigo Peixoto Santos, ou pe1xera - no caso de CTF&amp;rsquo;s ou no Discord.
-Francamente, não há nada mais difícil do que definir a si mesmo sem ser impreciso ou enviesado por suas próprias percepções. Mesmo assim, caso interesse saber, diria que sou apenas um entusiasta da Cibersegurança, com paixão pelo conhecimento. Minha missão é tornar o Brasil um país mais seguro e livre, utilizando meus conhecimentos para fortalecer os alicerces da segurança da informação e promovê-la, mantendo sempre a ética, bom humor e minhas raízes.</description>
-            <content type="html"><![CDATA[
-    <img src="../../../the_pe1xera.jpeg"  class="center"  style="border-radius: 50%; width: 45%; filter: drop-shadow(4px 3px 4px #1f1e1e); "  />
-
-
-<p>Este sou eu, <strong>Rodrigo Peixoto Santos</strong>, ou <strong>pe1xera</strong> - no caso de CTF&rsquo;s ou no Discord.</p>
-<p>Francamente, não há nada mais difícil do que definir a si mesmo sem ser impreciso ou enviesado por suas próprias percepções. Mesmo assim, caso interesse saber, diria que sou apenas um entusiasta da Cibersegurança, com paixão pelo conhecimento. Minha missão é tornar o Brasil um país mais seguro e livre, utilizando meus conhecimentos para fortalecer os alicerces da segurança da informação e promovê-la, mantendo sempre a ética, bom humor e minhas raízes.</p>
-<p>Tenho base sólida em redes e conhecimento dos conceitos e áreas fundamentais de segurança. Minhas habilidades técnicas incluem segurança ofensiva e testes de invasão (pentest), além de forte capacidade de redação técnica e elaboração de relatórios.</p>
-<p>Acredito que o mundo cibernético precisa de profissionais com fundamentos sólidos, grande interesse no assunto, humildade e vontade de aprender, sendo esses os valores que procuro exercer diariamente.</p>
-<p>Minhas certificações incluem:</p>
-<ul>
-<li>CompTIA Security+</li>
-<li>Practical Junior Penetration Tester (PJPT)</li>
-<li>Microsoft SC-900</li>
-<li>Microsoft AZ-900</li>
-<li>Dentre outras&hellip;</li>
-</ul>
-<p>Além da minha afeição pela segurança da informação e sua influência na vida das pessoas, gosto de explorar e debater tópicos como design, literatura, política, videogames e música.</p>
-<hr>
-<p>
-    <img src="../../../Devaneios---capa.png"  class="left"  />
-
-<br>
-<strong>Devaneios Neurais</strong> nasce como uma iniciativa para compartilhar os temas que me são caros, sejam eles técnicos ou não-técnicos, lógicos ou ilógicos, práticos ou não-práticos.</p>
-<p>Produzir conteúdo, especialmente sobre tópicos que não dominamos em sua totalidade, é altamente desafiador. Enquanto pode parecer muita pretensão discorrer sobre os assuntos em que ainda estamos nos aprofundando, acredito que reter o conhecimento aprisionado na mente — ainda que esteja incorreto — é um desperdício de possíveis perspectivas e — por que não? — mais aprendizado.</p>
-<hr>
-<p><strong>Divirta-se!</strong></p>
-]]></content>
-        </item>
-        
-        <item>
-            <title>Piloto, ou: &#34;A Apologia de Devaneios Neurais&#34;</title>
-            <link>https://pe1xera.github.io/posts/apologia/</link>
-            <pubDate>Fri, 27 Oct 2023 00:00:00 +0000</pubDate>
-            
-            <guid>https://pe1xera.github.io/posts/apologia/</guid>
-            <description>“[…] as palavras podem ser extremamente perigosas. O que você define pode se tornar realidade, mas o que você insinua também pode… Mesmo que você não perceba que está fazendo isso.” (Alan Wake’s American Nightmare, Pg. 11: The Dangers of Creation)
-0x00 30 de Novembro é um dia de mudanças.
-Em 30 de novembro, comemoram-se datas importantes, que marcaram a humanidade profundamente:
-o Dia Internacional da Segurança da Informação; o nascimento de Winston Churchill, que liderou o mundo livre na WWII; o Dia do Teólogo, estudioso da Palavra de Deus; o lançamento da música Thriller de Michael Jackson, uma das melhores da história; o nascimento do lendário comediante Ben Stiller, de Uma Noite no Museu.</description>
-            <content type="html"><![CDATA[<p><em>“[…] as palavras podem ser extremamente perigosas. O que você define pode se tornar realidade, mas o que você insinua também pode… Mesmo que você não perceba que está fazendo isso.” (Alan Wake’s American Nightmare, Pg. 11: The Dangers of Creation)</em></p>
-<hr>
-<h1 id="0x00">0x00</h1>
-<p>30 de Novembro é um dia de mudanças.</p>
-<p>Em 30 de novembro, comemoram-se datas importantes, que marcaram a humanidade profundamente:</p>
-<ul>
-<li>o Dia Internacional da Segurança da Informação;</li>
-<li>o nascimento de Winston Churchill, que liderou o mundo livre na WWII;</li>
-<li>o Dia do Teólogo, estudioso da Palavra de Deus;</li>
-<li>o lançamento da música Thriller de Michael Jackson, uma das melhores da história;</li>
-<li>o nascimento do lendário comediante Ben Stiller, de Uma Noite no Museu.</li>
-</ul>
-<p>Não pense, querido leitor, que me considero um teólogo, um comediante, músico e, tampouco, um Analista de Cibersegurança. O ponto aqui é que tal data possui importância enorme para o imaginário popular e tende a conter eventos de grande impacto e notavéis começos.</p>
-<p>Por falar em &ldquo;começo&rdquo;, quero relembrar que, a despeito de todas as discussões e questionamentos, a Ciência da Computação já provou que, antes do um, temos o número mais importantes de todos, ainda que este não tenha valor nenhum, o zero.</p>
-<p>Sim, Zero - o ponto de partida. Mais do que a “ausência de valor”, o zero representa o primeiro estágio. Por si só, essa ideia traz conflitos e debates, pois implica que antes que a mente humana crie a ideia do Um, ela deve logicamente começar pelo Zero, pelo nada. Em decisões, argumentos e relações, temos a tendência de desconsiderar a base sólida que deveria fundamentar nossas ações: o pensamento.</p>
-<p>— Ah, é óbvio! — pensaria um leitor desatento.</p>
-<p>— Nem tanto — eu diria.</p>
-<hr>
-<h1 id="irregularidade">Irregularidade</h1>
-<p>A mente humana não é um terreno regular, querido leitor. Estamos falando de um oceano de ideias, uma orquestra de teses, planos e devaneios. Leia-se devaneios como “momentos em que a abrangência das ideias passa a ultrapassar a lógica, à medida que diversos temas e assuntos confundem-se dentro de um só”.</p>
-<p>Perfeito. Diante disso, acredito que o querido leitor esteja pronto para ser apresentado à ideia principal deste texto: Produzir conteúdo, especialmente sobre tópicos que não dominamos em sua totalidade, é altamente desafiador. Enquanto pode parecer muita pretensão discorrer sobre os assuntos em que ainda estamos nos aprofundando, reter o conhecimento aprisionado na mente — ainda que esteja incorreto — é um desperdício de possíveis perspectivas e — por que não? — mais aprendizado.</p>
-<p>Além disso, há a questão da heterogeneidade de pensamento, que causa divagações e pensamentos distantes da realidade e do tempo presente, mas que não necessariamente são inválidos.</p>
-<hr>
-<h1 id="devaneios">Devaneios</h1>
-<p>Surge, portanto, Devaneios Neurais. Em um mundo acostumado com vídeos de 30 segundos, tremendo desafio é prender a atenção do interlocutor por 30 minutos de leitura, quanto mais de temas que não são, necessariamente, populares. Naturalmente, restringe-se o alcance deste conteúdo, independente de qual seja seu valor prático e as suas eventuais contribuições para as pessoas.</p>
-<p>É imprescindível lembrar que Devaneios Neurais não é uma tentativa de proferir discursos sobre um tema em específico. A iniciativa deve ser vista como maneira de externar as minhas ideias, que costumam vagar pelas mais diversas temáticas, sem um objetivo definido, não servir de base para qualquer tema que não seja do meu agrado.</p>
-<ul>
-<li>É possível conectar uma abstração matemática, como a máquina de Turing, com o livre arbítrio e a consequência das escolhas, reveladas em Bioshock?</li>
-<li>Pode-se correlacionar “A Criação”, de Joseph Haydn, com obras de Van Gogh, em algum grau?</li>
-<li>O quão aplicável é a história do esquadrão Noble, em Halo, no contexto teológico?</li>
-</ul>
-<p>Lógico ou ilógico, prático ou não prático, técnico ou não técnico, digamos que há uma ampla gama de assuntos, que podem ser comentados com o objetivo único de gerar <em>reflexões</em>, pois esse é o ponto de partida.</p>
-<p>O desafio é grande, querido leitor: Voltemos ao zero, deixemos a mente — poderosa máquina que é — trabalhar e trazer sobre nós os seus Devaneios Neurais.</p>
-<p>Muito obrigado por sua companhia até aqui. Até a próxima!</p>
-]]></content>
-        </item>
         
         <item>
             <title>Entendendo o ataque DDoS e seus impactos de uma forma simples</title>
             <link>https://pe1xera.github.io/posts/ddos-101/</link>
-            <pubDate>Tue, 17 Jan 2023 00:00:00 +0000</pubDate>
+            <pubDate>Mon, 20 Nov 2023 00:00:00 +0000</pubDate>
             
             <guid>https://pe1xera.github.io/posts/ddos-101/</guid>
             <description>#Introdução Como parte do desafio de 30 dias de Cybersecurity (#30daysofcybersecurity) do servidor @MeninaDeCybersec, em seu 14º dia, fomos desafiados a postar um resumo sobre um ataque DDoS. Vejamos a descrição do challenge:
@@ -190,6 +106,90 @@ Pesquise sobre um ataque DDoS, veja como é possível identificá-lo e como miti
 <p><strong>Pode, nos dias de hoje, uma empresa sobreviver sem cybersecurity?</strong></p>
 </blockquote>
 <p>Muito obrigado pela sua companhia até aqui, querido(a) leitor(a)!</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Piloto, ou: &#34;A Apologia de Devaneios Neurais&#34;</title>
+            <link>https://pe1xera.github.io/posts/apologia/</link>
+            <pubDate>Mon, 20 Nov 2023 00:00:00 +0000</pubDate>
+            
+            <guid>https://pe1xera.github.io/posts/apologia/</guid>
+            <description>“[…] as palavras podem ser extremamente perigosas. O que você define pode se tornar realidade, mas o que você insinua também pode… Mesmo que você não perceba que está fazendo isso.” (Alan Wake’s American Nightmare, Pg. 11: The Dangers of Creation)
+0x00 30 de Novembro é um dia de mudanças.
+Em 30 de novembro, comemoram-se datas importantes, que marcaram a humanidade profundamente:
+o Dia Internacional da Segurança da Informação; o nascimento de Winston Churchill, que liderou o mundo livre na WWII; o Dia do Teólogo, estudioso da Palavra de Deus; o lançamento da música Thriller de Michael Jackson, uma das melhores da história; o nascimento do comediante Ben Stiller, de Uma Noite no Museu.</description>
+            <content type="html"><![CDATA[<p><em>“[…] as palavras podem ser extremamente perigosas. O que você define pode se tornar realidade, mas o que você insinua também pode… Mesmo que você não perceba que está fazendo isso.” (Alan Wake’s American Nightmare, Pg. 11: The Dangers of Creation)</em></p>
+<hr>
+<h1 id="0x00">0x00</h1>
+<p>30 de Novembro é um dia de mudanças.</p>
+<p>Em 30 de novembro, comemoram-se datas importantes, que marcaram a humanidade profundamente:</p>
+<ul>
+<li>o Dia Internacional da Segurança da Informação;</li>
+<li>o nascimento de Winston Churchill, que liderou o mundo livre na WWII;</li>
+<li>o Dia do Teólogo, estudioso da Palavra de Deus;</li>
+<li>o lançamento da música Thriller de Michael Jackson, uma das melhores da história;</li>
+<li>o nascimento do comediante Ben Stiller, de Uma Noite no Museu.</li>
+</ul>
+<p>Não pense, querido leitor, que me considero um teólogo, um comediante, músico e, tampouco, um Analista de Cibersegurança - ainda que esteja estudando com essa finalidade todos os dias. O ponto aqui é que tal data possui importância enorme para o imaginário popular e tende a conter eventos de grande impacto e notavéis começos.</p>
+<p>Por falar em &ldquo;começo&rdquo;, quero relembrar que, a despeito de todas as discussões e questionamentos, a Ciência da Computação já provou que, antes do um, temos o número mais importantes de todos, ainda que este não tenha valor nenhum, o zero.</p>
+<p>Sim, Zero - o ponto de partida. Mais do que a “ausência de valor”, o zero representa o primeiro estágio. Por si só, essa ideia traz conflitos e debates, pois implica que antes que a mente humana crie a ideia do Um, ela deve logicamente começar pelo Zero, pelo nada. Em decisões, argumentos e relações, temos a tendência de desconsiderar a base sólida que deveria fundamentar nossas ações: o pensamento.</p>
+<p>— Ah, é óbvio! — pensaria um leitor desatento.</p>
+<p>— Nem tanto — eu diria.</p>
+<hr>
+<h1 id="irregularidade">Irregularidade</h1>
+<p>— Qual é o zero de cada um?</p>
+<p>A mente humana não é um terreno regular, querido leitor. Estamos falando de um oceano de ideias, uma orquestra de teses, planos e devaneios. Leia-se devaneios como “momentos em que a abrangência das ideias passa a ultrapassar a lógica, à medida que diversos temas e assuntos confundem-se dentro de um só”.</p>
+<p>Perfeito. Diante disso, acredito que o querido leitor esteja pronto para ser apresentado à ideia principal deste texto: Produzir conteúdo, especialmente sobre tópicos que não dominamos em sua totalidade, é altamente desafiador. Enquanto pode parecer muita pretensão discorrer sobre os assuntos em que ainda estamos nos aprofundando, acredito que reter o conhecimento aprisionado na mente — ainda que esteja incorreto — é um desperdício de possíveis perspectivas e — por que não? — mais aprendizado.</p>
+<p>Além disso, há a questão da heterogeneidade de pensamento, que causa divagações e pensamentos distantes da realidade e do tempo presente, mas que não necessariamente são inválidos.</p>
+<p>Percebe que, diante disso, o &ldquo;zero&rdquo; de cada indivíduo pode estar em um ponto diferente do plano geral?</p>
+<hr>
+<h1 id="devaneios">Devaneios</h1>
+<p>Surge, portanto, Devaneios Neurais. Em um mundo acostumado com vídeos de 30 segundos, é tremendo o desafio de prender a atenção do interlocutor por 3 e, quem dirá, 30 minutos de leitura - quanto mais daqueles temas que não são, necessariamente, populares. Naturalmente, restringe-se o alcance deste conteúdo, independente de qual seja seu valor prático e as suas eventuais contribuições para as pessoas.</p>
+<p>Estou seguro de que o exposto não é um problema. Ao longo do tempo, passei a perceber que os conteúdos de valor e que realmente fazem a diferença tendem a ser, naturalmente, restritos, por assim dizer. Dessa forma, apenas uma pequena parcela de pessoas tende a buscá-los e consumí-los. Veja as apresentações da Orquestra Sinfônica, por exemplo!</p>
+<p>É imprescindível lembrar que Devaneios Neurais não é uma tentativa de proferir discursos sobre um tema em específico. A iniciativa deve ser vista como maneira de externar as minhas ideias, que costumam vagar pelas mais diversas temáticas, sem um objetivo definido, não servir de base para qualquer tema que não seja do meu agrado.</p>
+<p>Lógico ou ilógicos, práticos ou não práticos, técnicos ou não técnicos, digamos que há uma ampla gama de assuntos, que podem ser comentados com o objetivo de gerar <strong>reflexões</strong>, pois esse é o ponto de partida.</p>
+<p>O desafio é grande, querido leitor: Busquemos o zero, deixemos a mente — poderosa máquina que é — trabalhar e trazer sobre nós os seus <strong>Devaneios Neurais</strong>.</p>
+<blockquote>
+<p>Muito obrigado por sua companhia até aqui. Até a próxima!</p>
+</blockquote>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Whoami</title>
+            <link>https://pe1xera.github.io/posts/whoami/</link>
+            <pubDate>Mon, 20 Nov 2023 00:00:00 +0000</pubDate>
+            
+            <guid>https://pe1xera.github.io/posts/whoami/</guid>
+            <description>Este sou eu, Rodrigo Peixoto Santos, ou pe1xera - no caso de CTF&amp;rsquo;s ou no Discord.
+Francamente, não há nada mais difícil do que definir a si mesmo sem ser impreciso ou enviesado por suas próprias percepções. Mesmo assim, caso interesse saber, diria que sou apenas um entusiasta da Cibersegurança, com paixão pelo conhecimento. Minha missão é tornar o Brasil um país mais seguro e livre, utilizando meus conhecimentos para fortalecer os alicerces da segurança da informação e promovê-la, mantendo sempre a ética, bom humor e minhas raízes.</description>
+            <content type="html"><![CDATA[
+    <img src="../../../the_pe1xera.jpeg"  class="center"  style="border-radius: 50%; width: 45%; filter: drop-shadow(4px 3px 4px #1f1e1e); "  />
+
+
+<p>Este sou eu, <strong>Rodrigo Peixoto Santos</strong>, ou <strong>pe1xera</strong> - no caso de CTF&rsquo;s ou no Discord.</p>
+<p>Francamente, não há nada mais difícil do que definir a si mesmo sem ser impreciso ou enviesado por suas próprias percepções. Mesmo assim, caso interesse saber, diria que sou apenas um entusiasta da Cibersegurança, com paixão pelo conhecimento. Minha missão é tornar o Brasil um país mais seguro e livre, utilizando meus conhecimentos para fortalecer os alicerces da segurança da informação e promovê-la, mantendo sempre a ética, bom humor e minhas raízes.</p>
+<p>Tenho base sólida em redes e conhecimento dos conceitos e áreas fundamentais de segurança. Minhas habilidades técnicas incluem segurança ofensiva e testes de invasão (pentest), além de forte capacidade de redação técnica e elaboração de relatórios.</p>
+<p>Acredito que o mundo cibernético precisa de profissionais com fundamentos sólidos, grande interesse no assunto, humildade e vontade de aprender, sendo esses os valores que procuro exercer diariamente.</p>
+<p>Minhas certificações incluem:</p>
+<ul>
+<li>CompTIA Security+</li>
+<li>Practical Junior Penetration Tester (PJPT)</li>
+<li>Microsoft SC-900</li>
+<li>Microsoft AZ-900</li>
+<li>Dentre outras&hellip;</li>
+</ul>
+<p>Além da minha afeição pela segurança da informação e sua influência na vida das pessoas, gosto de explorar e debater tópicos como design, literatura, política, videogames e música.</p>
+<hr>
+<p>
+    <img src="../../../Devaneios---capa.png"  class="left"  />
+
+<br>
+<strong>Devaneios Neurais</strong> nasce como uma iniciativa para compartilhar os temas que me são caros, sejam eles técnicos ou não-técnicos, lógicos ou ilógicos, práticos ou não-práticos.</p>
+<p>Produzir conteúdo, especialmente sobre tópicos que não dominamos em sua totalidade, é altamente desafiador. Enquanto pode parecer muita pretensão discorrer sobre os assuntos em que ainda estamos nos aprofundando, acredito que reter o conhecimento aprisionado na mente — ainda que esteja incorreto — é um desperdício de possíveis perspectivas e — por que não? — mais aprendizado.</p>
+<hr>
+<p><strong>Divirta-se!</strong></p>
 ]]></content>
         </item>
         
