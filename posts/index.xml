@@ -110,6 +110,40 @@ Pesquise sobre um ataque DDoS, veja como é possível identificá-lo e como miti
         </item>
         
         <item>
+            <title>Minha experiência com a certificação PJPT</title>
+            <link>https://pe1xera.github.io/posts/review-pjpt/</link>
+            <pubDate>Mon, 20 Nov 2023 00:00:00 +0000</pubDate>
+            
+            <guid>https://pe1xera.github.io/posts/review-pjpt/</guid>
+            <description>Introdução No dia 25 de Agosto de 2023, completei a &amp;ldquo;prova&amp;rdquo; da certificação PJPT, da TCM Security.
+De acordo com o site oficial, &amp;ldquo;a certificação Practical Junior Penetration Tester™ (PJPT) é uma experiência de pentest de nível iniciante. Este exame avaliará a capacidade do aluno de realizar um teste de penetração em uma rede interna a nível de associado. Os alunos terão dois (2) dias completos para concluir a avaliação e mais dois (2) dias adicionais para escrever um relatório profissional.</description>
+            <content type="html"><![CDATA[<h1 id="introdução">Introdução</h1>
+<p>No dia 25 de Agosto de 2023, completei a &ldquo;prova&rdquo; da certificação PJPT, da TCM Security.</p>
+<p>De acordo com o site oficial, &ldquo;a certificação <strong>Practical Junior Penetration Tester™ (PJPT)</strong> é uma experiência de pentest de nível iniciante. Este exame avaliará a capacidade do aluno de realizar um teste de penetração em uma rede interna a nível de associado. Os alunos terão dois (2) dias completos para concluir a avaliação e mais dois (2) dias adicionais para escrever um relatório profissional.</p>
+<p>Para receber a certificação, o aluno deve:</p>
+<p><strong>1)</strong> Utilizar suas habilidades de exploração do Active Directory para realizar movimentos laterais e verticais na rede e, por fim, comprometer o Controlador de Domínio (DC) do exame.<br>
+<strong>2)</strong> Fornecer um relatório detalhado e profissionalmente escrito.&rdquo;</p>
+<hr>
+<h1 id="practical-ethical-hacking-peh">Practical Ethical Hacking (PEH)</h1>
+<p>A própria TCM Security oferece um curso chamado Practical Ethical Hacking, ou PEH, como preparação para sua certificação. Apesar do nome, o curso não pretende ser um &ldquo;Canivete Suiço&rdquo; que ensine tudo sobre segurança ofensiva.</p>
+<p>Ainda assim, sem sombra de dúvidas, este é um dos melhores cursos que já tive a oportunidade de completar. O tipo de material que expande completamente os horizontes, mesmo de quem já tem um certo entendimento de Segurança da Informação e Hacking.</p>
+<p>O foco no mindset é um diferencial. Não espere um curso que te recheia de ferramentas - que podem mudar ou ficarem obsoletas até mesmo enquanto escrevo esse texto. Muito pelo contrário!</p>
+<p>Tivemos, dentre outros:</p>
+<ul>
+<li>Forte foco no processo de enumeração;</li>
+<li>Pentest em AD e diversos vetores de ataque;</li>
+<li>Revisão dos ataques mais comuns por Web Hacking;</li>
+<li>Dicas e insights na escrita de relatórios.</li>
+</ul>
+<p>As 25 horas de material se multiplicaram até ocuparem um mês inteiro, no qual pude construir o laboratório, praticar nos desafios e fazer anotações estratégicas.</p>
+
+    <img src="../../../lab-pjpt.png"  class="center"  style="filter: drop-shadow(4px 3px 4px #1f1e1e); "  />
+
+
+]]></content>
+        </item>
+        
+        <item>
             <title>Piloto, ou: &#34;A Apologia de Devaneios Neurais&#34;</title>
             <link>https://pe1xera.github.io/posts/apologia/</link>
             <pubDate>Mon, 20 Nov 2023 00:00:00 +0000</pubDate>
