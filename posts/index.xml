@@ -41,6 +41,22 @@ Um dos grandes problemas de nosso tempo, no entanto, é que julgamos o passado c
         </item>
         
         <item>
+            <title>Construindo o aTTLas: Port Scanning like a n00b</title>
+            <link>https://pe1xera.github.io/posts/attlas/</link>
+            <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
+            
+            <guid>https://pe1xera.github.io/posts/attlas/</guid>
+            <description>Intenção Com base no conteúdo ensinado pelo mestre Longatto e outros materiais complementares que encontrei pela internet a fora, resolvi criar um script em Python que faça o escaneamento de portas TCP abertas em um determinado host, respeitando alguns princípios como: Apresentação, Usabilidade e Agilidade, dentro - é claro - dos limites do pouco que conheço.
+Surge, então, o &amp;ldquo;aTTLas&amp;rdquo;. Princípios </description>
+            <content type="html"><![CDATA[<h1 id="intenção">Intenção</h1>
+<p>Com base no conteúdo ensinado pelo mestre Longatto e outros materiais complementares que encontrei pela internet a fora, resolvi criar um script em Python que faça o escaneamento de portas TCP abertas em um determinado host, respeitando alguns princípios como: Apresentação, Usabilidade e Agilidade, dentro - é claro - dos limites do pouco que conheço.</p>
+<h2 id="surge-então-o-attlas">Surge, então, o &ldquo;aTTLas&rdquo;.</h2>
+<h1 id="princípios">Princípios</h1>
+<h1 id="heading"></h1>
+]]></content>
+        </item>
+        
+        <item>
             <title>Minha experiência com a certificação PJPT</title>
             <link>https://pe1xera.github.io/posts/review-pjpt/</link>
             <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
