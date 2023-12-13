@@ -7,7 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 04 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://pe1xera.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://pe1xera.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Construindo o aTTLas portscanner</title>
+      <link>https://pe1xera.github.io/posts/attlas/</link>
+      <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://pe1xera.github.io/posts/attlas/</guid>
+      <description>“Se você não consegue fazer algo bom, pelo menos faça com que pareça bom.”
+~Bill Gates
+Intenção Com base no conteúdo ensinado pelo mestre Longatto no curso Novo Pentest Profissional e outros materiais complementares que encontrei pela internet a fora, resolvi criar um script em Python que faça o escaneamento de portas TCP abertas em um determinado host, respeitando alguns princípios como: Apresentação, Usabilidade e Agilidade, dentro - é claro - dos limites do pouco que conheço.</description>
+    </item>
+    
     <item>
       <title>ILOVEYOU</title>
       <link>https://pe1xera.github.io/posts/iloveyou/</link>
@@ -16,16 +27,6 @@
       <guid>https://pe1xera.github.io/posts/iloveyou/</guid>
       <description>Simplicidade &amp;ldquo;Que bando de idiotas impulsivos, agiram sem pensar!&amp;rdquo;, pensaria o leitor.
 Um dos grandes problemas de nosso tempo, no entanto, é que julgamos o passado com os olhares de hoje em dia, o que caracteriza um anacronismo sem precedentes e traz um enorme perigo de interpretação. Com isso, surgem correntes políticas baseadas em mentiras e ideias mal formuladas, apoiadas em uma visão distorcida do passado; mas isso é uma conversa para outra hora.</description>
-    </item>
-    
-    <item>
-      <title>Construindo o aTTLas: Port Scanning like a n00b</title>
-      <link>https://pe1xera.github.io/posts/attlas/</link>
-      <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://pe1xera.github.io/posts/attlas/</guid>
-      <description>Intenção Com base no conteúdo ensinado pelo mestre Longatto e outros materiais complementares que encontrei pela internet a fora, resolvi criar um script em Python que faça o escaneamento de portas TCP abertas em um determinado host, respeitando alguns princípios como: Apresentação, Usabilidade e Agilidade, dentro - é claro - dos limites do pouco que conheço.
-Surge, então, o &amp;ldquo;aTTLas&amp;rdquo;. Princípios </description>
     </item>
     
     <item>

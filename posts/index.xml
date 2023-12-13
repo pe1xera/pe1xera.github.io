@@ -6,8 +6,77 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Mon, 04 Dec 2023 00:00:00 +0000</lastBuildDate>
+        <lastBuildDate>Mon, 11 Dec 2023 00:00:00 +0000</lastBuildDate>
         <atom:link href="https://pe1xera.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Construindo o aTTLas portscanner</title>
+            <link>https://pe1xera.github.io/posts/attlas/</link>
+            <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
+            
+            <guid>https://pe1xera.github.io/posts/attlas/</guid>
+            <description>“Se você não consegue fazer algo bom, pelo menos faça com que pareça bom.”
+~Bill Gates
+Intenção Com base no conteúdo ensinado pelo mestre Longatto no curso Novo Pentest Profissional e outros materiais complementares que encontrei pela internet a fora, resolvi criar um script em Python que faça o escaneamento de portas TCP abertas em um determinado host, respeitando alguns princípios como: Apresentação, Usabilidade e Agilidade, dentro - é claro - dos limites do pouco que conheço.</description>
+            <content type="html"><![CDATA[<p><em>“Se você não consegue fazer algo bom, pelo menos faça com que pareça bom.”</em><br>
+<em>~Bill Gates</em></p>
+<hr>
+<h1 id="intenção">Intenção</h1>
+<p>Com base no conteúdo ensinado pelo mestre Longatto no curso Novo Pentest Profissional e outros materiais complementares que encontrei pela internet a fora, resolvi criar um script em Python que faça o escaneamento de portas TCP abertas em um determinado host, respeitando alguns princípios como: Apresentação, Usabilidade e Agilidade, dentro - é claro - dos limites do pouco que conheço.</p>
+<p>Em termos de etimologia, atlas é o nome que se dá a uma coleção de mapas em que estão representadas as posições das estrelas. Também é este o nome dado pela mitologia grega ao titã condenado a carregar o peso dos céus em suas costas por toda a eternidade. TTL, por sua vez, é uma referência ao Time To Live, um campo usado no datagrama IP como um contador do tempo de vida de um pacote.</p>
+<hr>
+<h1 id="princípios">Princípios</h1>
+<p>Surge, então, o <strong>&ldquo;aTTLas&rdquo;</strong>, um simples portscanner em Python, desenvolvido no método que apelidei de &lsquo;scripting like a n00b&rsquo; - o qual é autoexplicativo.</p>
+<p>O aTTLas não tem a pretensão de ser melhor do que qualquer script existente e sequer ser comparável a qualquer deles, servindo apenas como um método para colocar em prática aquilo que aprendi, servindo como minha primeira ferramenta autoral.</p>
+<p>Dito isso, querido leitor, também não se trata de um script estéril e sem utilidade prática. Na realidade, aTTLas pode ser bastante plausível, a depender das suas intenções. O script tem sua própria filosofia e segue três princípios norteadores básicos:</p>
+<blockquote>
+<ol>
+<li>Apresentação</li>
+</ol>
+</blockquote>
+
+    <img src="../../../attlas1.gif"  class="center"  style="border-radius: 5%;"  />
+
+
+<p>Algo que me encantou e ainda encanta nas ferramentas de segurança de linha de comando são as ASCII arts que permeiam as melhores delas. Neste caso, os banners de entrada e saída no aTTLas remetem ao mar e as estrelas, transportando o usuário para este &ldquo;universo&rdquo;, onde ele pode se sentir um marinheiro ou faroleiro observando as estrelas, que representam as portas abertas no alvo.</p>
+<p>Enquanto funciona, o script exibe uma pequena animação, de forma que o usuário não tem de esperar, estático, por alguma informação na tela. Ele pode ser <del><del>engabelado</del></del> conduzido a uma melhor experiência visual enquanto espera a conclusão da tarefa do script.</p>
+<blockquote>
+<ol start="2">
+<li>Usabilidade</li>
+</ol>
+</blockquote>
+<p>Dado que o script não possui uma ampla gama de opções, não há a necessidade de trabalhar com muitos argumentos, uma escolha mais estética do que lógica. Neste caso, o usuário deve selecionar entre as três opções disponíveis dentro do programa, sendo elas: Top 100, Top 1000 e todas as portas, passando ao programa a sua escolha como argumento, junto ao endereço do alvo.<br>
+Ex.: <code>./aTTLas.py businesscorp.com.br 100</code> - Escaneia as 100 portas TCP mais comuns no alvo businesscorp.com.br.</p>
+
+    <img src="../../../attlas2.gif"  class="center"  style="border-radius: 5%;"  />
+
+
+<p>As portas estão diretamente inseridas no código e foram obtidas por meio de uma lista contendo as portas principais escaneadas pelos scripts mais robustos e estão listadas diretamente no programa, uma solução que possivelmente poderia ser melhor, como obtendo uma lista de portas por wordlist, mas não vem ao caso. A exceção é o caso de varredura em todas as portas, em que foi criado um looping com este objetivo.</p>
+<blockquote>
+<ol start="3">
+<li>Agilidade*</li>
+</ol>
+</blockquote>
+<p>Tempo é importante. Um port scanner muito lento é inútil, já que um de seus objetivos é a eliminação do trabalho e as validações manuais. Definimos o timeout padrão de 0.5 segundos - usando <code>socket.setdefaulttimeout(0.5)</code> - a fim de dar tempo para que as requisições sejam processadas, mas sem exageros na validação de cada uma das portas.</p>
+
+    <img src="../../../attlas_code.png"  class="center"  style="width: 80%; border-radius: 5%;"  />
+
+
+<p>No entanto, por se tratar de uma versão inicial do script e, levando em consideração que ainda não tenho domínio da linguagem, a agilidade não está no melhor estágio em que poderia. Abordamos as limitações do código adiante.</p>
+<hr>
+<h1 id="limitações">Limitações</h1>
+<p>Certamente, seria possível ter um script mais rápido, utilizando multi-threading e outros aspectos da linguagem, sobre os quais preferi não me aventurar neste primeiro momento, mas que já me despertaram interesse e podem, sem dúvidas, ser aplicados no mesmo script futuramente.</p>
+<p>A condição <code>== 0</code> no código indica que não houve erros durante a tentativa de conexão, indicando que a porta está &ldquo;aberta&rdquo;. No entanto, é importante observar que essa abordagem tem limitações, pois uma porta pode estar aberta e apresentar diferentes comportamentos. Este scanner não abrange todos os cenários possíveis e não é capaz de realizar validações mais abrangentes sobre o estado da porta, como a detecção de portas filtradas, por exemplo.</p>
+<hr>
+<h1 id="conclusão-e-aprendizados">Conclusão e Aprendizados</h1>
+
+    <img src="../../../attlasenc.gif"  class="center"  style="border-radius: 5%;"  />
+
+
+<p>Por mais que o aTTLas não seja o melhor dos scripts e, pelo contrário, peca em diversos aspectos, acredito que o simples fato de pesquisar alguns conceitos da linguagem para desenvolvê-lo me fez entender muito melhor os aspectos do Python e suas bibliotecas. Certamente usarei meu próprio código em CTFs ou contextos semelhantes.</p>
+<p>Agradeço por sua leitura até aqui, querido leitor!</p>
+]]></content>
+        </item>
         
         <item>
             <title>ILOVEYOU</title>
@@ -37,22 +106,6 @@ Um dos grandes problemas de nosso tempo, no entanto, é que julgamos o passado c
 <strong>10% dos computadores do mundo inteiro foram infectados.</strong></p>
 <hr>
 <p>Muito obrigado pela sua leitura até aqui, querido leitor.</p>
-]]></content>
-        </item>
-        
-        <item>
-            <title>Construindo o aTTLas: Port Scanning like a n00b</title>
-            <link>https://pe1xera.github.io/posts/attlas/</link>
-            <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
-            
-            <guid>https://pe1xera.github.io/posts/attlas/</guid>
-            <description>Intenção Com base no conteúdo ensinado pelo mestre Longatto e outros materiais complementares que encontrei pela internet a fora, resolvi criar um script em Python que faça o escaneamento de portas TCP abertas em um determinado host, respeitando alguns princípios como: Apresentação, Usabilidade e Agilidade, dentro - é claro - dos limites do pouco que conheço.
-Surge, então, o &amp;ldquo;aTTLas&amp;rdquo;. Princípios </description>
-            <content type="html"><![CDATA[<h1 id="intenção">Intenção</h1>
-<p>Com base no conteúdo ensinado pelo mestre Longatto e outros materiais complementares que encontrei pela internet a fora, resolvi criar um script em Python que faça o escaneamento de portas TCP abertas em um determinado host, respeitando alguns princípios como: Apresentação, Usabilidade e Agilidade, dentro - é claro - dos limites do pouco que conheço.</p>
-<h2 id="surge-então-o-attlas">Surge, então, o &ldquo;aTTLas&rdquo;.</h2>
-<h1 id="princípios">Princípios</h1>
-<h1 id="heading"></h1>
 ]]></content>
         </item>
         
