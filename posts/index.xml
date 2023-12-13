@@ -74,6 +74,7 @@ Ex.: <code>./aTTLas.py businesscorp.com.br 100</code> - Escaneia as 100 portas T
 
 
 <p>Por mais que o aTTLas não seja o melhor dos scripts e, pelo contrário, peca em diversos aspectos, acredito que o simples fato de pesquisar alguns conceitos da linguagem para desenvolvê-lo me fez entender muito melhor os aspectos do Python e suas bibliotecas. Certamente usarei meu próprio código em CTFs ou contextos semelhantes.</p>
+<p>O código está disponível em: <a href="https://github.com/pe1xera/aTTLas">https://github.com/pe1xera/aTTLas</a></p>
 <p>Agradeço por sua leitura até aqui, querido leitor!</p>
 ]]></content>
         </item>
