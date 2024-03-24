@@ -24,21 +24,23 @@ O objetivo deste artigo é introduzir alguns conceitos de criptografia, sem inco
 <h1 id="criptografia">Criptografia</h1>
 <p>Criptografia é, por essência, um tema complexo. Por mais que a ideia de uma &ldquo;técnica de ofuscação ou encriptação de informações&rdquo; (Fortinet)¹ seja simples, a quantidade de algoritmos, cifras e conceitos tende a causar uma natural - e perigosa - confusão.</p>
 <p>Encriptação envolve a Confidencialidade dados. Normalmente, isso é feito encriptando um arquivo com uma senha mas, ao mesmo tempo, uma senha fácil de adivinhar como &ldquo;rodrigo2024&rdquo; não vai fornecer nenhuma segurança confiável. Por conta disso, tem-se algoritmos criptográficos, que também podem ter suas fraquezas.</p>
-<h1 id="hashingbefd1ea261d11ae5ba4f3f0363313c52">Hashing:befd1ea261d11ae5ba4f3f0363313c52</h1>
-<p>Primeiramente, hashing não tem nada a ver com encriptação. Porém, frequentemente aparece com conexão com isso. Essa confusão é entendível, devido às características que um hash possui.</p>
+<h1 id="hashing">Hashing</h1>
+<p>&ldquo;befd1ea261d11ae5ba4f3f0363313c52&rdquo;</p>
+<p>Primeiramente, hashing não tem nada a ver com encriptação. Porém, frequentemente aparece em conexão com ela. Essa confusão é entendível, devido às características que um hash possui.</p>
 <p>Uma função de hash nada mais é do que um cálculo - sim, um cálculo - que produz uma saída de tamanho fixo, a partir de qualquer entrada. Se a entrada mudar, ainda que minimamente, a saída será totalmente diferente. Isso faz com que possamos rastrear qualquer mudança no arquivo, mesmo que seja a mais mínima manipulação.</p>
 <p>Essa propriedade permite que os hashes sejam usados especialmente para checagens de integridade. Abaixo, temos o hash gerado da pintura &ldquo;Jesus and Peter on the Water&rdquo;, de Gustave Brion.</p>
 <p>
-    <img src="../../../jesus_e_pedro.png"  class="center"  style="border-radius: 2%;"  />
+    <img src="../../../jesus_e_pedro.png"  alt="Arquivo original importado no Photoshop"  class="center"  style="border-radius: 2%;"  />
 
 
 
-    <img src="../../../jesus_hash_original.png"  class="center"  style="border-radius: 2%;"  />
+    <img src="../../../jesus_hash_original.png"  alt="Arquivo com pequena modificação na parte inferior"  class="center"  style="border-radius: 2%;"  />
 
 </p>
 <blockquote>
-<p>md5sum jesus_e_pedro.png
-2bf92a6e8cf03491bac344256c33cfc1  jesus_e_pedro.png</p>
+<p>md5sum jesus_e_pedro.png<br>
+2bf92a6e8cf03491bac344256c33cfc1<br>
+jesus_e_pedro.png</p>
 </blockquote>
 <p>Apesar disto, a melhor parte do Hash é que os dados originais não podem ser reconstruídos a partir da saída, trata-se de uma função de via única, tecnicamente irreversível.</p>
 <p>9134fdd1f231cfbbcf45df3c41a2d706:<strong>Codificacao</strong></p>
