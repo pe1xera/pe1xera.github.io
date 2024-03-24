@@ -29,11 +29,11 @@ O objetivo deste artigo é introduzir alguns conceitos de criptografia, sem inco
 <p>Uma função de hash nada mais é do que um cálculo - sim, um cálculo - que produz uma saída de tamanho fixo, a partir de qualquer entrada. Se a entrada mudar, ainda que minimamente, a saída será totalmente diferente. Isso faz com que possamos rastrear qualquer mudança no arquivo, mesmo que seja a mais mínima manipulação.</p>
 <p>Essa propriedade permite que os hashes sejam usados especialmente para checagens de integridade. Abaixo, temos o hash gerado da pintura &ldquo;Jesus and Peter on the Water&rdquo;, de Gustave Brion.</p>
 <p>
-    <img src="../../../jesus_e_pedro.png"  class="center"  style="border-radius: 5%;"  />
+    <img src="../../../jesus_e_pedro.png"  class="center"  style="border-radius: 2%;"  />
 
 
 
-    <img src="../../../jesus_hash_original.png"  class="center"  style="border-radius: 5%;"  />
+    <img src="../../../jesus_hash_original.png"  class="center"  style="border-radius: 2%;"  />
 
 </p>
 <blockquote>
@@ -47,7 +47,7 @@ Codificação base 64</p>
 <hr>
 <h1 id="referências-e-recomendações">Referências (e recomendações)</h1>
 <ol>
-<li><a href="https://www.fortinet.com/resources/cyberglossary/what-is-cryptography">text</a></li>
+<li><a href="https://www.fortinet.com/resources/cyberglossary/what-is-cryptography">What is Cryptography - Fortinet</a></li>
 </ol>
 ]]></content>
         </item>
