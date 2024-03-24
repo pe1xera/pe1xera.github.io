@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Fri, 16 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://pe1xera.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 24 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://pe1xera.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cripto101 - Uma abordagem sem Alice e Bob</title>
+      <link>https://pe1xera.github.io/posts/cripto101/</link>
+      <pubDate>Sun, 24 Mar 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://pe1xera.github.io/posts/cripto101/</guid>
+      <description>Imagine que Alice e Bob morreram. Por favor, não se espante! Caso prefira, imagine que eles tiraram as tão sonhadas férias. Esses dois conhecidos personagens foram os nossos companheiros por muito tempo, durante o estudo de Criptografia, mas é hora de descansarem.
+O objetivo deste artigo é introduzir alguns conceitos de criptografia, sem incorrer na monotonia e falta de criatividade que assolam os nossos tempos. Portanto, não espere ver sequências enormes de detalhamentos históricos ou uma quantidade (fora do normal) de termos técnicos.</description>
+    </item>
+    
     <item>
       <title>Efeito Lazarski</title>
       <link>https://pe1xera.github.io/posts/lazarski/</link>
