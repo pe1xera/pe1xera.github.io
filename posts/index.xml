@@ -6,13 +6,13 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Mon, 22 Jul 2024 00:00:00 +0000</lastBuildDate>
+        <lastBuildDate>Tue, 23 Jul 2024 00:00:00 +0000</lastBuildDate>
         <atom:link href="https://pe1xera.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
         
         <item>
             <title>Molinete, &#34;A Hash-cracking Tool&#34;</title>
             <link>https://pe1xera.github.io/posts/molinete/</link>
-            <pubDate>Mon, 22 Jul 2024 00:00:00 +0000</pubDate>
+            <pubDate>Tue, 23 Jul 2024 00:00:00 +0000</pubDate>
             
             <guid>https://pe1xera.github.io/posts/molinete/</guid>
             <description>O processo de quebra de hashes pode ser um grande atraso enquanto se realiza um pentest, especialmente quando o hash tem sua complexidade aumentada com aquela boa e velha pitada de Salt, um dado aleatório que é usado para gerar uma saída totalmente diferente daquela que a função de hash geraria por padrão, somente com a senha.
