@@ -6,8 +6,42 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Thu, 17 Oct 2024 00:00:00 +0000</lastBuildDate>
+        <lastBuildDate>Fri, 18 Oct 2024 00:00:00 +0000</lastBuildDate>
         <atom:link href="https://pe1xera.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Menos IA&#39;s, mais Turings</title>
+            <link>https://pe1xera.github.io/posts/turing/</link>
+            <pubDate>Fri, 18 Oct 2024 00:00:00 +0000</pubDate>
+            
+            <guid>https://pe1xera.github.io/posts/turing/</guid>
+            <description>“Enquanto houver um hacker, a inteligência artificial não dominará o mundo.”
+(Felipe Prado)
+Saturação Pelo amor de Deus, pare de falar de Inteligência Artificial ou eu serei obrigado a quebrar o seu pescoço! É sério, não dá mais! Eu juro que, no mínimo, vou correr atrás de você e te levar até a delegacia mais próxima&amp;hellip;
+Antes de tudo, quero dizer que, sim, o título é uma provocação. &amp;ldquo;Menos IA’s, mais Turings&amp;rdquo; é só um convite à reflexão, porque me incomoda quando os conceitos quase centenários são distorcidos para facilitar a venda de soluções, ou reduzidos de forma perturbadora.</description>
+            <content type="html"><![CDATA[<p><em>“Enquanto houver um hacker, a inteligência artificial não dominará o mundo.”</em><br>
+<em>(Felipe Prado)</em></p>
+<hr>
+<h2 id="saturação">Saturação</h2>
+<p>Pelo amor de Deus, <strong>pare</strong> de falar de Inteligência Artificial ou eu serei obrigado a quebrar o seu pescoço! É sério, não dá mais! Eu juro que, no mínimo, vou correr atrás de você e te levar até a delegacia mais próxima&hellip;</p>
+<p>Antes de tudo, quero dizer que, sim, o título é uma provocação. &ldquo;Menos IA’s, mais Turings&rdquo; é só um convite à reflexão, porque me incomoda quando os conceitos quase centenários são distorcidos para facilitar a venda de soluções, ou reduzidos de forma perturbadora. Acho que chegou o momento de voltarmos a Outubro de 1950 e revisarmos algumas informações, antes de prosseguirmos com o bombardeamento diário de informações.</p>
+<p>Imagine uma máquina que opera em três estados — Q1, Q2 e Q3. Agora, visualize esses estados como posições de uma roda. A máquina gira de uma posição a outra, em saltos precisos, como se fosse um relógio, seguindo uma sequência que depende apenas da sua configuração inicial e do estado de uma alavanca que pode estar ligada ou desligada. Quando o estado da roda para em uma determinada posição, uma lâmpada acende. Parece simples, não é?</p>
+<p>Alan Turing, em seu trabalho fundamental sobre o que hoje chamamos de máquinas de estado discreto (ou DSMs), descreveu esse tipo de máquina como algo que &ldquo;se move em saltos súbitos de um estado bem definido para outro&rdquo;. A magia por trás dessas máquinasé a simplicidade de sua lógica: elas seguem regras precisas, previsíveis, e não há nenhum espaço para mistérios ou ambiguidades. As transições entre estados são tão claras que “a possibilidade de confusão entre eles pode ser descartada”.</p>
+
+    <img src="../../../esquema-turing.png"  class="center"  style="width: 60%; border-radius: 5%;"  />
+
+
+<p>Turing sabia que, por mais que essas máquinas fossem simples, elas representavam algo poderoso. Essas máquinas — que, no fundo, são a base dos computadores modernos — operam com precisão, porque se você conhece o estado inicial e as condições de entrada, consegue prever com exatidão o que vai acontecer depois. Essa previsibilidade, no entanto, não implica que elas &ldquo;pensam&rdquo;. Elas apenas seguem suas regras, tal como um relógio segue seu tique-taque. Na verdade, Turing nunca sugeriu que essas máquinas estavam &ldquo;pensando&rdquo; no sentido humano. Ele entendia que, embora possamos descrever sua lógica como &ldquo;inteligente&rdquo;, o que elas fazem é processar.</p>
+<hr>
+<h2 id="uma-nova-questão">Uma nova questão</h2>
+<p>É aqui que entra a grande questão, querido leitor: onde traçamos a linha entre a mera mudança de estados e a verdadeira inteligência? Hoje, o termo &ldquo;inteligência artificial&rdquo; é usado de forma tão indiscriminada que parece que estamos prestes a ser ultrapassados por nossos próprios algoritmos. No entanto, voltando ao modelo de Turing, vemos que grande parte do que chamamos de &ldquo;IA&rdquo; nada mais é do que máquinas de estado discretas com processamento um pouco mais complexo. São sistemas que saltam de Q1 para Q2, ora pois, assim como a roda da nossa máquina hipotética.</p>
+<p>Será que estamos tão desesperados para acreditar que uma máquina pode &ldquo;pensar&rdquo; que nos esquecemos de que tudo o que ela faz é processar informações da forma mais mecânica possível? Ao atribuir qualidades humanas a essas máquinas, não estaríamos subestimando a complexidade do que significa pensar, sentir e criar? É impressionante como todos parecem obcecados com essa ideia de que as máquinas estão prestes a roubar nossas almas (e nossos empregos também, claro).  </p>
+<p>Volto a dizer: Turing, que tanto contribuiu para o desenvolvimento da computação, nunca afirmou que as máquinas realmente &ldquo;pensam&rdquo; como nós. Ele propôs um teste para determinar se um observador externo poderia distinguir uma máquina de um ser humano em termos de comportamento. Mas isso é bem diferente de atribuir consciência a algoritmos que, como a roda de nossa máquina hipotética - que não posso deixar de citar -, estão apenas girando dentro de suas regras limitadas.</p>
+<p>Sim, a IA deve continuar sendo usada ao máximo porque, sem dúvidas, facilita e otimiza as nossas tarefas, mas devemos sempre nos questionar: será que a verdadeira questão, hoje, não é se uma máquina é capaz de pensar, mas sim se o ser humano ainda é?</p>
+<hr>
+<p>Muito obrigado pela sua leitura até aqui, querido leitor!</p>
+]]></content>
+        </item>
         
         <item>
             <title>Desconexo</title>
