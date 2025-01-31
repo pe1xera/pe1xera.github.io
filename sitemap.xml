@@ -2,73 +2,76 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://pe1xera.github.io/</loc>
+    <loc>http://localhost:1313/posts/melhorias/</loc>
+    <lastmod>2025-01-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2025-01-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2025-01-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/cercas/</loc>
     <lastmod>2025-01-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://pe1xera.github.io/posts/</loc>
-    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://pe1xera.github.io/posts/cercas/</loc>
-    <lastmod>2025-01-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://pe1xera.github.io/posts/puritanos/</loc>
+    <loc>http://localhost:1313/posts/puritanos/</loc>
     <lastmod>2025-01-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://pe1xera.github.io/posts/chuva/</loc>
+    <loc>http://localhost:1313/posts/chuva/</loc>
     <lastmod>2024-11-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://pe1xera.github.io/posts/post-tenebras/</loc>
+    <loc>http://localhost:1313/posts/post-tenebras/</loc>
     <lastmod>2024-10-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://pe1xera.github.io/posts/turing/</loc>
+    <loc>http://localhost:1313/posts/turing/</loc>
     <lastmod>2024-10-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://pe1xera.github.io/posts/desconexo/</loc>
+    <loc>http://localhost:1313/posts/desconexo/</loc>
     <lastmod>2024-10-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://pe1xera.github.io/posts/humpty/</loc>
+    <loc>http://localhost:1313/posts/humpty/</loc>
     <lastmod>2024-08-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://pe1xera.github.io/posts/molinete/</loc>
+    <loc>http://localhost:1313/posts/molinete/</loc>
     <lastmod>2024-07-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://pe1xera.github.io/posts/cripto101/</loc>
+    <loc>http://localhost:1313/posts/cripto101/</loc>
     <lastmod>2024-03-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://pe1xera.github.io/posts/lazarski/</loc>
+    <loc>http://localhost:1313/posts/lazarski/</loc>
     <lastmod>2024-02-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://pe1xera.github.io/posts/isolamento/</loc>
+    <loc>http://localhost:1313/posts/isolamento/</loc>
     <lastmod>2024-01-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://pe1xera.github.io/posts/deltas/</loc>
+    <loc>http://localhost:1313/posts/deltas/</loc>
     <lastmod>2024-01-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://pe1xera.github.io/posts/kenosis/</loc>
+    <loc>http://localhost:1313/posts/kenosis/</loc>
     <lastmod>2023-12-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://pe1xera.github.io/posts/attlas/</loc>
+    <loc>http://localhost:1313/posts/attlas/</loc>
     <lastmod>2023-12-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://pe1xera.github.io/posts/iloveyou/</loc>
+    <loc>http://localhost:1313/posts/iloveyou/</loc>
     <lastmod>2023-12-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://pe1xera.github.io/posts/review-pjpt/</loc>
+    <loc>http://localhost:1313/posts/review-pjpt/</loc>
     <lastmod>2023-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://pe1xera.github.io/posts/apologia/</loc>
+    <loc>http://localhost:1313/posts/apologia/</loc>
     <lastmod>2023-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://pe1xera.github.io/posts/sintese/</loc>
+    <loc>http://localhost:1313/posts/sintese/</loc>
     <lastmod>2023-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://pe1xera.github.io/posts/whoami/</loc>
+    <loc>http://localhost:1313/posts/whoami/</loc>
     <lastmod>2023-11-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://pe1xera.github.io/blog/</loc>
+    <loc>http://localhost:1313/blog/</loc>
   </url><url>
-    <loc>https://pe1xera.github.io/series/</loc>
+    <loc>http://localhost:1313/series/</loc>
   </url><url>
-    <loc>https://pe1xera.github.io/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
   </url>
 </urlset>
