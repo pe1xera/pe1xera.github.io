@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sat, 06 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 19 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://pe1xera.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mensagens SubLiminares</title>
+      <link>https://pe1xera.github.io/posts/subliminares/</link>
+      <pubDate>Thu, 19 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://pe1xera.github.io/posts/subliminares/</guid>
+      <description>&lt;p&gt;É, eu sei. Faz bastante tempo que não escrevo.&lt;/p&gt;&#xA;&lt;p&gt;Não foi por falta de ideias, nem por falta de acontecimentos. Na verdade, aconteceu coisa até demais, querido leitor (e que saudade de dizer isso). O que faltou não foi assunto, acredite em mim. Porém, fui eu que, por um tempo, perdi a vontade de transformá-los em texto.&lt;/p&gt;&#xA;&lt;p&gt;Até porque escrever, afinal, exige um certo tipo de inteireza. E houve dias bastante pesados, em que eu simplesmente não estava inteiro.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>доверяй, но проверяй</title>
       <link>https://pe1xera.github.io/posts/confira/</link>
@@ -218,13 +225,6 @@
       <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
       <guid>https://pe1xera.github.io/posts/whoami/</guid>
       <description>&lt;img src=&#34;../../../rodrigo.png&#34;  class=&#34;center&#34;  style=&#34;border-radius: 50%; width: 45%; filter: drop-shadow(4px 3px 4px #1f1e1e); &#34;  /&gt;&#xD;&#xA;&#xD;&#xA;&#xA;&lt;p&gt;Este sou eu, &lt;strong&gt;Rodrigo Peixoto Santos&lt;/strong&gt;, ou &lt;strong&gt;pe1xera&lt;/strong&gt; - no caso de CTF&amp;rsquo;s ou Discord.&lt;/p&gt;&#xA;&lt;p&gt;Francamente, não há nada mais difícil do que definir a si mesmo sem ser impreciso ou enviesado por suas próprias percepções. Como um entusiasta apaixonado por cibersegurança e envolvido na comunidade brasileira desse campo, estou ciente das lacunas que nosso país enfrenta nesse sentido. Diante disso, sinto-me responsável por buscar aprimoramento, todos os dias, com profissionais de referência no mercado.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title></title>
-      <link>https://pe1xera.github.io/posts/subliminares/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://pe1xera.github.io/posts/subliminares/</guid>
-      <description></description>
     </item>
   </channel>
 </rss>
