@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="Entre os dias 11 e 15 de novembro de 2022, quando eu dava meus primeiros passos em segurança, participei do CTF da comunidade @meninadecybersec. Guardo com muito respeito esta memória, porque foi um divisor de águas no meu desenvolvimento.
+Faço questão de compartilhar o write-up original, sem edições, pois honro cada erro cometido; eles foram a base do meu aprendizado. Foi através dessa dedicação que conquistei uma bolsa integral no San Jose Institute of Technology (SJIT), expandindo ainda mais os meus horizontes na área.
+" />
+<meta name="keywords" content="homepage, blog" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://pe1xera.github.io/posts/ctf_sabrina/" />
+
+
+    <title>
+        
+            [Memórias #1] CTF — Menina de Cybersec :: pe1xera  — Devaneios Neurais
+        
+    </title>
+
+
+
+
+
+  <link rel="stylesheet" href="/main.min.244183cde1a38e0b08f82c11791181288f9aac1cc9618cd6f4e9e7710c5768ba.css" integrity="sha256-JEGDzeGjjgsI&#43;CwReRGBKI&#43;arBzJYYzW9OnncQxXaLo=" crossorigin="anonymous">
+
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+
+  <meta itemprop="name" content="[Memórias #1] CTF — Menina de Cybersec">
+  <meta itemprop="description" content="Entre os dias 11 e 15 de novembro de 2022, quando eu dava meus primeiros passos em segurança, participei do CTF da comunidade @meninadecybersec. Guardo com muito respeito esta memória, porque foi um divisor de águas no meu desenvolvimento.
+Faço questão de compartilhar o write-up original, sem edições, pois honro cada erro cometido; eles foram a base do meu aprendizado. Foi através dessa dedicação que conquistei uma bolsa integral no San Jose Institute of Technology (SJIT), expandindo ainda mais os meus horizontes na área.">
+  <meta itemprop="datePublished" content="2026-03-27T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2026-03-27T00:00:00+00:00">
+  <meta itemprop="wordCount" content="2571">
+  <meta itemprop="image" content="https://pe1xera.github.io/ctf_sabrina.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://pe1xera.github.io/ctf_sabrina.png">
+  <meta name="twitter:title" content="[Memórias #1] CTF — Menina de Cybersec">
+  <meta name="twitter:description" content="Entre os dias 11 e 15 de novembro de 2022, quando eu dava meus primeiros passos em segurança, participei do CTF da comunidade @meninadecybersec. Guardo com muito respeito esta memória, porque foi um divisor de águas no meu desenvolvimento.
+Faço questão de compartilhar o write-up original, sem edições, pois honro cada erro cometido; eles foram a base do meu aprendizado. Foi através dessa dedicação que conquistei uma bolsa integral no San Jose Institute of Technology (SJIT), expandindo ainda mais os meus horizontes na área.">
+
+
+
+    <meta property="og:url" content="https://pe1xera.github.io/posts/ctf_sabrina/">
+  <meta property="og:site_name" content="pe1xera">
+  <meta property="og:title" content="[Memórias #1] CTF — Menina de Cybersec">
+  <meta property="og:description" content="Entre os dias 11 e 15 de novembro de 2022, quando eu dava meus primeiros passos em segurança, participei do CTF da comunidade @meninadecybersec. Guardo com muito respeito esta memória, porque foi um divisor de águas no meu desenvolvimento.
+Faço questão de compartilhar o write-up original, sem edições, pois honro cada erro cometido; eles foram a base do meu aprendizado. Foi através dessa dedicação que conquistei uma bolsa integral no San Jose Institute of Technology (SJIT), expandindo ainda mais os meus horizontes na área.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-03-27T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-03-27T00:00:00+00:00">
+    <meta property="og:image" content="https://pe1xera.github.io/ctf_sabrina.png">
+
+
+
+
+
+
+    <meta property="article:published_time" content="2026-03-27 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text ">
+                $cd /home/pe1xera</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/posts">Posts</a></li><li><a href="/posts/whoami/">Whoami</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        13 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://pe1xera.github.io/posts/ctf_sabrina/">[Memórias #1] CTF — Menina de Cybersec</a>
+      </h1>
+
+      
+
+      
+        <figure class="post-cover">
+          <img src="https://pe1xera.github.io/ctf_sabrina.png" alt="[Memórias #1] CTF — Menina de Cybersec" />
+          
+          
+        </figure>
+      
+
+      
+
+      <div class="post-content">
+        <p>Entre os dias 11 e 15 de novembro de 2022, quando eu dava meus primeiros passos em segurança, participei do CTF da comunidade @meninadecybersec. Guardo com muito respeito esta memória, porque foi um divisor de águas no meu desenvolvimento.</p>
+<p>Faço questão de compartilhar o write-up original, sem edições, pois honro cada erro cometido; eles foram a base do meu aprendizado. Foi através dessa dedicação que conquistei uma bolsa integral no San Jose Institute of Technology (SJIT), expandindo ainda mais os meus horizontes na área.</p>
+<hr>
+<h2 id="introdução">Introdução</h2>
+<p>Entre os dias 11 e 15 de Novembro, foi realizado um evento de CTF (Capture The Flag) no servidor oficial da comunidade @meninadecybersec no Discord.</p>
+<p>Apesar do nome, o servidor criado pela @meninadecybersec/Sabrina Ramos é aberto a todos. A comunidade é conhecida por conter diversos recursos gratuitos, networking e eventos voltados aos iniciantes em cibersegurança.</p>
+<p>Capture The Flag, como o nome já sugere, é uma competição lúdica na qual se testam os conhecimentos em segurança da informação em busca de “bandeiras”, que são a resposta dos desafios. Neste caso, foram postas à prova as habilidades em diversas categorias, incluindo Análise de Artefato, OSINT-GEOINT, Análise de Phishing e Programming.</p>
+<hr>
+<h2 id="preparação">Preparação</h2>
+<p>Após acessar o link disponibilizado no servidor, nos deparamos com a interface na qual estão os Challenges, desafios preparados especialmente para o evento, conforme abaixo. Apesar de não haver uma ordem exata para realização dos desafios, podemos iniciar pela categoria Easy, que contém challenges de nível fácil.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*AYrJu0e2vwUXDyBW"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Alguns dos challenges disponíveis na plataforma</em></p>
+</div>
+<p>Todas as flags seguem o formato: MCS{solução_do_desafio}. MCS (Menina de CyberSec) é um prefixo obrigatório, já o conteúdo dentro das chaves é a resposta dos desafios, propriamente dita. Sabendo disso, vamos jogar!</p>
+<hr>
+<h2 id="desafio-nomeie-essa-tool-1-a-3--easy">Desafio: Nomeie Essa Tool (1 a 3) — Easy</h2>
+<p>Iniciamos com uma série de três desafios, que podem servir como ponto de partida para os demais. Ao abrir os desafios Nomeie essa Tool, são fornecidas algumas imagens, que podem ser muito familiares para estudantes e profissionais de segurança.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*tgzihCL_yBHRnw2qsB_31w.jpeg"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>1 — qual_o_nome_disso.jpg</em></p>
+</div>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:450/format:webp/0*G85IabpnwArqynLq"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>2 — o_que_e_isso_esta_vendo_o_meu_futuro.jpg</em></p>
+</div>
+<p>Realizando uma busca reversa pelas imagens em qualquer mecanismo de pesquisa, como o famigerado Google Lens, é possível descobrir o nome das duas ferramentas, que se encaixam perfeitamente nas flags solicitadas.</p>
+<p>Flag Desafio 1: MCS{burp_suite} — Ferramenta de pentest web.</p>
+<p>Flag Desafio 2: MCS{nmap} — Ferramenta para port scan na rede.</p>
+<p>O terceiro challenge da série, em especial, apresentou a seguinte imagem, com o nome de endianness.jpg.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:640/format:webp/0*UxG7OJPS7rp2wc_B"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>endianness.jpg</em></p>
+</div>
+<p>Em breve pesquisa pelo termo, notamos que o endianness se refere à forma como os bytes são organizados na memória do computador. Existem duas arquiteturas diferentes de armazenamento dos bytes:</p>
+<p>-Little-Endian: Quando os bytes são armazenados do maior para o menor.</p>
+<p>-Big-Endian: Quando os bytes são armazenados do menor para o maior.</p>
+<p>Percebe-se que as setas estão apontando para a primeira sequência, que é crescente. Nesse caso, sabemos que estamos diante de um big-endian.</p>
+<p>Flag Desafio 3: MCS{big_endian}</p>
+<blockquote>
+<p>Para aprender sobre Linguagem de Baixo Nível, Assembly, binários e engenharia reversa, o Instagram da @hacknlearn/
+Carolina Trigo
+é um prato cheio!</p>
+</blockquote>
+<hr>
+<h2 id="desafio-hackerman--easy">Desafio: Hackerman — Easy</h2>
+<p>Neste desafio, é fornecido apenas o arquivo gostariadesaberqualserie.jpg, que é auto explicativo. Ao abri-lo, vemos o seguinte.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*6438jR73VxIxzW2A"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>gostariadesaberqualserie.jpg</em></p>
+</div>
+<p>Para aqueles que já acompanham filmes e séries de temática hacker, esse desafio é muito simples. Caso contrário, basta pesquisar o termo “Hackerman” na internet para obter um meme, baseado no personagem principal da série Mr. Robot (Elliot Alderson).</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*xEWTjES0kUQFr67y"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Hackerman! 😎</em></p>
+</div>
+<p>Nota-se também, na primeira imagem, o termo “fsociety”, que refere-se ao nome do grupo hacker fictício da série, do qual o menino Elliot faz parte. Além disso, também há o link whoismrrobot.com, mostrado no navegador.</p>
+<p>Flag: MCS{mr_robot}</p>
+<hr>
+<h2 id="desafio-o-soc-sofre-1--phishing-analysis">Desafio: O SOC Sofre… (1) — Phishing Analysis</h2>
+<blockquote>
+<p>Qual endereço de IP enviou o e-mail?</p>
+</blockquote>
+<p>O primeiro desafio de Análise de Phishing consiste em descobrir o IP de quem enviou um e-mail e, para tanto, é fornecido o arquivo de e-mail (.eml) a ser analisado.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*gqt63xNmyftb0uAs"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Arquivo .eml</em></p>
+</div>
+<p>Neste caso, optamos por utilizar o Microsoft Outlook, em uma máquina com Windows, para abrir o arquivo e visualizar seu conteúdo. Claramente, uma tentativa de phishing contra o destinatário da mensagem.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*Oo0ZbMUkEJnDvgbp"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>E-mail aberto</em></p>
+</div>
+<p>A princípio, o objetivo do desafio é localizar o IP do remetente, informação que pode ser encontrada no cabeçalho/header.</p>
+<p>Selecionando a opção Arquivo, no menu superior, chegamos à página de Informações, que mostra algumas das informações da mensagem e permite, inclusive, ler suas propriedades e opções avançadas.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*EBMMJtOJpi3_Qh94"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Informações do E-mail</em></p>
+</div>
+<p>Clicando em Propriedades, chegamos a uma janela crucial do challenge.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:640/format:webp/0*daa1PJtPtX4LFdPP"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Propriedades do E-mail</em></p>
+</div>
+<p>A informação que procuramos se encontra no header do e-mail, porém sua leitura completa pode ser exaustiva. Felizmente, existem diversas ferramentas para análise de header, dentre elas o MxToolBox.</p>
+<p>Ao colar o conteúdo completo do cabeçalho no MxToolBox, chegamos ao seguinte resultado e podemos descobrir qual é o IP do remetente, obtendo assim a flag do desafio.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*lVsHgEufX0A-QbSG"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Informações extraídas do header — 1</em></p>
+</div>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:640/format:webp/0*0mkcrtqPu1ueLbrW"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Informações extraídas do Header — 2</em></p>
+</div>
+<p>Flag: MCS{209.85.222.173}</p>
+<hr>
+<h2 id="desafio-o-soc-sofre-2--phishing-analysis">Desafio: O SOC Sofre… (2) — Phishing Analysis</h2>
+<blockquote>
+<p>Qual e-mail preenche o campo ‘From:’?</p>
+</blockquote>
+<p>Ainda na ferramenta MxToolBox, é possível verificar que, apesar de parecer ter sido enviado de uma fonte legítima, o adversário tenta se passar pelo banco da vítima para capturar suas informações.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*WW-BU26OGw3eV6gm"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Campo From, obtido pelo MxToolBox</em></p>
+</div>
+<blockquote>
+<p>From: “[Pontos ltauCartoes2.0 Liberados][048582186378611072]” <a href="mailto:santormcconnellw9660@gmail.com">santormcconnellw9660@gmail.com</a></p>
+</blockquote>
+<p>Com um olhar um pouco mais atento ao endereço de email do remetente, a vítima pode evitar cair em um golpe e, claro, podemos obter nossa flag.</p>
+<p>Flag: <a href="mailto:MCS{santormcconnellw9660@gmail.com">MCS{santormcconnellw9660@gmail.com</a>}</p>
+<hr>
+<h2 id="desafio-o-soc-sofre-2--phishing-analysis-1">Desafio: O SOC Sofre… (2) — Phishing Analysis</h2>
+<blockquote>
+<p>Quem foi a vítima desse e-mail?</p>
+</blockquote>
+<p>Logicamente, a vítima é o destinatário do e-mail, aquela que recebeu o conteúdo malicioso em sua Caixa de Entrada. A resposta do desafio está nos campos “To” ou “Para”, assim como o corpo do email.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:640/format:webp/0*lMbRdKjob3iHaTi1"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Corpo do E-mail</em></p>
+</div>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:640/format:webp/0*fPCn5BEEuzsyBGtz"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Campo To, obtido através do MxToolBox</em></p>
+</div>
+<p>Flag: <a href="mailto:MCS{rosinha@hotmail.com">MCS{rosinha@hotmail.com</a>}</p>
+<hr>
+<h2 id="desafio-fibowhat--programming">Desafio: Fibowhat — Programming</h2>
+<p>Neste desafio, é fornecido um arquivo sem extensão, de nome fibonacci. Quando o abrimos — através de qualquer leitor de texto, podemos descobrir o objetivo do desafio, através da mensagem que consta no comentário da primeira linha:</p>
+<blockquote>
+<p>O que você imagina que tem de errado nesse código? O Erro é a flag, boa sorte =D</p>
+</blockquote>
+<p>Também podemos visualizar um código desenvolvido na linguagem C, ficando claro que deve ser feito um review para descobrir qual é o erro.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*jRlxGCcIAKW3x-sM"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Leitura do arquivo com o comando cat, no Linux</em></p>
+</div>
+<p>Em breve análise do código, verificamos que sua função principal não está presente. A função main, que é o ponto de partida dos códigos na linguagem C, não consta no arquivo.</p>
+<p>Para funcionar normalmente, a linha 5 do código deve ser: int main().</p>
+<p>Flag: MCS{main}</p>
+<h2 id="desafio-keep-calm-dont-panic--programming">Desafio: Keep calm, don’t panic — Programming</h2>
+<p>Abrindo o arquivo dontpanic.txt, fornecido neste challenge, obtemos o retorno abaixo.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*QMUuVOcdojLtFUWh"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Leitura do arquivo dontpanic.txt, novamente com o comando cat</em></p>
+</div>
+<p>Com base nas informações contidas no arquivo, verificamos que Urban Müller criou, em 1993, a linguagem de programação esotérica chamada de Brainf<strong>k. Sendo assim, executamos os caracteres do arquivo em um interpretador online de Brainf</strong>k, obtendo como saída um simples “Hello world!”, que também é a flag do desafio.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:640/format:webp/0*5i0z7F5uBBR3eRzo"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Conversão do código através de ferramenta online</em></p>
+</div>
+<p>Flag: MCS{hello_world}</p>
+<hr>
+<h2 id="desafio-onde-está-o-olly-não--osint-geoint">Desafio: Onde está o Olly? Não! — OSINT-GEOINT</h2>
+<p>O primeiro desafio de OSINT-GEOINT é bastante curioso. O challenge fornece um arquivo de texto com as informações básicas para prosseguir com os demais da categoria, conforme abaixo.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*30QuDWHkeTtPjNk7EaAFZg.png"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Leitura do arquivo soconfia.txt, utilizando o Vim</em></p>
+</div>
+<blockquote>
+<p>Seu objetivo é descobrir qual é o aeroporto (sigla) e o país.
+Dica: os destaques estão ali por um motivo!</p>
+</blockquote>
+<p>Neste ponto, já obtivemos o perfil a ser analisado. O perfil @anna_serrana pode ser encontrado no Instagram — visto que é a principal rede social, quando se fala em post de fotos. Nele, foram publicadas diversas imagens que serão analisadas nos seus respectivos desafios.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*ZjTzuue44vCvKhYdxH7ZEQ.png"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Perfil @anna_serranna, no Instagram</em></p>
+</div>
+<p>A primeira foto publicada no perfil mostra uma área similar a um terminal de embarque. A julgar pelo tamanho da estrutura e pela descrição da foto publicada, sabemos que se trata de um aeroporto.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*djgrbYvrWQdGqC4jB-CRPw.png"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Primeira publicação de anna_serranna</em></p>
+</div>
+<blockquote>
+<p>quem vê o close não vê o corre<br>
+Eu amo este aeroporto ❤️<br>
+🚩o Olly está por aqui?</p>
+</blockquote>
+<p>Além da imagem acima, também há outro recurso que pode ser utilizado para descobrir de qual aeroporto se trata: a imagem na aba de Destaques.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*8nrPXizaQyIxS5gr1mYmoQ.png"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Imagem das filas de embarque do aeroporto</em></p>
+</div>
+<p>Novamente, através de pesquisa reversa com o Lens, pudemos localizar o local exato onde a foto foi tirada, o Aeroporto de Istambul (cuja sigla é IST), localizado na Turquia.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*tcjOvJETVYPwPIbYuZvqFw.png"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Resultado da busca com o Google Lens</em></p>
+</div>
+<p>Vale lembrar que podem ser usados mecanismos de busca diferentes e diversas fontes na internet, que chegariam ao mesmo resultado.</p>
+<p>Flag: MCS{ist_turquia}</p>
+<hr>
+<h2 id="desafio-stalker-on-maps-parte-1--osint-geoint">Desafio: Stalker on maps parte 1 — OSINT-GEOINT</h2>
+<p>O objetivo deste desafio, segundo o arquivo .txt fornecido, é analisar o perfil @anna_serranna mais uma vez, a fim de montar uma linha geográfica de suas viagens.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*seRVrj0TvckCyshW6MfXEw.png"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Leitura do arquivo fornecido maps.txt</em></p>
+</div>
+<p>A próxima foto publicada no perfil mostra uma rodovia, com placas indicando duas localidades, sendo elas Amarillo (Texas), e Ft. Smith (Arkansas). Estando ambos os locais nos Estados Unidos (o que também poderia ser deduzido pela publicação com a foto do hamburger americano), limita-se o escopo das buscas.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*AOEYoJFAfzBzvglFEK43Ww.png"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Segunda imagem publicada no Instagram</em></p>
+</div>
+<p>Sabe-se que e estrada da imagem é a I-40, dada a indicação das placas, então o que buscamos é uma localização, na referida estrada, que esteja próxima aos dois locais.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*eiZ3SVpcJ_ZGSHZYSIMENQ.png"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Caminho traçado entre Amarillo e Ft. Smith pela estrada Interestadual 40</em></p>
+</div>
+<p>Percebe-se, segundo essa lógica, que o local central entre as duas localidades indicadas nas placas, está no estado de Oklahoma. Da mesma forma, buscando por informações das saídas 120A e 120B (indicadas nas placas), verifica-se que ambas estão no estado de Oklahoma.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:556/format:webp/1*VzWjNPcVj3207BqV0uA03g.png"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Informações da EXIT 120A</em></p>
+</div>
+<p>Touché! Descoberta a flag do desafio.</p>
+<p>Flag: MCS{oklahoma_estados_unidos}</p>
+<h2 id="desafio-stalker-on-maps-parte-2-osint-geoint">Desafio: Stalker on maps parte 2— OSINT-GEOINT</h2>
+<p>Assim como o desafio anterior, o desafio Stalker on maps — parte 2, solicita uma localização no mapa, com a diferença de que são encontradas três imagens diferentes do mesmo local no perfil da @anna_serranna, sendo a terceira imagem, talvez, a mais significativa.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*msCbxnh1FnZe5RuNStVKGA.png"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Imagem 1 — Placa indicativa</em></p>
+</div>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*RBkbuV93C0EGxsCPEG46mw.png"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Imagem 2 — Tráfego de veículos</em></p>
+</div>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*APLeydDA1QmVO5dF5sPU-Q.png"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Imagem 3 — Indicações de local nas placas</em></p>
+</div>
+<p>Com base nas imagens fornecidas, temos a certeza de que o lugar onde Anna passou tem o Espanhol como língua oficial e está próximo a uma saída de caminhões. Apesar da dificuldade na leitura, é possível perceber os seguintes dizeres na placa (imagem 3): San Juan, Santurce e Hato Rey. Pesquisando por qualquer um dos termos, chegamos à informação de que o país que abriga esses locais é Porto Rico/Puerto Rico.</p>
+<p>Além disso, podemos averiguar que Santurce e Hato Rey são dois bairros importantes de San Juan, mas essas informações não seriam suficientes para achar o local exato da imagem.</p>
+<p>Buscando por “San Juan Puerto Rico Camiones” no Google Maps, podemos verificar a existência de diversas companhias de transporte em San Juan, concentradas em uma região específica do país, limitando o range das buscas.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*A8ENnOyT_OdZTirBGF2-Mw.png"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Companhias de transporte e caminhões no norte de San Juan, Porto Rico</em></p>
+</div>
+<p>Observando as ruas nas proximidades, chegamos próximos à Ecw San Juan, que possui uma garagem de caminhões, sendo a mesma da imagem e podendo ser vista a partir da rodovia Expreso John F. Kennedy.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*NVp0Jto89FtZQrPq5Hj_3A.png"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"></p>
+</div>
+<p>Comprovamos, assim, que o local onde a foto foi tirada é em San Juan.</p>
+<p>Flag: MCS{sanjuan_porto_rico}</p>
+<hr>
+<h2 id="desafio-me-manda-no-e-mail--análise-de-artefato">Desafio: “Me manda no e-mail” — Análise de Artefato</h2>
+<p>O primeiro dos desafios de Análise de Artefato fornece um arquivo .pdf para análise e solicita algumas informações do mesmo. A fim de não comprometer a máquina, o arquivo foi analisado através de uma máquina virtual (VM) com o Kali Linux instalado.</p>
+<blockquote>
+<p>Qual o SHA-256 desse artefato?</p>
+</blockquote>
+<p>Com o arquivo baixado na máquina (sem a necessidade de abrí-lo), podemos utilizar o comando sha256sum para extrair o hash em SHA-256 do arquivo e completar o desafio rapidamente.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*JnbaqRFSxiP95jSuSzTxuw.png"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Uso do comando sha256sum para obter o hash do arquivo pdf</em></p>
+</div>
+<p>Flag: MCS{6a4440a995dd031554d6f3ff71f196896287c20f5c6e664b85876b9adc6058c4}</p>
+<hr>
+<h2 id="desafio-tem-técnica-mas-não-tem-tática--análise-de-artefato">Desafio: Tem técnica, mas não tem tática… — Análise de Artefato</h2>
+<p>O desafio é uma sequência do anterior e tem o mesmo arquivo como base.</p>
+<blockquote>
+<p>Em qual técnica do Mitre Att&amp;CK esse artefato se encaixa?
+Desafio: Cuidado com a pesca!</p>
+</blockquote>
+<p>Primeiramente, o que sabemos sobre o arquivo?</p>
+<p>Sabemos que o arquivo em .pdf teria sido enviado, supostamente, pela Caixa Econômica Federal. Porém, ao analisá-lo, verificamos que bastaria apenas um clique em qualquer parte do documento para que a vítima fosse direcionada a um site malicioso, possivelmente para captura de informações.
+Press enter or click to view image in full size</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*wgSlJy34fT5BZ8tLepjbSQ.png"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"></p>
+</div>
+<p>Para responder ao desafio, seria preciso acessar o Mitre Att&amp;CK, uma ferramenta online que funciona como uma base de conhecimento das táticas e técnicas usadas por atacantes no mundo real.</p>
+<blockquote>
+<p>Desafio: Cuidado com a pesca!</p>
+</blockquote>
+<p>Com base na dica fornecida, sabemos que é uma técnica de phishing (pesca em inglês), método de ataque bastante comum. Vejamos um pequeno resumo sobre o phishing e como se dá o ataque, segundo o próprio Mitre.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*uNlUML0cSK4ONnoIIBvzwQ.png"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Página com informações sobre Phishing no Mitre Att&CK</em></p>
+</div>
+<blockquote>
+<p>“Os adversários podem enviar e-mails às vítimas contendo anexos ou links maliciosos, normalmente para executar código malicioso nos sistemas das vítimas (…). O phishing também pode envolver técnicas de engenharia social, como se passar por uma fonte confiável.</p>
+</blockquote>
+<p>Como visto na imagem, o phishing possui três sub-técnicas. Após leitura e baseado na própria descrição da técnica T1566.002, percebemos que é a que mais se aproxima da técnica usada pelo adversário.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*cMTueFZRxta4VUDo0ZuKdg.png"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Parte da descrição sobre Spearphishing Link no Mitre Att&CK</em></p>
+</div>
+<blockquote>
+<p>“Geralmente, os links serão acompanhados por um texto de engenharia social e exigem que o usuário clique ativamente ou copie e cole um URL em um navegador, aproveitando a user execution.”</p>
+</blockquote>
+<p>Temos aqui a descrição perfeita da técnica utilizada pelo atacante, sendo a instituição bancária usada para a engenharia social.</p>
+<p>Flag: MCS{spearphishing_link}</p>
+<hr>
+<h2 id="desafio-não-sei-berg-tá-estranho--análise-de-artefato">Desafio: Não sei, Berg, tá estranho… — Análise de Artefato</h2>
+<blockquote>
+<p>Algum security vendor sinalizou esse artefato como malicioso?</p>
+</blockquote>
+<p>Existem diversas plataformas para análise e sandbox de malwares, incluindo ferramentas gratuitas online. Por familiaridade, utilizamos o Hibrid Analysis.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*K6UKYrjVCiLNlkYdTwbZyw.png"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Tela inicial do Hibrid Analysis</em></p>
+</div>
+<p>Basta fazer o upload do arquivo no sistema para obter como retorno diversas informações interessantes e úteis para a análise.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*mo5qXn3h8Lbf3tbmunt0Tg.png"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Análise do arquivo do desafio após upload no site</em></p>
+</div>
+<p>O sistema já demonstra que o arquivo é malicioso, com pontuação de ameaça de 95/100, além de dar informações relevantes como o SHA256, solicitado em desafios anteriores.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*_Y1r0i2Tk4CJ2NdHI6SPvg.png"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Detecção de técnicas do Mitre Att&CK, segundo o Hibrid Analysis</em></p>
+</div>
+<p>Após upload do arquivo no site VirusTotal, podemos verificar que o Security Vendor ESET-NOD32 já havia reportado o arquivo e o sinalizado como malicioso.</p>
+<div>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*0HqtDWd54deWElTfeuOkHw.png"
+       style="display: block; margin: 0 auto;">
+  <p style="text-align: center;"><em>Tela inicial do Hibrid Analysis</em></p>
+</div>
+<p>Conclui-se que, somente com o Hibrid Analysis, pode ser concluída boa parte dos desafios desta categoria, mas é sempre importante utilizar mais de uma tool, antes de chegar a qualquer conclusão sobre o artefato.</p>
+<p>Flag: MCS{eset_nod32}</p>
+<hr>
+<h2 id="disclaimer-e-encerramento">Disclaimer e Encerramento</h2>
+<p>Impossível deixar de agradecer às amigas, idealizadoras dos desafios e moderadoras do servidor, por sempre nos proporcionarem conhecimento de forma acessível e manterem uma comunidade fantástica, com mais de 2 mil pessoas, unidas no objetivo de fortalecer a Segurança Cibernética no Brasil.</p>
+<p>Sabrina Ramos - Luana Vieira - Carolina Trigo - Lais Camargo</p>
+<p>Vocês são demais! ❤</p>
+<p>Foram omitidos deste write-up os seguintes desafios:</p>
+<p>Easy — Fã número 1 da menina de CyberSec, Network — Programming, Forense — Phished Accounts, Web — Não odeio o Javascript &amp; Nosferatu.</p>
+<hr>
+<p>Muito obrigado pela leitura! Nos vemos na web!</p>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+      
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        2571 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2026-03-26 21:00
+        
+
+         
+          
+        
+      </p>
+    </div>
+      <hr />
+      <div class="sharing-buttons">
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fpe1xera.github.io%2fposts%2fctf_sabrina%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
+  <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=https%3a%2f%2fpe1xera.github.io%2fposts%2fctf_sabrina%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
+  <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
+      <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=%5bMem%c3%b3rias%20%231%5d%20CTF%20%e2%80%94%20Menina%20de%20Cybersec&amp;caption=%5bMem%c3%b3rias%20%231%5d%20CTF%20%e2%80%94%20Menina%20de%20Cybersec&amp;canonicalUrl=https%3a%2f%2fpe1xera.github.io%2fposts%2fctf_sabrina%2f" target="_blank" rel="noopener" aria-label="" title="Share on tumblr">
+  <div class="resp-sharing-button resp-sharing-button--tumblr resp-sharing-button--small">
+    <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=%5bMem%c3%b3rias%20%231%5d%20CTF%20%e2%80%94%20Menina%20de%20Cybersec&amp;body=https%3a%2f%2fpe1xera.github.io%2fposts%2fctf_sabrina%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
+  <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=https%3a%2f%2fpe1xera.github.io%2fposts%2fctf_sabrina%2f&amp;media=https%3a%2f%2fpe1xera.github.io%2fposts%2fctf_sabrina%2f;description=%5bMem%c3%b3rias%20%231%5d%20CTF%20%e2%80%94%20Menina%20de%20Cybersec" target="_blank" rel="noopener" aria-label="" title="Share on pinterest">
+  <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fpe1xera.github.io%2fposts%2fctf_sabrina%2f&amp;title=%5bMem%c3%b3rias%20%231%5d%20CTF%20%e2%80%94%20Menina%20de%20Cybersec&amp;summary=%5bMem%c3%b3rias%20%231%5d%20CTF%20%e2%80%94%20Menina%20de%20Cybersec&amp;source=https%3a%2f%2fpe1xera.github.io%2fposts%2fctf_sabrina%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
+  <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fpe1xera.github.io%2fposts%2fctf_sabrina%2f&amp;resubmit=true&amp;title=%5bMem%c3%b3rias%20%231%5d%20CTF%20%e2%80%94%20Menina%20de%20Cybersec" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
+  <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.xing.com/app/user?op=share;url=https%3a%2f%2fpe1xera.github.io%2fposts%2fctf_sabrina%2f;title=%5bMem%c3%b3rias%20%231%5d%20CTF%20%e2%80%94%20Menina%20de%20Cybersec" target="_blank" rel="noopener" aria-label="" title="Share on xing">
+  <div class="resp-sharing-button resp-sharing-button--xing resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.461c.518 0 .766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="whatsapp://send?text=%5bMem%c3%b3rias%20%231%5d%20CTF%20%e2%80%94%20Menina%20de%20Cybersec%20https%3a%2f%2fpe1xera.github.io%2fposts%2fctf_sabrina%2f" target="_blank" rel="noopener" aria-label="" title="Share on whatsapp">
+  <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fpe1xera.github.io%2fposts%2fctf_sabrina%2f&amp;t=%5bMem%c3%b3rias%20%231%5d%20CTF%20%e2%80%94%20Menina%20de%20Cybersec" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
+  <div class="resp-sharing-button resp-sharing-button--hackernews resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=%5bMem%c3%b3rias%20%231%5d%20CTF%20%e2%80%94%20Menina%20de%20Cybersec&amp;url=https%3a%2f%2fpe1xera.github.io%2fposts%2fctf_sabrina%2f" target="_blank" rel="noopener" aria-label="" title="Share on telegram">
+  <div class="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </div>
+  </div>
+</a>
+
+      </div>
+
+    
+    <div class="pagination">
+        
+        <div class="pagination__title">
+            <span class="pagination__title-h">Veja outros posts</span>
+            <hr />
+        </div>
+        
+
+        <div class="pagination__buttons">
+            
+
+            
+            <span class="button next">
+                <a href="https://pe1xera.github.io/posts/plotwist/">
+                    <span class="button__text">Plot Twist (ou: Kishōtenketsu)</span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+            
+        </div>
+    </div>
+
+
+    
+
+    
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.e89fda0f29b95d33f6f4224dd9e5cf69d84aff3818be2b0d73e731689cc374261b016d17d46f8381962fb4a1577ba3017b1f23509d894f6e66431f988c00889e.js" integrity="sha512-6J/aDym5XTP29CJN2eXPadhK/zgYvisNc&#43;cxaJzDdCYbAW0X1G&#43;DgZYvtKFXe6MBex8jUJ2JT25mQx&#43;YjACIng=="></script>
+
+
+
+
+    </body>
+</html>

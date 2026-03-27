@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Fri, 06 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 27 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://pe1xera.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Memórias #1] CTF — Menina de Cybersec</title>
+      <link>https://pe1xera.github.io/posts/ctf_sabrina/</link>
+      <pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://pe1xera.github.io/posts/ctf_sabrina/</guid>
+      <description>&lt;p&gt;Entre os dias 11 e 15 de novembro de 2022, quando eu dava meus primeiros passos em segurança, participei do CTF da comunidade @meninadecybersec. Guardo com muito respeito esta memória, porque foi um divisor de águas no meu desenvolvimento.&lt;/p&gt;&#xA;&lt;p&gt;Faço questão de compartilhar o write-up original, sem edições, pois honro cada erro cometido; eles foram a base do meu aprendizado. Foi através dessa dedicação que conquistei uma bolsa integral no San Jose Institute of Technology (SJIT), expandindo ainda mais os meus horizontes na área.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Plot Twist (ou: Kishōtenketsu)</title>
       <link>https://pe1xera.github.io/posts/plotwist/</link>
