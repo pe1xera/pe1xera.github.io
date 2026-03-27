@@ -1,20 +1,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Posts on pe1xera</title>
-        <link>https://pe1xera.github.io/posts/</link>
+        <link>http://localhost:1313/posts/</link>
         <description>Recent content in Posts on pe1xera</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
         <lastBuildDate>Fri, 27 Mar 2026 00:00:00 +0000</lastBuildDate>
-        <atom:link href="https://pe1xera.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
         
         <item>
             <title>[Memórias #1] CTF — Menina de Cybersec</title>
-            <link>https://pe1xera.github.io/posts/ctf_sabrina/</link>
+            <link>http://localhost:1313/posts/ctf_sabrina/</link>
             <pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/ctf_sabrina/</guid>
+            <guid>http://localhost:1313/posts/ctf_sabrina/</guid>
             <description>&lt;p&gt;Entre os dias 11 e 15 de novembro de 2022, quando eu dava meus primeiros passos em segurança, participei do CTF da comunidade @meninadecybersec. Guardo com muito respeito esta memória, porque foi um divisor de águas no meu desenvolvimento.&lt;/p&gt;
 &lt;p&gt;Faço questão de compartilhar o write-up original, sem edições, pois honro cada erro cometido; eles foram a base do meu aprendizado. Foi através dessa dedicação que conquistei uma bolsa integral no San Jose Institute of Technology (SJIT), expandindo ainda mais os meus horizontes na área.&lt;/p&gt;</description>
             <content type="html"><![CDATA[<p>Entre os dias 11 e 15 de novembro de 2022, quando eu dava meus primeiros passos em segurança, participei do CTF da comunidade @meninadecybersec. Guardo com muito respeito esta memória, porque foi um divisor de águas no meu desenvolvimento.</p>
@@ -387,10 +387,10 @@ Press enter or click to view image in full size</p>
         
         <item>
             <title>Plot Twist (ou: Kishōtenketsu)</title>
-            <link>https://pe1xera.github.io/posts/plotwist/</link>
+            <link>http://localhost:1313/posts/plotwist/</link>
             <pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/plotwist/</guid>
+            <guid>http://localhost:1313/posts/plotwist/</guid>
             <description>&lt;h3 id=&#34;um-vício-antigo&#34;&gt;Um vício antigo&lt;/h3&gt;
 &lt;p&gt;Pessoas que operam na cibersegurança, por vezes desenvolvem um vício em padrões. É quase um defeito de fábrica: o sujeito começa a buscar correlações em tudo, tentando antecipar todas as coisas antes de acontecerem (até o que não é trabalho). O problema é que, às vezes, esse tipo de atitude é bastante prejudicial, porque nem tudo na vida segue um fluxograma.&lt;/p&gt;
 &lt;p&gt;Particularmente, sempre gostei de criar histórias. Muito embora eu guarde para mim, fico muito satisfeito em ver o resultado delas. A melhor parte é sempre o &lt;strong&gt;Plot Twist&lt;/strong&gt;, justamente quando ocorre alguma reviravolta na história e ela muda completamente o seu curso.&lt;/p&gt;</description>
@@ -429,10 +429,10 @@ Não, também não é sobre cibersegurança.</p>
         
         <item>
             <title>Mensagens SubLiminares</title>
-            <link>https://pe1xera.github.io/posts/subliminares/</link>
+            <link>http://localhost:1313/posts/subliminares/</link>
             <pubDate>Thu, 19 Feb 2026 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/subliminares/</guid>
+            <guid>http://localhost:1313/posts/subliminares/</guid>
             <description>&lt;p&gt;É, eu sei. Faz bastante tempo que não escrevo.&lt;/p&gt;
 &lt;p&gt;Não foi por falta de ideias, nem por falta de acontecimentos. Na verdade, aconteceu coisa até demais, querido leitor (e que saudade de dizer isso). O que faltou não foi assunto, acredite em mim. Porém, fui eu que, por um tempo, perdi a vontade de transformá-los em texto.&lt;/p&gt;
 &lt;p&gt;Até porque escrever, afinal, exige um certo tipo de inteireza. E houve dias bastante pesados, em que eu simplesmente não estava inteiro.&lt;/p&gt;</description>
@@ -462,10 +462,10 @@ Continue, porque é assim que alguma coisa dentro da gente volta a funcionar.</p
         
         <item>
             <title>доверяй, но проверяй</title>
-            <link>https://pe1xera.github.io/posts/confira/</link>
+            <link>http://localhost:1313/posts/confira/</link>
             <pubDate>Sat, 06 Sep 2025 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/confira/</guid>
+            <guid>http://localhost:1313/posts/confira/</guid>
             <description>&lt;p&gt;“Confie, mas confira” — um ditado russo que deveria ser mantra para qualquer brasileiro que ousa abrir um aplicativo de banco sem tremores na mão. Agosto terminou com R$ 710 milhões desviados de contas que, em teoria, deveriam ser seguras. Setembro mal começou e já surgem notícias de prejuízos de R$ 3 milhões em golpes que, do lado de fora, parecem até filme de cinema, mas que, por trás das telas, seguem a exploração de vulnerabilidades e (possivelmente) scripts de engenharia social.&lt;/p&gt;</description>
             <content type="html"><![CDATA[<p>“Confie, mas confira” — um ditado russo que deveria ser mantra para qualquer brasileiro que ousa abrir um aplicativo de banco sem tremores na mão. Agosto terminou com R$ 710 milhões desviados de contas que, em teoria, deveriam ser seguras. Setembro mal começou e já surgem notícias de prejuízos de R$ 3 milhões em golpes que, do lado de fora, parecem até filme de cinema, mas que, por trás das telas, seguem a exploração de vulnerabilidades e (possivelmente) scripts de engenharia social.</p>
 <p>Não se trata apenas do crime organizado tentando faturar. É o sistema financeiro de uma nação inteira sendo testado, sistema esse que foi projetado para ser uma muralha de confiança entre seu dinheiro e terceiros. Acontece que entre declarações de políticos internacionais, movimentações suspeitas em fintechs e a evidente sofisticação de grupos criminosos, o cenário parece cada vez mais com o de Gotham City, mas sem um Batman.</p>
@@ -494,10 +494,10 @@ Continue, porque é assim que alguma coisa dentro da gente volta a funcionar.</p
         
         <item>
             <title>agridoce.</title>
-            <link>https://pe1xera.github.io/posts/agridoce/</link>
+            <link>http://localhost:1313/posts/agridoce/</link>
             <pubDate>Mon, 25 Aug 2025 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/agridoce/</guid>
+            <guid>http://localhost:1313/posts/agridoce/</guid>
             <description>&lt;p&gt;Eu sabia que isso poderia acontecer, querido leitor, que se eu cedesse (mesmo que por um mínimo instante) acabaria preso a um sentimento que não posso controlar.&lt;/p&gt;
 &lt;p&gt;Concordo com a velha música que diz &lt;em&gt;“Fools rush in, where angels fear to tread”&lt;/em&gt; — tolos se precipitam onde anjos temem pisar. Ainda assim, resolvi avançar, como um tolo, ignorando a razão e, quando me dei conta, já era um prisioneiro (e em prisão perpétua, sem progressão de regime).&lt;/p&gt;</description>
             <content type="html"><![CDATA[<p>Eu sabia que isso poderia acontecer, querido leitor, que se eu cedesse (mesmo que por um mínimo instante) acabaria preso a um sentimento que não posso controlar.</p>
@@ -515,10 +515,10 @@ Continue, porque é assim que alguma coisa dentro da gente volta a funcionar.</p
         
         <item>
             <title>Born To Be Blue</title>
-            <link>https://pe1xera.github.io/posts/tobeblue/</link>
+            <link>http://localhost:1313/posts/tobeblue/</link>
             <pubDate>Sun, 29 Jun 2025 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/tobeblue/</guid>
+            <guid>http://localhost:1313/posts/tobeblue/</guid>
             <description>&lt;p&gt;Alguns de nós, querido leitor, parecem que nasceram para sofrer. Sei que pode parecer exagero, drama ou algum tipo de martírio involuntário, mas há momentos em que essa sensação é tão forte, que começa a soar como destino. Não importa o quanto se tente, o quanto se entregue, o quanto se esteja presente, a indiferença do outro acaba sendo tipo um espelho quebrado, restando recolher os cacos de vidro do chão.&lt;/p&gt;</description>
             <content type="html"><![CDATA[<p>Alguns de nós, querido leitor, parecem que nasceram para sofrer. Sei que pode parecer exagero, drama ou algum tipo de martírio involuntário, mas há momentos em que essa sensação é tão forte, que começa a soar como destino. Não importa o quanto se tente, o quanto se entregue, o quanto se esteja presente, a indiferença do outro acaba sendo tipo um espelho quebrado, restando recolher os cacos de vidro do chão.</p>
 <p>Me impressiona que algo tão simples como o afeto possa se tornar unilateral, mesmo quando todos os sinais foram dados. Ora, houve tempo, houve presença, houve gentileza. Foi dado um passo, depois outro, e mais um, esperando que o outro lado se movesse também, mas às vezes não vem nada. Nenhum gesto. Nenhum retorno. Só o silêncio e a mais pura apatia. E aí surge aquele pensamento incômodo, aquele que insiste em voltar de tempos em tempos: o problema está em você.</p>
@@ -539,10 +539,10 @@ Continue, porque é assim que alguma coisa dentro da gente volta a funcionar.</p
         
         <item>
             <title>Cariri</title>
-            <link>https://pe1xera.github.io/posts/cariri/</link>
+            <link>http://localhost:1313/posts/cariri/</link>
             <pubDate>Mon, 12 May 2025 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/cariri/</guid>
+            <guid>http://localhost:1313/posts/cariri/</guid>
             <description>&lt;p&gt;O querido leitor deve ter percebido que já não falo de assuntos técnicos há um tempo… Realmente, acho que me cansei dos protocolos vulneráveis, injeções de SQL, toda aquela coisa, e passei a dar prioridade a outras questões - mais importantes - da vida.&lt;/p&gt;
 &lt;p&gt;Me lembrei recentemente de um lugar que costumava ir com meus pais quando eu era pequeno. No centro de Vitória, Espírito Santo, havia um restaurante popular chamado Cariri. Era um prédio simples de três andares, que ficava numa rua apertada, típica do “centro nervoso” de uma capital. Nós entrávamos, preparávamos o prato no self-service e, enfim, subíamos direto para o terceiro andar. O térreo era barulhento demais, funcionava como uma lanchonete, ali era onde as pessoas se serviam, onde os sucos eram preparados, onde pagavam a conta, uma loucura; o segundo vivia cheio (até de mais), por ser o único que tinha ar-condicionado, mas o terceiro&amp;hellip; o terceiro tinha algo diferente.&lt;/p&gt;</description>
             <content type="html"><![CDATA[<p>O querido leitor deve ter percebido que já não falo de assuntos técnicos há um tempo… Realmente, acho que me cansei dos protocolos vulneráveis, injeções de SQL, toda aquela coisa, e passei a dar prioridade a outras questões - mais importantes - da vida.</p>
@@ -558,10 +558,10 @@ Continue, porque é assim que alguma coisa dentro da gente volta a funcionar.</p
         
         <item>
             <title>Hiato Consentido</title>
-            <link>https://pe1xera.github.io/posts/hiato/</link>
+            <link>http://localhost:1313/posts/hiato/</link>
             <pubDate>Fri, 11 Apr 2025 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/hiato/</guid>
+            <guid>http://localhost:1313/posts/hiato/</guid>
             <description>&lt;p&gt;Vive em mim aquela esperança quase infantil que acredita, contra toda lógica, que se formos pacientes o bastante, talvez sejamos ouvidos. Talvez alguém volte. Talvez aquilo que ficou guardado, por tanto tempo, encontre enfim um lugar para ser dito. Poético, não?&lt;/p&gt;
 &lt;p&gt;Trago aqui uma analogia usando a fantástica interpretação de &lt;em&gt;They Say It’s Wonderful&lt;/em&gt; por John Coltrane, a qual eu ouvia agora há pouco. O piano inicia com cuidado, preparando o ambiente, e logo depois o sax entra – contido, mas presente, como alguém que tenta se expressar sem ferir a delicadeza do silêncio. Coltrane não força as notas; ele permite que elas caminhem devagar, como se soubesse que há sentimentos que não podem ser ditos em voz alta.&lt;/p&gt;</description>
             <content type="html"><![CDATA[<p>Vive em mim aquela esperança quase infantil que acredita, contra toda lógica, que se formos pacientes o bastante, talvez sejamos ouvidos. Talvez alguém volte. Talvez aquilo que ficou guardado, por tanto tempo, encontre enfim um lugar para ser dito. Poético, não?</p>
@@ -586,10 +586,10 @@ Obrigado pela sua leitura até aqui!</p>
         
         <item>
             <title>Quid Pro Quo</title>
-            <link>https://pe1xera.github.io/posts/quidproquo/</link>
+            <link>http://localhost:1313/posts/quidproquo/</link>
             <pubDate>Wed, 12 Mar 2025 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/quidproquo/</guid>
+            <guid>http://localhost:1313/posts/quidproquo/</guid>
             <description>&lt;p&gt;Existe uma grande diferença, querido leitor, entre aquilo que não podemos  - ou não conseguimos - fazer, e aquilo que não QUEREMOS fazer.&lt;/p&gt;
 &lt;p&gt;Diferença essa que, aparentemente, preferimos ignorar. Talvez porque encará-la de frente nos obrigaria a admitir que nem sempre somos os mocinhos, nem sempre somos vítimas das circunstâncias, e sim que somos culpados de nossas próprias omissões. E ninguém gosta de ser o vilão da própria história.&lt;/p&gt;
 &lt;p&gt;Na minha área de trabalho atual, que envolve resolver problemas e gestão de prioridades, existem colegas que evitam atender casos mais complicados, pulando os chamados difíceis, deixando para depois, ou simplesmente ignorando sua existência. Eles preferem lidar com o que é fácil, que tem solução rápida e elogios garantidos. É compreensível. Eu não os culpo completamente. Todos nós buscamos alguma forma de recompensa, e às vezes, mergulhar num problema profundo e mal-documentado parece apenas uma maneira mais lenta de se frustrar.&lt;/p&gt;</description>
@@ -610,10 +610,10 @@ Obrigado pela sua leitura até aqui!</p>
         
         <item>
             <title>Dois Dezoito</title>
-            <link>https://pe1xera.github.io/posts/doisdezoito/</link>
+            <link>http://localhost:1313/posts/doisdezoito/</link>
             <pubDate>Sat, 08 Mar 2025 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/doisdezoito/</guid>
+            <guid>http://localhost:1313/posts/doisdezoito/</guid>
             <description>&lt;hr&gt;
 &lt;p&gt;&amp;ldquo;E disse o Senhor Deus: Não é bom que o homem esteja só; far-lhe-ei uma ajudadora que lhe seja idônea.” (Gênesis 2.18)&lt;/p&gt;
 &lt;hr&gt;
@@ -637,10 +637,10 @@ Obrigado pela sua leitura até aqui!</p>
         
         <item>
             <title>Talassofobia</title>
-            <link>https://pe1xera.github.io/posts/talassofobia/</link>
+            <link>http://localhost:1313/posts/talassofobia/</link>
             <pubDate>Sat, 22 Feb 2025 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/talassofobia/</guid>
+            <guid>http://localhost:1313/posts/talassofobia/</guid>
             <description>&lt;hr&gt;
 &lt;p&gt;&lt;em&gt;“Seu medo nunca foi das ‘águas’, mas sim do terror que elas poderiam esconder.”&lt;/em&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -666,10 +666,10 @@ Obrigado pela sua leitura até aqui!</p>
         
         <item>
             <title>Jacó</title>
-            <link>https://pe1xera.github.io/posts/jaco/</link>
+            <link>http://localhost:1313/posts/jaco/</link>
             <pubDate>Sun, 16 Feb 2025 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/jaco/</guid>
+            <guid>http://localhost:1313/posts/jaco/</guid>
             <description>&lt;hr&gt;
 &lt;p&gt;Ah, Jacó, meu filho. Tu ainda não entendes&amp;hellip; És apenas um jovem pastor de ovelhas, com tanto a aprender sobre as complexidades da vida. Quando olhas para ela, vejo nos teus olhos a faísca de algo profundo, mas também a ingenuidade de quem ainda não compreende totalmente o que essa força pode exigir.&lt;/p&gt;
 &lt;p&gt;O que sentes é como a correnteza de um rio: pode ser mansa e cristalina, guiando-te suavemente pelo caminho que escolheste, ou pode se tornar avassaladora, arrastando tudo em seu percurso sem aviso. Há aqueles que se lançam sem hesitar, crentes de que sabem nadar, e há os que hesitam na margem, temendo o que não podem controlar. Mas, de um jeito ou de outro, ninguém sai ileso ao mergulhar.&lt;/p&gt;</description>
@@ -687,10 +687,10 @@ Obrigado pela sua leitura até aqui!</p>
         
         <item>
             <title>Eloquência</title>
-            <link>https://pe1xera.github.io/posts/eloquencia/</link>
+            <link>http://localhost:1313/posts/eloquencia/</link>
             <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/eloquencia/</guid>
+            <guid>http://localhost:1313/posts/eloquencia/</guid>
             <description>&lt;hr&gt;
 &lt;p&gt;&lt;em&gt;Substantivo.
 Capacidade de falar e expressar-se com desenvoltura.&lt;/em&gt;&lt;/p&gt;
@@ -712,10 +712,10 @@ Capacidade de falar e expressar-se com desenvoltura.</em></p>
         
         <item>
             <title>Medições, melhorias e... Momentos? </title>
-            <link>https://pe1xera.github.io/posts/melhorias/</link>
+            <link>http://localhost:1313/posts/melhorias/</link>
             <pubDate>Thu, 30 Jan 2025 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/melhorias/</guid>
+            <guid>http://localhost:1313/posts/melhorias/</guid>
             <description>&lt;p&gt;&lt;em&gt;&amp;ldquo;Se você não pode medir, você não pode melhorar”. (Kaplan &amp;amp; Norton)&lt;/em&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Uau! Mais uma frase dita por engravatados do mercado de trabalho! Mas temos um detalhe aqui: Essa ideia se aplica tanto ao mundo corporativo quanto à vida pessoal. Não acho que Kaplan e Norton tinham isso em mente quando criaram o Balanced Scorecard (BSC), mas eu percebo que é uma abordagem que pode ir muito além das empresas, com um pouco de esforço mental da nossa parte.&lt;/p&gt;</description>
@@ -736,10 +736,10 @@ Capacidade de falar e expressar-se com desenvoltura.</em></p>
         
         <item>
             <title>Sobre pessoas [e cercas]</title>
-            <link>https://pe1xera.github.io/posts/cercas/</link>
+            <link>http://localhost:1313/posts/cercas/</link>
             <pubDate>Tue, 21 Jan 2025 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/cercas/</guid>
+            <guid>http://localhost:1313/posts/cercas/</guid>
             <description>&lt;p&gt;&lt;em&gt;&amp;ldquo;Algumas pessoas constroem cercas para manter as pessoas do lado de fora, e outras constroem cercas para manter as pessoas do lado de dentro.&amp;rdquo; (Jim Bono, Fences)&lt;/em&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Pouco a pouco, tenho voltado a assistir bons filmes, saindo um pouco da rotina das séries intermináveis e experimentando outros universos. Tenho certeza que essa foi uma das melhores decisões que já tomei recentemente.&lt;/p&gt;
@@ -762,10 +762,10 @@ Capacidade de falar e expressar-se com desenvoltura.</em></p>
         
         <item>
             <title>A era do Sal Insípido</title>
-            <link>https://pe1xera.github.io/posts/puritanos/</link>
+            <link>http://localhost:1313/posts/puritanos/</link>
             <pubDate>Mon, 06 Jan 2025 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/puritanos/</guid>
+            <guid>http://localhost:1313/posts/puritanos/</guid>
             <description>&lt;p&gt;A ciência chamada homilética está se perdendo, querido leitor. E não é difícil entender o porquê. Na ânsia por relevância, muitos pregadores modernos têm trocado o rigor da exegese pelas famosas técnicas motivacionais; o púlpito, que antes era um lugar de verdades eternas, se tornou palco para performances sentimentais.&lt;/p&gt;
 &lt;p&gt;O objetivo? Tocar o coração, segundo eles, mas sem nunca passar pela mente, como se as emoções pudessem ser despertadas sem a iluminação dada pela Palavra&amp;hellip;&lt;/p&gt;</description>
             <content type="html"><![CDATA[<p>A ciência chamada homilética está se perdendo, querido leitor. E não é difícil entender o porquê. Na ânsia por relevância, muitos pregadores modernos têm trocado o rigor da exegese pelas famosas técnicas motivacionais; o púlpito, que antes era um lugar de verdades eternas, se tornou palco para performances sentimentais.</p>
@@ -804,10 +804,10 @@ Capacidade de falar e expressar-se com desenvoltura.</em></p>
         
         <item>
             <title>Chuva, em teus olhos negros</title>
-            <link>https://pe1xera.github.io/posts/chuva/</link>
+            <link>http://localhost:1313/posts/chuva/</link>
             <pubDate>Fri, 15 Nov 2024 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/chuva/</guid>
+            <guid>http://localhost:1313/posts/chuva/</guid>
             <description>&lt;p&gt;&lt;em&gt;“A música nos ensina o que há de mais importante: ouvir.&amp;quot;&lt;/em&gt;&lt;br&gt;
 &lt;em&gt;-Ezio Bosso&lt;/em&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -833,10 +833,10 @@ Capacidade de falar e expressar-se com desenvoltura.</em></p>
         
         <item>
             <title>Post Tenebras Lux</title>
-            <link>https://pe1xera.github.io/posts/post-tenebras/</link>
+            <link>http://localhost:1313/posts/post-tenebras/</link>
             <pubDate>Thu, 31 Oct 2024 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/post-tenebras/</guid>
+            <guid>http://localhost:1313/posts/post-tenebras/</guid>
             <description>&lt;p&gt;&lt;em&gt;“[&amp;hellip;] Nasceu ali, em chama ardente,&lt;/em&gt;&lt;br&gt;
 &lt;em&gt;A Reforma. Livre e eloquente..”&lt;/em&gt;&lt;br&gt;
 &lt;em&gt;(Trecho do poema de Yuri Pena)&lt;/em&gt;&lt;/p&gt;
@@ -861,10 +861,10 @@ Soli Deo Gloria!</p>
         
         <item>
             <title>Menos IA&#39;s, mais Turings</title>
-            <link>https://pe1xera.github.io/posts/turing/</link>
+            <link>http://localhost:1313/posts/turing/</link>
             <pubDate>Fri, 18 Oct 2024 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/turing/</guid>
+            <guid>http://localhost:1313/posts/turing/</guid>
             <description>&lt;p&gt;&lt;em&gt;“Enquanto houver um hacker, a inteligência artificial não dominará o mundo.”&lt;/em&gt;&lt;br&gt;
 &lt;em&gt;(Felipe Prado, @fprado28)&lt;/em&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -897,10 +897,10 @@ Soli Deo Gloria!</p>
         
         <item>
             <title>Desconexo</title>
-            <link>https://pe1xera.github.io/posts/desconexo/</link>
+            <link>http://localhost:1313/posts/desconexo/</link>
             <pubDate>Thu, 17 Oct 2024 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/desconexo/</guid>
+            <guid>http://localhost:1313/posts/desconexo/</guid>
             <description>&lt;p&gt;Quarta-feira tive um sonho um tanto estranho, cheio de altos e baixos e situações que, em um primeiro momento, pareciam não se conectar nem ter nenhuma lógica, como em um típico sonho.  O devaneio neural começa comigo em uma badalada festa e culmina comigo em um “liminal place”, uma praça sem saída e com pouca ou nenhuma iluminação, além dos próprios corpos celestes. Me assusta, às vezes, a capacidade que o cérebro humano possui de criar estórias de maneira autônoma e com pouca intervenção consciente.&lt;/p&gt;</description>
             <content type="html"><![CDATA[<p>Quarta-feira tive um sonho um tanto estranho, cheio de altos e baixos e situações que, em um primeiro momento, pareciam não se conectar nem ter nenhuma lógica, como em um típico sonho.  O devaneio neural começa comigo em uma badalada festa e culmina comigo em um “liminal place”, uma praça sem saída e com pouca ou nenhuma iluminação, além dos próprios corpos celestes. Me assusta, às vezes, a capacidade que o cérebro humano possui de criar estórias de maneira autônoma e com pouca intervenção consciente.</p>
 <p>Não é meu objetivo, ao menos não neste texto, falar sobre o sonho, até porque há muitos mais intensos do que este que citei - pobre coelho! - e porque o motivo de eu citá-lo é chamar a sua atenção para outro assunto que tem sondado os meus pensamentos: o quão desconexo alguém pode ser dentro de seu próprio contexto e convívio social.</p>
@@ -917,10 +917,10 @@ Soli Deo Gloria!</p>
         
         <item>
             <title>Humpty-Dumptyzação, a nova realidade das redes sociais</title>
-            <link>https://pe1xera.github.io/posts/humpty/</link>
+            <link>http://localhost:1313/posts/humpty/</link>
             <pubDate>Fri, 09 Aug 2024 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/humpty/</guid>
+            <guid>http://localhost:1313/posts/humpty/</guid>
             <description>&lt;p&gt;É um tanto irônico como as antigas histórias ecoam até os dias de hoje. Lewis Carroll, autor de &lt;em&gt;Alice no País das Maravilhas&lt;/em&gt;, denunciou uma estratégia comunicativa em sua obra Através do Espelho (1865). Em um dos capítulos do livro, somos introduzidos ao personagem Humpty-Dumpty, cujo nome em si mesmo é uma gozação: um termo em inglês dado uma pessoa &amp;ldquo;gorda e baixinha&amp;rdquo;. Porém, Humpty-Dumpty não é uma pessoa, mas sim um ovo. Sim, um ovo, no sentido mais literal possível!&lt;/p&gt;</description>
             <content type="html"><![CDATA[<p>É um tanto irônico como as antigas histórias ecoam até os dias de hoje. Lewis Carroll, autor de <em>Alice no País das Maravilhas</em>, denunciou uma estratégia comunicativa em sua obra Através do Espelho (1865). Em um dos capítulos do livro, somos introduzidos ao personagem Humpty-Dumpty, cujo nome em si mesmo é uma gozação: um termo em inglês dado uma pessoa &ldquo;gorda e baixinha&rdquo;. Porém, Humpty-Dumpty não é uma pessoa, mas sim um ovo. Sim, um ovo, no sentido mais literal possível!</p>
 <p>No conto, Humpty está sentado no topo de um muro, quando Alice se aproxima e começa a interagir com o personagem. Apesar de parecer engraçado e vulnerável, Humpty se revela bastante inteligente e até arrogante. A sua característica mais notável, que dá título a este texto, é que ele pensa ter o poder de dar qualquer significado às palavras - por mais absurdos que sejam - para benefício próprio.</p>
@@ -977,10 +977,10 @@ Humpty Dumpty sorriu com desdém.<br>
         
         <item>
             <title>Molinete, &#34;A Hash-cracking Tool&#34;</title>
-            <link>https://pe1xera.github.io/posts/molinete/</link>
+            <link>http://localhost:1313/posts/molinete/</link>
             <pubDate>Tue, 23 Jul 2024 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/molinete/</guid>
+            <guid>http://localhost:1313/posts/molinete/</guid>
             <description>&lt;p&gt;O processo de quebra de hashes pode ser um grande atraso enquanto se realiza um pentest, especialmente quando o hash tem sua complexidade aumentada com aquela boa e velha pitada de Salt, um dado aleatório que é usado para gerar uma saída totalmente diferente daquela que a função de hash geraria por padrão, somente com a senha.&lt;/p&gt;
 &lt;p&gt;Diante disso, desenvolvi uma ferramenta - bastante simples, na verdade - que tenta agilizar nossas vidas. O &lt;code&gt;molinete&lt;/code&gt;, como apelidei a ferramenta, utiliza uma wordlist fornecida pelo usuário e, por meio da função crypt, testa diversas senhas até encontrar a correspondência exata com o hash fornecido.&lt;/p&gt;</description>
             <content type="html"><![CDATA[<p>O processo de quebra de hashes pode ser um grande atraso enquanto se realiza um pentest, especialmente quando o hash tem sua complexidade aumentada com aquela boa e velha pitada de Salt, um dado aleatório que é usado para gerar uma saída totalmente diferente daquela que a função de hash geraria por padrão, somente com a senha.</p>
@@ -1039,10 +1039,10 @@ Goodbye, little sprat! 'Til next time!</p>
         
         <item>
             <title>Cripto101 - Uma abordagem sem Alice e Bob</title>
-            <link>https://pe1xera.github.io/posts/cripto101/</link>
+            <link>http://localhost:1313/posts/cripto101/</link>
             <pubDate>Sun, 24 Mar 2024 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/cripto101/</guid>
+            <guid>http://localhost:1313/posts/cripto101/</guid>
             <description>&lt;p&gt;Imagine que Alice e Bob m0rreram. Por favor, não se espante! Caso prefira, imagine que eles tiraram suas tão sonhadas férias. Esses dois conhecidos personagens foram os nossos companheiros por muito tempo, durante o estudo de Criptografia, mas é hora de descansarem.&lt;/p&gt;
 &lt;p&gt;O objetivo deste artigo é introduzir alguns conceitos de criptografia, sem incorrer na monotonia e falta de criatividade que assolam os nossos tempos. Portanto, não espere ver sequências enormes de detalhamentos históricos ou uma quantidade (fora do normal) de termos técnicos.&lt;/p&gt;</description>
             <content type="html"><![CDATA[<p>Imagine que Alice e Bob m0rreram. Por favor, não se espante! Caso prefira, imagine que eles tiraram suas tão sonhadas férias. Esses dois conhecidos personagens foram os nossos companheiros por muito tempo, durante o estudo de Criptografia, mas é hora de descansarem.</p>
@@ -1165,10 +1165,10 @@ Lualukp mvp uvaopun</p>
         
         <item>
             <title>Efeito Lazarski</title>
-            <link>https://pe1xera.github.io/posts/lazarski/</link>
+            <link>http://localhost:1313/posts/lazarski/</link>
             <pubDate>Fri, 16 Feb 2024 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/lazarski/</guid>
+            <guid>http://localhost:1313/posts/lazarski/</guid>
             <description>&lt;p&gt;&lt;em&gt;“Enquanto a multidão buscava o som alto, as bebidas e as imoralidades, Lazarski se arrastava em meio à podridão, interrogando as mentes dos comuns&amp;hellip;”&lt;/em&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;É possível libertar um escravo que DESEJA ser escravo, sem se tornar, você mesmo, um tirano?&lt;/p&gt;
@@ -1190,10 +1190,10 @@ Lualukp mvp uvaopun</p>
         
         <item>
             <title>Isolamento, pesado fardo de um rei</title>
-            <link>https://pe1xera.github.io/posts/isolamento/</link>
+            <link>http://localhost:1313/posts/isolamento/</link>
             <pubDate>Tue, 16 Jan 2024 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/isolamento/</guid>
+            <guid>http://localhost:1313/posts/isolamento/</guid>
             <description>&lt;blockquote&gt;
 &lt;p&gt;Fazer o certo não é popular, mas pode moldar o curso da história.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1225,10 +1225,10 @@ Lualukp mvp uvaopun</p>
         
         <item>
             <title>ΔS: Reflexão sobre o &#34;novo&#34;</title>
-            <link>https://pe1xera.github.io/posts/deltas/</link>
+            <link>http://localhost:1313/posts/deltas/</link>
             <pubDate>Tue, 02 Jan 2024 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/deltas/</guid>
+            <guid>http://localhost:1313/posts/deltas/</guid>
             <description>&lt;p&gt;&lt;em&gt;&amp;ldquo;O impacto é proporcional à distância;&lt;/em&gt;&lt;br&gt;
 &lt;em&gt;A resistência é desafiada pela distância;&lt;/em&gt;&lt;br&gt;
 &lt;em&gt;A precisão é moldada pela distância;&lt;/em&gt;&lt;br&gt;
@@ -1273,10 +1273,10 @@ Isto é, caso você exista.</p>
         
         <item>
             <title>Kenosis: Feliz Natal!</title>
-            <link>https://pe1xera.github.io/posts/kenosis/</link>
+            <link>http://localhost:1313/posts/kenosis/</link>
             <pubDate>Sun, 24 Dec 2023 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/kenosis/</guid>
+            <guid>http://localhost:1313/posts/kenosis/</guid>
             <description>&lt;p&gt;&lt;em&gt;“antes, a si mesmo se esvaziou, assumindo a forma de servo, tornando-se em semelhança de homens&amp;quot; -Filipenses 2.7a&lt;/em&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;Nâo foi à toa, querido leitor, que o primeiro milagre de Jesus foi a &lt;strong&gt;transformação de água em vinho&lt;/strong&gt;. Em um momento de celebração, similar ao dia de hoje, Ele se compadeceu de seus amigos e manifestou seu poder, a fim de proporcionar alegria a cada um deles. Perceba, no entanto, que ainda não era o momento propício para a manifestação do poder de Deus e, ainda assim, Jesus teve misericórdia.&lt;/p&gt;</description>
@@ -1300,10 +1300,10 @@ Aproveite sua família, porque é uma dádiva do Senhor e do Seu infinito amor.<
         
         <item>
             <title>Construindo o aTTLas portscanner</title>
-            <link>https://pe1xera.github.io/posts/attlas/</link>
+            <link>http://localhost:1313/posts/attlas/</link>
             <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/attlas/</guid>
+            <guid>http://localhost:1313/posts/attlas/</guid>
             <description>&lt;p&gt;&lt;em&gt;“Se você não consegue fazer algo bom, pelo menos faça com que pareça bom.”&lt;/em&gt;&lt;br&gt;
 &lt;em&gt;~Bill Gates&lt;/em&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -1372,10 +1372,10 @@ Ex.: <code>./aTTLas.py businesscorp.com.br 100</code> - Escaneia as 100 portas T
         
         <item>
             <title>ILOVEYOU</title>
-            <link>https://pe1xera.github.io/posts/iloveyou/</link>
+            <link>http://localhost:1313/posts/iloveyou/</link>
             <pubDate>Mon, 04 Dec 2023 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/iloveyou/</guid>
+            <guid>http://localhost:1313/posts/iloveyou/</guid>
             <description>&lt;hr&gt;
 &lt;h1 id=&#34;simplicidade&#34;&gt;Simplicidade&lt;/h1&gt;
 &lt;p&gt;&amp;ldquo;Que bando de idiotas impulsivos, agiram sem pensar!&amp;rdquo;, pensaria o leitor.&lt;/p&gt;
@@ -1405,10 +1405,10 @@ Ex.: <code>./aTTLas.py businesscorp.com.br 100</code> - Escaneia as 100 portas T
         
         <item>
             <title>Minha experiência com a certificação PJPT</title>
-            <link>https://pe1xera.github.io/posts/review-pjpt/</link>
+            <link>http://localhost:1313/posts/review-pjpt/</link>
             <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/review-pjpt/</guid>
+            <guid>http://localhost:1313/posts/review-pjpt/</guid>
             <description>&lt;h1 id=&#34;introdução&#34;&gt;Introdução&lt;/h1&gt;
 &lt;p&gt;No dia 25 de Agosto de 2023, completei a &amp;ldquo;prova&amp;rdquo; da certificação PJPT, da TCM Security.&lt;/p&gt;
 &lt;p&gt;De acordo com o site oficial, &amp;ldquo;a certificação &lt;strong&gt;Practical Junior Penetration Tester™ (PJPT)&lt;/strong&gt; é uma experiência de pentest de nível iniciante. Este exame avaliará a capacidade do aluno de realizar um teste em uma rede interna a nível de associado. Os alunos terão dois (2) dias completos para concluir a avaliação e mais dois (2) dias adicionais para escrever um relatório profissional.&lt;/p&gt;</description>
@@ -1488,10 +1488,10 @@ Fique com a imagem da belíssima certificação.</p>
         
         <item>
             <title>Piloto, ou: &#34;A Apologia de Devaneios Neurais&#34;</title>
-            <link>https://pe1xera.github.io/posts/apologia/</link>
+            <link>http://localhost:1313/posts/apologia/</link>
             <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/apologia/</guid>
+            <guid>http://localhost:1313/posts/apologia/</guid>
             <description>&lt;p&gt;&lt;em&gt;“[…] as palavras podem ser extremamente perigosas. O que você define pode se tornar realidade, mas o que você insinua também pode… Mesmo que você não perceba que está fazendo isso.” (Alan Wake’s American Nightmare, Pg. 11: The Dangers of Creation)&lt;/em&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h1 id=&#34;0x00---30-de-novembro&#34;&gt;0x00 - 30 de Novembro&lt;/h1&gt;
@@ -1541,10 +1541,10 @@ Fique com a imagem da belíssima certificação.</p>
         
         <item>
             <title>Síntese em Defesa da Boa Música</title>
-            <link>https://pe1xera.github.io/posts/sintese/</link>
+            <link>http://localhost:1313/posts/sintese/</link>
             <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/sintese/</guid>
+            <guid>http://localhost:1313/posts/sintese/</guid>
             <description>&lt;center&gt;&lt;audio src=&#34;../../../johnson.mp3&#34; controls title=&#34;Johnson&#34;&gt;&lt;/audio&gt;&lt;/center&gt; 
 &lt;p&gt;&lt;em&gt;“Música é emocional, e você pode encontrar um músico em um estado muito pouco emocional, ou talvez você só não esteja na mesma disposição mental que o músico [&amp;hellip;].” -Nat King Cole&lt;/em&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -1592,10 +1592,10 @@ Fique com a imagem da belíssima certificação.</p>
         
         <item>
             <title>Whoami</title>
-            <link>https://pe1xera.github.io/posts/whoami/</link>
+            <link>http://localhost:1313/posts/whoami/</link>
             <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
             
-            <guid>https://pe1xera.github.io/posts/whoami/</guid>
+            <guid>http://localhost:1313/posts/whoami/</guid>
             <description>&lt;img src=&#34;../../../rodrigo.png&#34;  class=&#34;center&#34;  style=&#34;border-radius: 50%; width: 45%; filter: drop-shadow(4px 3px 4px #1f1e1e); &#34;  /&gt;
 
 
