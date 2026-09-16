@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sat, 01 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 15 Sep 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://pe1xera.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RFC 4120 - Tickets para o Inferno</title>
+      <link>https://pe1xera.github.io/posts/kerberos/</link>
+      <pubDate>Tue, 15 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://pe1xera.github.io/posts/kerberos/</guid>
+      <description>&lt;p&gt;Em fevereiro de 1988, o MIT publicou um pequeno diálogo sobre um problema que mal havia nascido e já começava a assombrar quem estava construindo redes: como autenticar alguém em uma rede sem precisar confiar em cada computador que participa dela?&lt;/p&gt;&#xA;&lt;p&gt;O texto é fictício. Dois personagens, Athena e Eurípides, começam tentando resolver um problema aparentemente simples. Eles precisam de uma forma de autenticar usuários em uma rede aberta. A cada solução, porém, aparece um novo problema. Eles corrigem uma coisa, quebram outra, voltam à prancheta e continuam.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Psicologia do Tempo</title>
       <link>https://pe1xera.github.io/posts/tempo/</link>

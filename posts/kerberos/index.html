@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="Em fevereiro de 1988, o MIT publicou um pequeno diálogo sobre um problema que mal havia nascido e já começava a assombrar quem estava construindo redes: como autenticar alguém em uma rede sem precisar confiar em cada computador que participa dela?
+O texto é fictício. Dois personagens, Athena e Eurípides, começam tentando resolver um problema aparentemente simples. Eles precisam de uma forma de autenticar usuários em uma rede aberta. A cada solução, porém, aparece um novo problema. Eles corrigem uma coisa, quebram outra, voltam à prancheta e continuam.
+" />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://pe1xera.github.io/posts/kerberos/" />
+
+
+    <title>
+        
+            RFC 4120 - Tickets para o Inferno :: pe1xera  — Devaneios Neurais
+        
+    </title>
+
+
+
+
+
+  <link rel="stylesheet" href="/main.min.10b0eeecf7a45363f8e0f2cb71af19eb51042a679efbb60cbce90656a34fe625.css" integrity="sha256-ELDu7PekU2P44PLLca8Z61EEKmee&#43;7YMvOkGVqNP5iU=" crossorigin="anonymous">
+
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+
+  <meta itemprop="name" content="RFC 4120 - Tickets para o Inferno">
+  <meta itemprop="description" content="Em fevereiro de 1988, o MIT publicou um pequeno diálogo sobre um problema que mal havia nascido e já começava a assombrar quem estava construindo redes: como autenticar alguém em uma rede sem precisar confiar em cada computador que participa dela?
+O texto é fictício. Dois personagens, Athena e Eurípides, começam tentando resolver um problema aparentemente simples. Eles precisam de uma forma de autenticar usuários em uma rede aberta. A cada solução, porém, aparece um novo problema. Eles corrigem uma coisa, quebram outra, voltam à prancheta e continuam.">
+  <meta itemprop="datePublished" content="2026-09-15T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2026-09-15T00:00:00+00:00">
+  <meta itemprop="wordCount" content="2382">
+  <meta itemprop="image" content="https://pe1xera.github.io/kerberos.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://pe1xera.github.io/kerberos.png">
+  <meta name="twitter:title" content="RFC 4120 - Tickets para o Inferno">
+  <meta name="twitter:description" content="Em fevereiro de 1988, o MIT publicou um pequeno diálogo sobre um problema que mal havia nascido e já começava a assombrar quem estava construindo redes: como autenticar alguém em uma rede sem precisar confiar em cada computador que participa dela?
+O texto é fictício. Dois personagens, Athena e Eurípides, começam tentando resolver um problema aparentemente simples. Eles precisam de uma forma de autenticar usuários em uma rede aberta. A cada solução, porém, aparece um novo problema. Eles corrigem uma coisa, quebram outra, voltam à prancheta e continuam.">
+
+
+
+    <meta property="og:url" content="https://pe1xera.github.io/posts/kerberos/">
+  <meta property="og:site_name" content="pe1xera">
+  <meta property="og:title" content="RFC 4120 - Tickets para o Inferno">
+  <meta property="og:description" content="Em fevereiro de 1988, o MIT publicou um pequeno diálogo sobre um problema que mal havia nascido e já começava a assombrar quem estava construindo redes: como autenticar alguém em uma rede sem precisar confiar em cada computador que participa dela?
+O texto é fictício. Dois personagens, Athena e Eurípides, começam tentando resolver um problema aparentemente simples. Eles precisam de uma forma de autenticar usuários em uma rede aberta. A cada solução, porém, aparece um novo problema. Eles corrigem uma coisa, quebram outra, voltam à prancheta e continuam.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-09-15T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-15T00:00:00+00:00">
+    <meta property="og:image" content="https://pe1xera.github.io/kerberos.png">
+
+
+
+
+
+
+    <meta property="article:published_time" content="2026-09-15 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text ">
+                $cd /home/pe1xera</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/posts">Posts</a></li><li><a href="/posts/whoami/">Whoami</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+
+            <span class="theme-toggle not-selectable">
+                <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+   3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+   13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+ </svg>
+            </span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        12 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://pe1xera.github.io/posts/kerberos/">RFC 4120 - Tickets para o Inferno</a>
+      </h1>
+
+      
+
+      
+        <figure class="post-cover">
+          <img src="https://pe1xera.github.io/kerberos.png" alt="RFC 4120 - Tickets para o Inferno" />
+          
+          
+        </figure>
+      
+
+      
+
+      <div class="post-content">
+        <p>Em fevereiro de 1988, o MIT publicou um pequeno diálogo sobre um problema que mal havia nascido e já começava a assombrar quem estava construindo redes: como autenticar alguém em uma rede sem precisar confiar em cada computador que participa dela?</p>
+<p>O texto é fictício. Dois personagens, Athena e Eurípides, começam tentando resolver um problema aparentemente simples. Eles precisam de uma forma de autenticar usuários em uma rede aberta. A cada solução, porém, aparece um novo problema. Eles corrigem uma coisa, quebram outra, voltam à prancheta e continuam.</p>
+<p>No fim, Athena decide que o melhor nome é o do cão de três cabeças que guarda a entrada do Hades: Kerberos.</p>
+<p>A brincadeira funciona até tecnicamente. Kerberos é a grafia grega de Κέρβερος, o nome do cão que os romanos chamaram de Cerberus. E, curiosamente, o diálogo fictício publicado pelo MIT em 1988 descreve um sistema bastante parecido com o Kerberos que havia sido desenvolvido no próprio Projeto Athena.</p>
+<p>Permita o querido leitor que eu o conduza, porque gosto muito dessa história, que já começa no lugar certo, ou seja, no problema.</p>
+<p>É muito fácil olhar para a tecnologia que existe hoje e imaginar que ela sempre esteve ali. Login, senha, domínio, compartilhamento de arquivos, acesso remoto, autenticação. Coisas tão comuns que quase passam despercebidas (e na verdade, este é o intuito).</p>
+<p>Grande parte da computação moderna, porém, nasceu quando essas coisas ainda precisavam ser inventadas, e os problemas eram muito mais concretos do que os nomes que demos a eles depois.</p>
+<p>O Kerberos nasce, então, dentro deste contexto.</p>
+<hr>
+<h1 id="o-problema-de-athena">O problema de Athena</h1>
+<p>Em 1983, o MIT iniciou o Projeto Athena, um grande esforço de computação distribuída feito em parceria com a Digital Equipment Corporation e a IBM. A proposta era espalhar computadores pelo campus e permitir que estudantes, professores e pesquisadores utilizassem uma infraestrutura compartilhada de computação e serviços.</p>
+<p>A ideia parecia promissora, mas trazia consigo um problema bastante desagradável, já que os computadores não eram necessariamente confiáveis.</p>
+<p>Uma máquina usada por estudantes poderia ser alterada. Um programa poderia ser modificado. Um atacante poderia controlar um computador da rede. Alguém poderia observar o tráfego passando por ela.</p>
+<p>Então imagine, querido leitor, que eu esteja sentado diante de um computador e digito:</p>
+<p><code>rodrigo</code></p>
+<p>O computador responde:</p>
+<p><code>Olá, Rodrigo.</code></p>
+<p>Excelente. Temos um problema.</p>
+<p><strong>Quem disse que aquele computador deveria acreditar em mim?</strong></p>
+<p>Se a máquina estiver comprometida, ela pode aceitar qualquer nome. Pode também capturar a senha que eu digito e entregá-la a outra pessoa.</p>
+<p>O problema fica mais interessante quando percebemos que o computador onde eu estou sentado também pode ser parte do problema.</p>
+<p>A rede precisa de uma forma de autenticação que não dependa da palavra do próprio computador.</p>
+<p>Em 1985, David Clark supervisionou no MIT duas teses de bacharelado diretamente ligadas a esse problema. Eric Jaeger trabalhou em um protocolo de controle de acesso baseado em uma terceira parte confiável. Clifford Neuman desenvolveu o Sentry, acrescentando mecanismos de controle de acesso e contabilidade, além de implementar um servidor protótipo.</p>
+<p>Depois de concluir sua tese, Neuman passou a trabalhar com Steve Miller no Projeto Athena, e desse trabalho surgiu o Kerberos.</p>
+<p>A primeira implementação foi concluída em 1986 e entrou em produção no mesmo ano. Em janeiro de 1987, o Kerberos já era o único mecanismo de autenticação do Project Athena, atendendo 5.000 usuários, 650 computadores e 65 servidores.</p>
+<p>É uma história curiosa, o Kerberos é o que muitos chamariam de “case de sucesso”. Afinal, quem diria que uma tecnologia que hoje está em todo lugar (digo sem medo de errar), surgiria através de um grupo de estudantes universitários, que sempre são tão desacreditados?</p>
+<hr>
+<h1 id="um-triângulo-amoroso">Um triângulo amoroso</h1>
+<p>A ideia fundamental do Kerberos pode ser resumida de maneira quase indecente de tão simples.</p>
+<p>Imagine que eu queira entrar em uma festa. Eu chego à porta e digo:</p>
+<p>&ldquo;Sou Rodrigo.&rdquo;</p>
+<p>O segurança olha para mim.</p>
+<p>&ldquo;Prove.&rdquo;</p>
+<p>Eu poderia apresentar algum documento. O segurança poderia conhecer minha assinatura. Poderia ainda perguntar alguma coisa que apenas Rodrigo saberia, mas suponhamos que eu não confie naquele segurança. Ou melhor: suponhamos que NINGUÉM confie nos seguranças espalhados pela cidade inteira. A solução pode ser colocar uma autoridade no meio.</p>
+<p>Eu me identifico diante de uma entidade central em quem todos confiam. Essa entidade confirma quem eu sou e me entrega uma credencial. Quando eu quiser entrar em outra festa, apresento a credencial.</p>
+<p>O segurança não precisa conhecer minha senha, e eu tambm não preciso confiar nele. Nós dois confiamos em uma terceira parte. Essa é a ideia central do Kerberos: uma <strong>terceira parte confiável</strong>.</p>
+<p>O protocolo foi inspirado no trabalho de Needham e Schroeder sobre autenticação em grandes redes, além de modificações posteriores feitas por Denning e Sacco. A ideia era utilizar uma autoridade central capaz de distribuir credenciais e chaves de sessão para entidades que precisassem se comunicar.</p>
+<p>Essa autoridade é o KDC (<strong>Key Distribution Center).</strong> Em bom português**:** Centro de Distribuição de Chaves, embora perca todo o seu glamour, então vamos usar somente KDC.</p>
+<p>No Kerberos moderno, o KDC fornece dois serviços lógicos: o Authentication Server, ou AS, responsável pela autenticação inicial e emissão de TGTs, e o Ticket-Granting Server, ou TGS, responsável por emitir tickets para serviços específicos.</p>
+<p>Agora temos quase tudo de que precisamos. Ou quase, porque ainda falta uma coisa: o ticket.</p>
+<hr>
+<h1 id="o-ingresso-para-o-hades">O ingresso para o Hades</h1>
+<p>O ticket é uma credencial emitida pelo KDC que permite ao cliente provar sua autorização para acessar determinado serviço.</p>
+<p>Façamos aqui uma distinção importante. O ticket <strong>não é simplesmente um papel digital dizendo &ldquo;esse usuário é Rodrigo&rdquo;, e</strong>le contém informações destinadas ao serviço e é protegido criptograficamente com uma chave que o próprio serviço conhece.</p>
+<p>Isso permite uma ideia bastante chique:</p>
+<p>O cliente recebe o ticket, mas não precisa conseguir modificá-lo.</p>
+<p>O servidor recebe o ticket, consegue verificá-lo, e não precisa conhecer a senha do usuário.</p>
+<p>O KDC consegue emitir essas credenciais porque conhece as chaves secretas envolvidas.</p>
+<p>A partir daí, podemos acompanhar uma autenticação inteira.</p>
+<p>Agora, vamos imaginar que eu esteja em uma máquina do domínio e queira acessar um serviço chamado:</p>
+<p><code>files.exemplo.local</code></p>
+<p>Eu não quero digitar minha senha para o servidor de arquivos (até porque ele pode não ser um) e o servidor de arquivos também não precisa conhecer minha senha, então a conversa começa em outro lugar.</p>
+<hr>
+<h1 id="primeiro-quem-é-você">Primeiro: quem é você?</h1>
+<p>O cliente procura o Authentication Server e envia uma requisição inicial. Em termos simplificados, a mensagem diz:</p>
+<blockquote>
+<p>&ldquo;Eu sou Rodrigo. Preciso de credenciais para usar a rede.&rdquo;</p>
+</blockquote>
+<p>O AS consulta sua base de dados e encontra a conta correspondente. Ele conhece a chave longa associada àquela identidade, normalmente derivada da senha do usuário. Essa chave é usada para proteger determinados dados que só o cliente que conhece a credencial correta deveria conseguir recuperar.</p>
+<p>O AS então produz duas coisas importantes: A primeira é uma <strong>chave de sessão</strong>. A segunda é um <strong>Ticket-Granting Ticket</strong>, o famoso TGT.</p>
+<p>O TGT é criptografado com uma chave secreta do serviço de concessão de tickets. O cliente pode armazená-lo e carregá-lo consigo, mas não precisa ler seu conteúdo para utilizá-lo.</p>
+<p>A ideia é bastante bonita. Pense da seguinte forma: O cliente recebe uma credencial que pode apresentar posteriormente sem precisar entregar sua senha a cada serviço. Ufa!</p>
+<p>É por isso que o Kerberos permite algo que hoje parece trivial: <strong>Single Sign-On.</strong></p>
+<p>Uma autenticação inicial pode produzir credenciais reutilizáveis durante um período determinado, permitindo acessar vários serviços sem repetir o processo inteiro.</p>
+<p>No Kerberos V5, a autenticação inicial e suas proteções podem envolver mecanismos de pre-authentication, e os detalhes dessa primeira troca são mais sofisticados do que essa pequena história deixa parecer. A própria RFC 4120 trata a autenticação inicial como parte de um protocolo maior, no qual a senha do usuário não precisa ser enviada em claro pela rede.</p>
+<p>O que interessa guardar agora é apenas isto: <strong>eu tenho um TGT.</strong></p>
+<p>E ainda não falei com o servidor de arquivos.</p>
+<hr>
+<h1 id="segundo-o-que-você-quer">Segundo: o que você quer?</h1>
+<p>Agora eu quero acessar <code>files.exemplo.local</code>.</p>
+<p>Poderia simplesmente mandar meu TGT para o servidor, só existe um pequeno probleminha. O TGT não foi emitido para <code>files.exemplo.local</code>, ele é uma credencial para conversar com o serviço de concessão de tickets.</p>
+<p>Então o cliente vai até o TGS e diz:</p>
+<blockquote>
+<p>&ldquo;Aqui está meu TGT. Quero um ticket para o serviço <code>files.exemplo.local</code>.&rdquo;</p>
+</blockquote>
+<p>O TGS verifica o TGT. Se tudo estiver correto, ele emite um novo ticket destinado especificamente ao serviço solicitado. Esse é o <strong>service ticket</strong>.</p>
+<p>Mais uma vez, o cliente recebe também uma chave de sessão associada àquele relacionamento.</p>
+<p>Agora temos algo muito interessante: Existe um ticket para falar com o TGS. Existe outro ticket para falar com o serviço. E cada peça tem uma função diferente.</p>
+<p>O TGT diz, em essência:</p>
+<blockquote>
+<p>&ldquo;Este cliente já foi autenticado e pode pedir credenciais para outros serviços.&rdquo;</p>
+</blockquote>
+<p>O service ticket diz:</p>
+<blockquote>
+<p>&ldquo;Este cliente pode utilizar este serviço.&rdquo;</p>
+</blockquote>
+<p>E ainda existe uma última pergunta.</p>
+<p>Como o servidor sabe que a pessoa apresentando o ticket é REALMENTE quem recebeu aquele ticket?</p>
+<hr>
+<h1 id="terceiro-prove-que-é-você">Terceiro: prove que é você</h1>
+<p>O cliente finalmente chega ao servidor. Apresenta o service ticket. O servidor consegue decifrar o ticket porque possui a chave secreta correspondente, mas ainda existe uma preocupação: Se alguém capturar esse ticket na rede, poderia tentar reapresentá-lo.</p>
+<p>É aqui que entra o <strong>authenticator</strong>. O cliente envia, junto do ticket, informações adicionais protegidas com a chave de sessão. Entre elas existe um timestamp. A função disso é demonstrar que quem está apresentando o ticket possui a chave de sessão correspondente e que aquela apresentação aconteceu dentro de uma janela de tempo aceitável.</p>
+<p>O servidor verifica o ticket. Verifica o authenticator. Verifica o timestamp. E, se tudo estiver correto, aceita a autenticação.</p>
+<p>A RFC 4120 explica essa preocupação: um ticket interceptado pode ser repetido, então informações adicionais, protegidas pela chave de sessão e contendo um timestamp, servem para demonstrar que a requisição foi produzida recentemente por quem possui aquela chave.</p>
+<p>É aqui que uma pequena preocupação começa a aparecer: o tempo (do qual falei em texto recente).</p>
+<hr>
+<h1 id="o-preço-de-confiar-no-tempo">O preço de confiar no tempo</h1>
+<p>Se o protocolo depende de timestamps, os computadores precisam ter seus relógios razoavelmente sincronizados. Se a máquina do cliente acredita que são 14h05, mas o servidor acredita que são 14h42, a definição de &ldquo;recente&rdquo; começa a ficar um pouco complicada.</p>
+<p>O Kerberos, portanto, resolve um problema e traz algumas exigências junto.</p>
+<ol>
+<li>Você precisa de um KDC confiável.</li>
+<li>Precisa proteger as chaves secretas.</li>
+<li>Precisa manter os relógios dos computadores suficientemente sincronizados.</li>
+<li>Precisa definir tempos de validade.</li>
+<li>E precisa proteger uma estrutura cuja autoridade alcança vários serviços.</li>
+</ol>
+<p>Essa é uma das partes que acho mais interessantes no Kerberos. Ele concentra a confiança. Em uma rede sem Kerberos, várias máquinas poderiam tomar suas próprias decisões sobre quem é confiável. Com Kerberos, todos passam a depender de uma autoridade comum, e isso simplifica muita coisa.</p>
+<p>Por outro lado, cria um ponto crítico que você, querido leitor, inteligente como é, já percebeu: Se o KDC for comprometido, o problema deixa de ser local e passa a ser estrutural. Imagine o estrago disso em um ambiente Windows real, como estamos acostumados.</p>
+<hr>
+<h1 id="cão-de-guarda-do-domínio">Cão de guarda do domínio</h1>
+<p>Décadas depois do Projeto Athena, a ideia continuou viva.</p>
+<p>Kerberos se tornou parte fundamental do Active Directory Domain Services, no qual o KDC é implementado como um serviço de domínio e utiliza o Active Directory como sua base de contas. Em ambientes Windows, o KDC continua oferecendo os dois papéis que vimos aqui: Authentication Service e Ticket-Granting Service.</p>
+<p>A escala mudou, e a universidade virou empresa, os estudantes viraram funcionários, os servidores cresceram, o compartilhamento de arquivos virou centenas de aplicações, bancos de dados, serviços internos, etc., etc., etc.</p>
+<p>A ideia central, porém, continuou muito parecida.</p>
+<ol>
+<li>Você entra no domínio.</li>
+<li>Recebe um TGT.</li>
+<li>Solicita tickets para os serviços.</li>
+<li>Apresenta esses tickets.</li>
+<li>E o servidor verifica as credenciais sem precisar receber sua senha.</li>
+</ol>
+<p>Quando você trabalha com segurança ofensiva, esse mecanismo começa a ficar ainda mais interessante, porque uma estrutura construída ao redor de tickets também significa que existem tickets que podem ser roubados, reutilizados, forjados ou explorados quando alguma das chaves fundamentais é comprometida.</p>
+<p>Daí surgem nomes que já assustaram muita gente em um laboratório de Active Directory:</p>
+<p><strong>Kerberoasting, Pass-the-Ticket, Golden Ticket</strong>, e por aí vai…</p>
+<p>Eles são assuntos muito maiores que este texto e merecem seus próprios capítulos. O importante aqui é perceber de onde essas técnicas vêm. Elas são consequências de uma arquitetura baseada em uma cadeia de confiança.</p>
+<hr>
+<h1 id="do-pouco-ao-muito">Do pouco ao muito</h1>
+<p>Agora, veja que ironia: Quando o Projeto Athena começou, a preocupação era bastante específica: como fazer um campus universitário funcionar como uma grande rede distribuída?</p>
+<p>A resposta acabou atravessando décadas de computação. O próprio MIT registra que tecnologias surgidas no Projeto Athena, entre elas o Kerberos e o X Window System, ultrapassaram o ambiente universitário e se tornaram importantes para a computação distribuída em escala muito maior.</p>
+<p>Esse talvez seja o maior motivo pelo qual eu quis trazer esse assunto, porque entendo que existe uma péssima tendência no mercado atualmente: Nós só enxergamos as empresas.</p>
+<p>Microsoft. Google. Amazon. Apple.</p>
+<p>Enxergamos datacenters, laboratórios bilionários, produtos globais e sistemas que parecem grandes demais para terem começado como qualquer outra coisa.</p>
+<p>Só que, quando voltamos algumas décadas, encontramos algo menos impressionante à primeira vista: Uma faculdade, um problema, algumas pessoas, uma ideia, um protótipo e um grupo de doidinhos querendo colocar seus planos em prática.</p>
+<p>É fácil olhar para isso e imaginar uma linha reta entre o laboratório e o produto, mas a história sempre é tortuosa. Houve erros, revisões, vulnerabilidades, mudanças de protocolo e novas exigências. O próprio Kerberos mudou de versão e continuou sendo estudado, criticado e revisado por décadas. A RFC 4120, por exemplo, descreve o Kerberos V5, evolução da versão anterior, e registra parte desse caminho.</p>
+<p>O ponto central que trago é que tecnologia, em qualquer sentido da palavra, nasce quando alguém está tão incomodado com um problema a ponto de passar algumas madrugadas tentando fazer aquilo funcionar.</p>
+<p>No caso do Kerberos, esse incômodo começou com uma pergunta relacionada a segurança e confiança: <strong>como saber quem está do outro lado da rede?</strong></p>
+<p>O bom é que agora, ninguém precisará responder, basta apresentar seu ticket! Afinal, se existe um lugar onde ninguém deveria entrar sem autorização, é o inferno corporativo.</p>
+<p>Muito obrigado pela leitura até aqui, querido leitor.</p>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+      
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        2382 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2026-09-14 21:00
+        
+
+         
+          
+        
+      </p>
+    </div>
+      <hr />
+      <div class="sharing-buttons">
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fpe1xera.github.io%2fposts%2fkerberos%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
+  <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=https%3a%2f%2fpe1xera.github.io%2fposts%2fkerberos%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
+  <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
+      <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=RFC%204120%20-%20Tickets%20para%20o%20Inferno&amp;caption=RFC%204120%20-%20Tickets%20para%20o%20Inferno&amp;canonicalUrl=https%3a%2f%2fpe1xera.github.io%2fposts%2fkerberos%2f" target="_blank" rel="noopener" aria-label="" title="Share on tumblr">
+  <div class="resp-sharing-button resp-sharing-button--tumblr resp-sharing-button--small">
+    <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=RFC%204120%20-%20Tickets%20para%20o%20Inferno&amp;body=https%3a%2f%2fpe1xera.github.io%2fposts%2fkerberos%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
+  <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=https%3a%2f%2fpe1xera.github.io%2fposts%2fkerberos%2f&amp;media=https%3a%2f%2fpe1xera.github.io%2fposts%2fkerberos%2f;description=RFC%204120%20-%20Tickets%20para%20o%20Inferno" target="_blank" rel="noopener" aria-label="" title="Share on pinterest">
+  <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fpe1xera.github.io%2fposts%2fkerberos%2f&amp;title=RFC%204120%20-%20Tickets%20para%20o%20Inferno&amp;summary=RFC%204120%20-%20Tickets%20para%20o%20Inferno&amp;source=https%3a%2f%2fpe1xera.github.io%2fposts%2fkerberos%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
+  <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fpe1xera.github.io%2fposts%2fkerberos%2f&amp;resubmit=true&amp;title=RFC%204120%20-%20Tickets%20para%20o%20Inferno" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
+  <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.xing.com/app/user?op=share;url=https%3a%2f%2fpe1xera.github.io%2fposts%2fkerberos%2f;title=RFC%204120%20-%20Tickets%20para%20o%20Inferno" target="_blank" rel="noopener" aria-label="" title="Share on xing">
+  <div class="resp-sharing-button resp-sharing-button--xing resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.461c.518 0 .766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="whatsapp://send?text=RFC%204120%20-%20Tickets%20para%20o%20Inferno%20https%3a%2f%2fpe1xera.github.io%2fposts%2fkerberos%2f" target="_blank" rel="noopener" aria-label="" title="Share on whatsapp">
+  <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fpe1xera.github.io%2fposts%2fkerberos%2f&amp;t=RFC%204120%20-%20Tickets%20para%20o%20Inferno" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
+  <div class="resp-sharing-button resp-sharing-button--hackernews resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=RFC%204120%20-%20Tickets%20para%20o%20Inferno&amp;url=https%3a%2f%2fpe1xera.github.io%2fposts%2fkerberos%2f" target="_blank" rel="noopener" aria-label="" title="Share on telegram">
+  <div class="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </div>
+  </div>
+</a>
+
+      </div>
+
+    
+    <div class="pagination">
+        
+        <div class="pagination__title">
+            <span class="pagination__title-h">Veja outros posts</span>
+            <hr />
+        </div>
+        
+
+        <div class="pagination__buttons">
+            
+
+            
+            <span class="button next">
+                <a href="https://pe1xera.github.io/posts/tempo/">
+                    <span class="button__text">Psicologia do Tempo</span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+            
+        </div>
+    </div>
+
+
+    
+
+    
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.e89fda0f29b95d33f6f4224dd9e5cf69d84aff3818be2b0d73e731689cc374261b016d17d46f8381962fb4a1577ba3017b1f23509d894f6e66431f988c00889e.js" integrity="sha512-6J/aDym5XTP29CJN2eXPadhK/zgYvisNc&#43;cxaJzDdCYbAW0X1G&#43;DgZYvtKFXe6MBex8jUJ2JT25mQx&#43;YjACIng=="></script>
+
+
+
+
+    </body>
+</html>
