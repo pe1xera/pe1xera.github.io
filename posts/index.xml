@@ -6,8 +6,329 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <lastBuildDate>Tue, 15 Sep 2026 00:00:00 +0000</lastBuildDate>
+        <lastBuildDate>Fri, 23 Oct 2026 00:00:00 +0000</lastBuildDate>
         <atom:link href="https://pe1xera.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Lightweight Directory Access Protocol (LDAP)</title>
+            <link>https://pe1xera.github.io/posts/ldap/</link>
+            <pubDate>Fri, 23 Oct 2026 00:00:00 +0000</pubDate>
+            
+            <guid>https://pe1xera.github.io/posts/ldap/</guid>
+            <description>&lt;p&gt;Querido leitor, há uma diferença considerável entre olhar para um log e conseguir lê-lo. Reconhecer o nome de uma operação ajuda, claro, mas não basta para entender por que ela aconteceu, o que o cliente pediu ao servidor e se aquela conversa combina com o comportamento esperado do ambiente.&lt;/p&gt;
+&lt;p&gt;Neste texto, quero olhar para o LDAP junto com você, e faremos isso do ponto de vista de quem precisa defender um ambiente, acompanhando a conversa entre os dois lados. Deus sabe que gosto muito de teoria, mas também gosto dos bytes e dos logs; então vamos aliá-los para tirar um maior proveito dessa brincadeira.&lt;/p&gt;</description>
+            <content type="html"><![CDATA[<p>Querido leitor, há uma diferença considerável entre olhar para um log e conseguir lê-lo. Reconhecer o nome de uma operação ajuda, claro, mas não basta para entender por que ela aconteceu, o que o cliente pediu ao servidor e se aquela conversa combina com o comportamento esperado do ambiente.</p>
+<p>Neste texto, quero olhar para o LDAP junto com você, e faremos isso do ponto de vista de quem precisa defender um ambiente, acompanhando a conversa entre os dois lados. Deus sabe que gosto muito de teoria, mas também gosto dos bytes e dos logs; então vamos aliá-los para tirar um maior proveito dessa brincadeira.</p>
+<p>Como de costume, sou totalmente aberto a correções, quanto a erros técnicos e gramaticais, e fico feliz caso alguém os aponte para mim. Segurança é uma área que exige curiosidade, mas exige também humildade para rever o que julgamos saber e talvez estejamos errados.</p>
+<hr>
+<h2 id="era-uma-vez-uma-árvore">Era uma vez uma árvore</h2>
+<p>O LDAP não surgiu do nada. O nome em si já é um mini-spoiler, vejamos: “<em>Lightweight Directory Access Protocol”</em>, que (em tradução livre) seria algo como um “protocolo leve para acessar diretórios”. Um DAP, porém com &ldquo;L&rdquo; de leve! O diretório ao qual ele se refere é o <strong>X.500</strong>, uma família de padrões desenvolvida no âmbito do CCITT, hoje ITU-T (International Telecommunication Union), e da ISO/IEC.</p>
+<p>O X.500 foi pensado para oferecer um serviço de diretório em larga escala, entre outras coisas para localizar nomes e endereços ligados ao antigo padrão X.400. A proposta era que se tivesse entradas organizadas em um formato de árvore, regras para descrever seus atributos e protocolos diferentes para acessar, distribuir e replicar as informações. Tudo isso seguindo o modelo OSI.</p>
+<p>Como sabemos, esse tipo de padrão nunca é desenvolvido somente por uma pessoa, então vamos dar nome aos bois, pois nada mais justo do que dar os créditos a quem tem o direito.</p>
+<p>Tudo começa em Londres, onde <strong>Steve Kille</strong> trabalhava no ISODE Consortium. Junto com ele estavam <strong>Tim Howes</strong>, da Universidade de Michigan, e <strong>Wengyik Yeong</strong>, da Performance Systems International. Os três compartilhavam um incômodo comum: o X.500 era elegante no papel, mas pesado demais na prática.</p>
+<p>Para entender esse incômodo, precisamos dar um passo atrás. O X.500 foi projetado dentro do modelo OSI, a famosa pilha de sete camadas que dominou o imaginário da computação nos anos 80. Naquela visão de mundo, hoje ultrapassada (de certo modo), cada protocolo deveria ter sua sessão, sua apresentação, seu controle formal. O resultado era que uma simples consulta a um diretório exigia uma sequência de negociações e handshakes que deixava qualquer aplicação lenta e inchada.</p>
+<p>A ideia de Kille, Howes e Yeong foi quase herética para a época: <strong>e se simplificássemos o transporte, mas mantivéssemos a essência do modelo de dados?</strong> Ou seja, em vez de carregar toda a pilha OSI, eles colocariam os elementos do diretório diretamente sobre o TCP. Em vez de codificações exóticas, usariam algo já conhecido, o BER. O protocolo continuaria falando a mesma língua do X.500 (a mesma árvore, os mesmos atributos), mas de um jeito que uma aplicação simples pudesse implementar em poucos dias.</p>
+<p>O resultado saiu como a <strong>RFC 1487</strong>, em julho de 1993. O nome dizia tudo: <em>Lightweight Directory Access Protocol</em>, em tradução livre: um &ldquo;protocolo leve para acessar diretórios&rdquo;. Leve em relação ao X.500, não em relação ao que viria depois.</p>
+<p>Com o tempo o protocolo evoluiu: o RFC 1487 foi substituído pelo RFC 1777 (LDAPv2) e, mais tarde, chegou a versão que sustenta praticamente tudo o que vemos hoje, o <strong>LDAPv3</strong> (RFC 4511).</p>
+<hr>
+<h2 id="o-que-é-um-diretório-afinal">O que é um diretório, afinal?</h2>
+<p>A palavra &ldquo;diretório&rdquo; carrega uma ambiguidade perigosa. No dia-a-dia, pensamos logo em pastas de arquivos. Em LDAP, é mais como um <strong>banco de dados especializado em leitura</strong>, otimizado para consultas e não para escrita. Pense na Lista de Endereços do Outlook. No dia a dia, ninguém &ldquo;edita&rdquo; esse diretório, só consulta. Busca-se o nome de um colega, o e-mail de um setor, o ramal de alguém. As atualizações existem (como quando alguém é contratado, muda de time ou sai da empresa), mas elas são raras, controladas e feitas por quem administra, não por quem consulta. O LDAP é a engrenagem que, por baixo dos panos, faz esse tipo de diretório funcionar.</p>
+<p>A diferença entre um banco de dados, que conhecemos bem, e um diretório está na <strong>forma</strong> dos dados. Um banco relacional organiza tudo em tabelas com colunas rígidas. Um diretório organiza tudo em uma <strong>árvore hierárquica</strong>, onde cada nó tem um nome e um conjunto de atributos.</p>
+<p>Antes de seguir, vejamos o diagrama abaixo. Ele mostra a estrutura conceitual que o LDAP usa, e que o Active Directory herdou quase inteiramente.</p>
+<pre tabindex="0"><code>                       [dc=empresa,dc=com]          ← raiz do domínio
+                                |
+                +---------------+---------------+
+                |                               |
+      [ou=Usuarios]                      [ou=Computadores]
+                |                               |
+        +-------+-------+               +-------+-------+
+        |               |               |               |
+ [cn=bilbo]      [cn=tauriel]     [cn=PC-BILBO]   [cn=SRV-SMAUG]
+</code></pre><p>Cada linha dessa árvore é uma <strong>entrada</strong> (<em>entry</em>). Cada entrada tem um <strong>nome único</strong> que a identifica na árvore (o <em>Distinguished Name</em>, ou DN), além de um conjunto de <strong>atributos</strong> que descrevem o que aquela entrada é, como nome, e-mail, telefone, senha e grupos.</p>
+<p>Quando abrimos o &ldquo;Active Directory users and Computers&rdquo; no Windows, estamos vendo essa árvore renderizada. Quando uma ferramenta consulta o AD, está caminhando por ela.</p>
+<hr>
+<h2 id="um-pseudo-cpf-da-entrada">Um pseudo-CPF da entrada</h2>
+<p>Aqui chegamos no primeiro conceito que precisa ficar cravado, porque ele vai aparecer em <strong>todo</strong> log e <strong>toda</strong> captura de pacote daqui pra frente, o <strong>DN</strong> (<em>Distinguished Name</em>, ou Nome Distinguido).</p>
+<p>O DN é o endereço completo de uma entrada na árvore. Ele é escrito da entrada mais específica para a mais genérica, separado por vírgulas. Voltando ao diagrama anterior, o DN do usuário Bilbo aparece assim.</p>
+<pre tabindex="0"><code>cn=bilbo,ou=Usuarios,dc=empresa,dc=com
+</code></pre><p>Lê-se da direita para a esquerda, começando pelo domínio e terminando na entrada.</p>
+<ul>
+<li><code>dc=com</code> → faz parte do domínio <code>.com</code></li>
+<li><code>dc=empresa</code> → no domínio <code>empresa.com</code></li>
+<li><code>ou=Usuarios</code> → dentro da unidade organizacional &ldquo;Usuarios&rdquo;</li>
+<li><code>cn=bilbo</code> → a entrada do usuário Bilbo</li>
+</ul>
+<p>Cada uma dessas siglas tem um significado que vale memorizar, como mostra a tabela a seguir.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Sigla</th>
+          <th>Significado</th>
+          <th>Exemplo</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>dc</code></td>
+          <td><em>Domain Component</em></td>
+          <td><code>dc=empresa</code></td>
+      </tr>
+      <tr>
+          <td><code>ou</code></td>
+          <td><em>Organizational Unit</em></td>
+          <td><code>ou=Usuarios</code></td>
+      </tr>
+      <tr>
+          <td><code>cn</code></td>
+          <td><em>Common Name</em></td>
+          <td><code>cn=bilbo</code></td>
+      </tr>
+      <tr>
+          <td><code>uid</code></td>
+          <td><em>User ID</em></td>
+          <td><code>uid=bbaggins</code></td>
+      </tr>
+  </tbody>
+</table>
+<p>O DN é o equivalente LDAP do que um CPF é para uma pessoa, pois não importa quantos &ldquo;Bilbos&rdquo; existam, o DN de cada um é único. É por isso que todo <code>BindRequest</code> (autenticação) e todo <code>SearchRequest</code> (consulta) têm um DN envolvido. Ele é a chave que localiza o nó na árvore.</p>
+<p>Vale notar que a mesma árvore pode conter usuários como <code>cn=tauriel</code> e <code>cn=thorin</code> na <code>ou=Usuarios</code>, e contas privilegiadas como <code>cn=gandalf</code> em uma <code>ou=Admins</code>. O DN de cada um segue a mesma lógica, mudando apenas o caminho até a raiz.</p>
+<hr>
+<h2 id="a-conversa-entre-cliente-e-servidor">A conversa entre cliente e servidor</h2>
+<p>Agora que sabemos o que existe dentro do diretório, podemos entender <strong>como</strong> as coisas conversam com ele.</p>
+<p>Toda comunicação LDAP é uma <strong>conversa</strong> entre dois lados, e isso é importante, porque facilita o entendimento. Temos, então, o <strong>cliente</strong> (que quer algo) e o <strong>servidor</strong> (que tem os dados). O protocolo define que essa conversa acontece em ciclos de <strong>requisição e resposta</strong>, sempre na mesma estrutura.</p>
+<pre tabindex="0"><code>   CLIENTE                                       SERVIDOR
+     |                                              |
+     |---- Requisição (messageID=1, operação) -----&gt;|
+     |                                              |
+     |&lt;--- Resposta  (messageID=1, resultado) ------|
+     |                                              |
+</code></pre><p>Há três coisas importantes nesse diagrama. Primeiro, <strong>toda requisição tem uma resposta</strong>. Não existe requisição &ldquo;silenciosa&rdquo;. Isso é ouro para a análise, pois se uma requisição sai mas a resposta não volta, ou o pacote se perdeu, ou alguém está bloqueando, e isso por si só é um sinal.</p>
+<p>Segundo, <strong>o <code>messageID</code> correlaciona tudo</strong>. Cada requisição leva um número de identificação único. A resposta carrega o mesmo número. Em uma captura de pacotes com milhares de mensagens, é o <code>messageID</code> que diz qual resposta pertence a qual pergunta. Sem ele, seria uma bagunça.</p>
+<p>Terceiro, <strong>o &ldquo;verbo&rdquo; da operação muda</strong>. A estrutura é a mesma, mas o conteúdo da requisição diz o que o cliente quer fazer. E é aí que entram as operações.</p>
+<hr>
+<h2 id="as-duas-operações-que-precisamos-conhecer">As duas operações que precisamos conhecer</h2>
+<p>O LDAP define cerca de uma dúzia de operações, como adicionar, modificar, excluir, comparar e abandonar. Mas para quem está começando na análise, <strong>duas</strong> concentram 90% do que veremos em logs e capturas.</p>
+<h3 id="bindrequest-o-aperto-de-mão-de-autenticação">BindRequest, o &ldquo;aperto de mão&rdquo; de autenticação</h3>
+<p>Toda sessão LDAP começa com um <strong>Bind</strong>. É o momento em que o cliente se apresenta ao servidor e diz <em>&ldquo;sou eu, aqui estão minhas credenciais&rdquo;</em>. Sem um Bind (ou com um Bind anônimo), o servidor não vai entregar muita coisa.</p>
+<p>O BindRequest carrega dois elementos essenciais. O primeiro é o <strong>DN</strong> da entrada que está tentando se autenticar, ou seja, quem é. O segundo é a <strong>credencial</strong>, que em geral é uma senha, mas pode ser um certificado, um ticket Kerberos, ou simplesmente <em>nada</em> (bind anônimo).</p>
+<p>O que o servidor devolve é um <strong>BindResponse</strong> com um código de resultado.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Código</th>
+          <th>Significado</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>success</code> (0)</td>
+          <td>Autenticou</td>
+      </tr>
+      <tr>
+          <td><code>invalidCredentials</code> (49)</td>
+          <td>Usuário ou senha errados</td>
+      </tr>
+      <tr>
+          <td><code>noSuchObject</code> (32)</td>
+          <td>O DN informado não existe</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Por que isso importa para o SOC?</strong> Porque é aqui que ataques de força bruta, <em>password spraying</em> e enumeração de usuários acontecem. Um <code>noSuchObject</code> repetido significa que o atacante está testando nomes de usuário para ver quais existem, e pode estar tentando <code>cn=bilbo</code>, <code>cn=tauriel</code>, <code>cn=thorin</code>, <code>cn=gandalf</code>, e assim por diante. Um <code>invalidCredentials</code> repetido significa que ele já sabe que o usuário existe e está chutando a senha. A distinção entre os dois códigos é a diferença entre &ldquo;descobrindo o terreno&rdquo; e &ldquo;atacando&rdquo;.</p>
+<h3 id="searchrequest-a-operação-mais-comum-e-a-mais-ruidosa">SearchRequest, a operação mais comum e a mais ruidosa</h3>
+<p>Depois de autenticado, o cliente quase sempre vai querer <strong>buscar</strong> algo. É o <code>SearchRequest</code>. E é aqui que a maior parte do volume de logs LDAP nasce.</p>
+<p>Um SearchRequest é composto por alguns parâmetros que determinam o que volta, como mostrado a seguir.</p>
+<pre tabindex="0"><code>   SearchRequest
+   ├── baseObject: &#34;dc=empresa,dc=com&#34;     ← de onde começar a busca
+   ├── scope: wholeSubtree (2)             ← até onde descer na árvore
+   ├── filter: (objectClass=user)          ← o que procurar
+   └── attributes: [&#34;cn&#34;, &#34;mail&#34;]          ← o que trazer de volta
+</code></pre><p>Vamos dissecar cada um deles.</p>
+<p><strong><code>baseObject</code></strong> é o ponto de partida. Pode ser a raiz do domínio (<code>dc=empresa,dc=com</code>), uma OU específica (<code>ou=Usuarios,dc=empresa,dc=com</code>), ou até uma única entrada (<code>cn=bilbo,ou=Usuarios,dc=empresa,dc=com</code>).</p>
+<p><strong><code>scope</code></strong> diz o quão fundo descer a partir do <code>baseObject</code>.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Scope</th>
+          <th>Valor</th>
+          <th>O que faz</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>baseObject</code></td>
+          <td>0</td>
+          <td>Só consulta a entrada base, sem descer</td>
+      </tr>
+      <tr>
+          <td><code>singleLevel</code></td>
+          <td>1</td>
+          <td>Desce um nível (filhos diretos)</td>
+      </tr>
+      <tr>
+          <td><code>wholeSubtree</code></td>
+          <td>2</td>
+          <td>Desce <strong>todos</strong> os níveis (subárvore inteira)</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong><code>filter</code></strong> é o coração da busca. É a &ldquo;condição WHERE&rdquo; do LDAP. Um filtro como <code>(objectClass=user)</code> retorna tudo que é usuário. Um filtro como <code>(&amp;(objectClass=user)(adminCount=1))</code> retorna só os administradores, incluindo, talvez, o <code>cn=gandalf</code>. Um filtro como <code>(sAMAccountName=bilbo)</code> retorna o usuário Bilbo, se existir.</p>
+<p>O filtro tem sua própria sintaxe, e encontraremos variações dele nos logs.</p>
+<pre tabindex="0"><code>(objectClass=user)                        → igualdade simples
+(&amp;(objectClass=user)(memberOf=Grupo))     → AND de duas condições
+(|(cn=bilbo)(cn=tauriel))                 → OR
+(!(objectClass=computer))                 → NOT
+(sAMAccountName=bil*)                     → wildcard (substring)
+</code></pre><p><strong><code>attributes</code></strong> é a lista do que o cliente quer receber de volta. Se ele pedir <code>[&quot;cn&quot;, &quot;mail&quot;]</code>, o servidor devolve só esses campos. Se pedir <code>[&quot;*&quot;]</code>, devolve <strong>todos</strong> os atributos, e é aí que a coisa começa a ficar interessante para a análise.</p>
+<hr>
+<h2 id="o-que-essa-conversa-deixa-de-rastro">O que essa conversa deixa de rastro</h2>
+<p>Uma vez entendida a conversa, podemos olhar para os logs com outros olhos. Quando um cliente faz uma busca e o servidor responde, esse diálogo pode deixar vestígios em vários lugares. Os dois principais merecem atenção.</p>
+<h3 id="1-a-captura-de-rede">1. A captura de rede</h3>
+<p>Tendo visibilidade de rede, vemos a conversa crua. No Wireshark, um SearchRequest aparece assim, de forma simplificada.</p>
+<pre tabindex="0"><code>Lightweight-Directory-Access-Protocol
+    messageID: 5
+    protocolOp: searchRequest (3)
+        baseObject: &#34;dc=empresa,dc=com&#34;
+        scope: wholeSubtree (2)
+        filter: (objectClass=user)
+        attributes: cn, mail
+</code></pre><p>Isso é ouro, pois vemos a intenção exata do cliente. Mas essa visibilidade depende de estarmos capturando o tráfego, o que nem sempre é viável em escala.</p>
+<h3 id="2-os-logs-do-servidor">2. Os logs do servidor</h3>
+<p>O Active Directory registra buscas LDAP no <strong>Event ID 1644</strong>, quando a consulta &ldquo;custa caro&rdquo; o suficiente para justificar um registro. Os critérios são ajustáveis (tempo de processamento, número de entradas visitadas), mas por padrão o 1644 aparece quando o servidor acha que a busca foi pesada.</p>
+<p>O evento registra o <strong>DN base</strong> da busca, o <strong>filtro</strong> que foi usado, o <strong>cliente</strong> de origem (IP), o <strong>número de entradas</strong> que a busca visitou e o <strong>tempo</strong> de processamento.</p>
+<p>Para o analista, o 1644 é a fonte de telemetria mais acessível. Mas ele tem um problema que precisa ser entendido em camadas.</p>
+<hr>
+<h2 id="as-coisas-podem-sair-do-controle">As coisas podem sair do controle</h2>
+<p>Aqui está a armadilha em que muitos analistas caem, <strong>confiar apenas no Event ID 1644</strong>. A intuição é razoável, pois parece que &ldquo;se alguém está enumerando o AD, o 1644 vai pegar&rdquo;. Mas essa intuição é falsa por razões estruturais, não por má configuração.</p>
+<p>Vamos entender por quê, um caso por vez, sem pressa.</p>
+<h3 id="caso-1-o-bind-não-gera-1644-e-o-search-pode-não-gerar">Caso 1, o Bind não gera 1644 (e o Search pode não gerar)</h3>
+<p>O primeiro detalhe é contraintuitivo, <strong>o <code>BindRequest</code> não gera Event ID 1644</strong>. Esse evento é gerado apenas para operações de <strong>busca</strong>. Ou seja, o momento em que o atacante tenta autenticar com senhas chutadas não aparece no 1644. Ele aparece em outros eventos (4624/4625 nos logs de segurança do Windows), mas no LDAP puro, o Bind passa silencioso.</p>
+<p>O segundo detalhe é que nem toda busca gera 1644. Se a busca for &ldquo;barata&rdquo; (poucas entradas visitadas, tempo curto), o servidor não registra nada. Isso significa que um atacante inteligente pode <strong>diluir suas buscas</strong> em consultas pequenas e nunca disparar o gatilho.</p>
+<pre tabindex="0"><code>   Atacante ingênuo:              Atacante cuidadoso:
+   ------------------             ------------------
+   Uma busca                     Muitas buscas
+   com scope=subtree             com scope=base
+   retornando 10.000             retornando 1 entrada
+   entradas                      cada
+        |                              |
+        v                              v
+   Event 1644 gerado             Nenhum 1644 gerado
+   (visível)                     (invisível)
+</code></pre><h3 id="caso-2-o-ldap-ping-nem-chega-ao-motor-ldap">Caso 2, o LDAP Ping nem chega ao motor LDAP</h3>
+<p>Existe uma operação especial no Active Directory chamada <strong>LDAP Ping</strong>. Ela não é uma busca normal, mas sim uma consulta que clientes fazem para descobrir a qual domínio um Controlador de Domínio pertence. Ela é usada, por exemplo, quando um computador está ingressando no domínio e precisa saber quem responder.</p>
+<p>O detalhe crucial é que <strong>o LDAP Ping é tratado pelo <code>netlogon.dll</code>, não pelo motor LDAP (<code>ntdsa.dll</code>)</strong>. Como o motor LDAP nunca processa a requisição, o <strong>Event 1644 nunca é gerado</strong>, não importa quantos pings o atacante faça.</p>
+<p>Ferramentas como o <code>ldapnomnom</code> abusam exatamente disso. Elas enviam LDAP Pings em massa para enumerar nomes de usuário, testando <code>bilbo</code>, <code>tauriel</code>, <code>thorin</code>, <code>gandalf</code>, sem gerar um único 1644. O rastro existe, mas está em outro lugar, no <strong><code>netlogon.log</code></strong>, que registra cada username sondado.</p>
+<pre tabindex="0"><code>                          ┌─────────────────────────┐
+   Cliente LDAP ──────────▶│  porta 389 (TCP/UDP)    │
+                          └────────────┬────────────┘
+                                       │
+                          ┌────────────▼────────────┐
+                          │     Qual motor atende?   │
+                          └──┬──────────────────┬───┘
+                             │                  │
+                    Busca normal         LDAP Ping
+                             │                  │
+                             ▼                  ▼
+                    ┌──────────────┐   ┌──────────────┐
+                    │  ntdsa.dll   │   │ netlogon.dll │
+                    │  (motor LDAP)│   │  (Netlogon)  │
+                    └──────┬───────┘   └──────┬───────┘
+                           │                  │
+                           ▼                  ▼
+                    ┌──────────────┐   ┌──────────────┐
+                    │ Event 1644   │   │ netlogon.log │
+                    │  (se pesado) │   │  (sempre)    │
+                    └──────────────┘   └──────────────┘
+</code></pre><p>A lição é que <strong>&ldquo;não tem 1644&rdquo; não significa &ldquo;não teve atividade LDAP&rdquo;</strong>, mas sim &ldquo;a atividade não passou pelo motor LDAP que gera esse evento&rdquo;.</p>
+<h3 id="caso-3-o-adws-esconde-o-ip-real">Caso 3, o ADWS esconde o IP real</h3>
+<p>Desde o Windows Server 2008 R2, todo Controlador de Domínio tem um serviço chamado <strong>ADWS</strong> (<em>Active Directory Web Services</em>) rodando na porta 9389. Ele expõe uma interface SOAP que fala LDAP por baixo. Praticamente toda ferramenta moderna de administração do AD, incluindo o módulo PowerShell <code>ActiveDirectory</code> e ferramentas de ataque como o SOAPHound, usa o ADWS em vez de falar LDAP direto.</p>
+<p>O problema é que o ADWS roda <strong>dentro do próprio DC</strong>. Quando ele recebe uma requisição do atacante e a repassa ao motor LDAP local, o motor vê a consulta vindo de <code>localhost</code> (<code>[::1]</code>). O Event 1644 é gerado, mas o campo <strong><code>Client</code></strong> mostra <code>[::1]</code> em vez do IP do atacante.</p>
+<pre tabindex="0"><code>   Atacante                              DC
+      │                                  │
+      │──── SOAP :9389 ─────────────────▶│
+      │                                  │
+      │                          ┌───────▼────────┐
+      │                          │  ADWS (SOAP)   │
+      │                          └───────┬────────┘
+      │                                  │
+      │                          ┌───────▼────────┐
+      │                          │ Motor LDAP     │
+      │                          │ (vê [::1])     │
+      │                          └───────┬────────┘
+      │                                  │
+      │                          ┌───────▼────────┐
+      │                          │ Event 1644     │
+      │                          │ Client: [::1]  │
+      │                          └────────────────┘
+</code></pre><p>O 1644 existe, mas a origem está mascarada. Para recuperar o IP real, é preciso correlacionar com o <strong>Event 5156</strong> (Windows Filtering Platform), que registra a conexão de rede verdadeira na porta 9389.</p>
+<h3 id="caso-4-a-ofuscação-de-filtros">Caso 4, a ofuscação de filtros</h3>
+<p>Existe um caso ainda mais sutil. Ferramentas como o SOAPHound constroem filtros LDAP que não fazem sentido sintático no schema do AD. Por exemplo, buscam por um atributo que <strong>não existe</strong>, como <code>(!soaphound=*)</code>.</p>
+<p>O que o motor LDAP faz com isso? Ele aplica uma <strong>otimização interna</strong>. Como o atributo não existe, a comparação sempre resulta em falso, e a negação disso é sempre verdadeiro. O que o Event 1644 registra, então, não é o filtro original, mas a forma <strong>normalizada</strong> que o motor usou internamente.</p>
+<pre tabindex="0"><code>   Filtro enviado pelo atacante:    (!soaphound=*)
+   Filtro registrado no Event 1644: ( ! (FALSE) )
+</code></pre><p>Qualquer regra Sigma que procure a string <code>soaphound</code> no log nunca vai disparar. O ataque é invisível para assinatura por string.</p>
+<p>O mesmo acontece com variações de espaçamento (filtros equivalentes que aparecem com espaços diferentes no log) e com filtros baseados em OIDs (que aparecem como operações bitwise em vez de strings legíveis).</p>
+<hr>
+<h2 id="como-amarrar-os-pontos">Como amarrar os pontos</h2>
+<p>Se cada fonte tem uma cegueira, a resposta não é escolher uma fonte, mas <strong>correlacionar</strong>. O LDAP defensivo é um exercício de montar quebra-cabeça com peças que estão em lugares diferentes.</p>
+<p>Aqui está o mapa de cobertura, resumido.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Cenário</th>
+          <th>O que o 1644 vê</th>
+          <th>O que escapa</th>
+          <th>Onde procurar</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Enumeração clássica (TCP 389)</td>
+          <td>Filtro normalizado, DN base, nº de entradas</td>
+          <td>Consultas pequenas diluídas</td>
+          <td>Regra estatística no próprio 1644</td>
+      </tr>
+      <tr>
+          <td>LDAP Ping (UDP 389)</td>
+          <td><strong>Nada</strong></td>
+          <td>Tudo</td>
+          <td><code>netlogon.log</code></td>
+      </tr>
+      <tr>
+          <td>LDAP Ping via TCP</td>
+          <td><strong>Nada</strong></td>
+          <td>Tudo</td>
+          <td><code>netlogon.log</code> + <strong>Event 5156</strong> (IP real)</td>
+      </tr>
+      <tr>
+          <td>Enumeração via ADWS (9389)</td>
+          <td>Filtro + <code>Client: [::1]</code></td>
+          <td>IP real do atacante</td>
+          <td><strong>Event 5156</strong> correlacionado ao 1644</td>
+      </tr>
+      <tr>
+          <td>Filtros ofuscados (SOAPHound, OIDs)</td>
+          <td>Sintaxe transformada (<code>(!FALSE)</code>)</td>
+          <td>A consulta original</td>
+          <td>Estatística nos campos de performance do 1644</td>
+      </tr>
+  </tbody>
+</table>
+<p>A tradução disso em prática de SOC aparece nos pontos a seguir.</p>
+<p><strong>1. Não confiar em assinatura de string de filtro.</strong> O motor LDAP reescreve filtros antes de logar. Regras que procuram por <code>soaphound</code>, <code>bloodhound</code> ou nomes específicos de ferramentas vão falhar contra adversários que ofuscam.</p>
+<p><strong>2. Usar o 1644 pelo que ele é bom, a estatística.</strong> Os campos de <em>número de entradas visitadas</em> e <em>tempo de processamento</em> não são afetados por ofuscação. Uma explosão desses valores para um IP não inventariado é um sinal forte, independente do filtro.</p>
+<p><strong>3. Correlacionar o 1644 com o 5156.</strong> Se o 1644 mostra <code>Client: [::1]</code>, o 5156 mostra o IP real que abriu a conexão na 9389. A junção dos dois reconstrói a origem.</p>
+<p><strong>4. Monitorar o <code>netlogon.log</code>.</strong> Se o 1644 está silencioso mas o <code>netlogon.log</code> mostra um bombardeio de usernames (bilbo, tauriel, thorin, gandalf&hellip;), estamos diante de um LDAP Ping enumerando usuários. O evento que &ldquo;deveria&rdquo; aparecer não aparece porque o caminho de código é outro.</p>
+<p><strong>5. Ter visibilidade de rede como complemento.</strong> Em ambientes pequenos, uma captura de pacotes com filtro <code>ldap</code> no Wireshark já revela a conversa crua. Em ambientes grandes, um Zeek com o parser de LDAP ligado (ou o Suricata com regras específicas) faz o mesmo em escala.</p>
+<hr>
+<h2 id="os-logs-são-tudo-meu-irmão">Os logs são tudo, meu irmão!</h2>
+<p>Voltando ao que dissemos na introdução, há uma diferença entre olhar para um log e conseguir lê-lo. O Event ID 1644, sozinho, é uma linha. Mas quando entendemos que ele é o <strong>eco de uma conversa</strong> entre cliente e servidor, com um <code>BindRequest</code> ou um <code>SearchRequest</code> na origem, o log deixa de ser texto e passa a ser uma <strong>narrativa</strong>.</p>
+<p>E como toda narrativa, ela pode ter buracos, com partes contadas pelo <code>netlogon.log</code>, partes escondidas atrás de um <code>[::1]</code> do ADWS, partes reescritas pelo motor LDAP antes de virarem registro. O trabalho do analista não é decorar as peças, mas saber <strong>onde cada peça se encaixa</strong>, e por qual caminho de código a conversa passou até virar o log que estamos lendo.</p>
+<p>É por isso que gostamos dos bytes e das RFCs ao mesmo tempo. As RFCs contam a teoria, a intenção original de quem desenhou o protocolo. Os bytes contam a prática nua e crua, aquilo que realmente está rolando na trincheira.</p>
+<p>É na costura entre teoria e prática, entre o que deveria acontecer e o que de fato aconteceu, que a análise acontece.</p>
+<p>Obrigado pela leitura até aqui, querido leitor!</p>
+]]></content>
+        </item>
         
         <item>
             <title>RFC 4120 - Tickets para o Inferno</title>

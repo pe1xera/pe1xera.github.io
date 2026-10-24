@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="Querido leitor, há uma diferença considerável entre olhar para um log e conseguir lê-lo. Reconhecer o nome de uma operação ajuda, claro, mas não basta para entender por que ela aconteceu, o que o cliente pediu ao servidor e se aquela conversa combina com o comportamento esperado do ambiente.
+Neste texto, quero olhar para o LDAP junto com você, e faremos isso do ponto de vista de quem precisa defender um ambiente, acompanhando a conversa entre os dois lados. Deus sabe que gosto muito de teoria, mas também gosto dos bytes e dos logs; então vamos aliá-los para tirar um maior proveito dessa brincadeira.
+" />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://pe1xera.github.io/posts/ldap/" />
+
+
+    <title>
+        
+            Lightweight Directory Access Protocol (LDAP) :: pe1xera  — Devaneios Neurais
+        
+    </title>
+
+
+
+
+
+  <link rel="stylesheet" href="/main.min.10b0eeecf7a45363f8e0f2cb71af19eb51042a679efbb60cbce90656a34fe625.css" integrity="sha256-ELDu7PekU2P44PLLca8Z61EEKmee&#43;7YMvOkGVqNP5iU=" crossorigin="anonymous">
+
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+
+  <meta itemprop="name" content="Lightweight Directory Access Protocol (LDAP)">
+  <meta itemprop="description" content="Querido leitor, há uma diferença considerável entre olhar para um log e conseguir lê-lo. Reconhecer o nome de uma operação ajuda, claro, mas não basta para entender por que ela aconteceu, o que o cliente pediu ao servidor e se aquela conversa combina com o comportamento esperado do ambiente.
+Neste texto, quero olhar para o LDAP junto com você, e faremos isso do ponto de vista de quem precisa defender um ambiente, acompanhando a conversa entre os dois lados. Deus sabe que gosto muito de teoria, mas também gosto dos bytes e dos logs; então vamos aliá-los para tirar um maior proveito dessa brincadeira.">
+  <meta itemprop="datePublished" content="2026-10-23T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2026-10-23T00:00:00+00:00">
+  <meta itemprop="wordCount" content="3389">
+  <meta itemprop="image" content="https://pe1xera.github.io/ldap.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://pe1xera.github.io/ldap.png">
+  <meta name="twitter:title" content="Lightweight Directory Access Protocol (LDAP)">
+  <meta name="twitter:description" content="Querido leitor, há uma diferença considerável entre olhar para um log e conseguir lê-lo. Reconhecer o nome de uma operação ajuda, claro, mas não basta para entender por que ela aconteceu, o que o cliente pediu ao servidor e se aquela conversa combina com o comportamento esperado do ambiente.
+Neste texto, quero olhar para o LDAP junto com você, e faremos isso do ponto de vista de quem precisa defender um ambiente, acompanhando a conversa entre os dois lados. Deus sabe que gosto muito de teoria, mas também gosto dos bytes e dos logs; então vamos aliá-los para tirar um maior proveito dessa brincadeira.">
+
+
+
+    <meta property="og:url" content="https://pe1xera.github.io/posts/ldap/">
+  <meta property="og:site_name" content="pe1xera">
+  <meta property="og:title" content="Lightweight Directory Access Protocol (LDAP)">
+  <meta property="og:description" content="Querido leitor, há uma diferença considerável entre olhar para um log e conseguir lê-lo. Reconhecer o nome de uma operação ajuda, claro, mas não basta para entender por que ela aconteceu, o que o cliente pediu ao servidor e se aquela conversa combina com o comportamento esperado do ambiente.
+Neste texto, quero olhar para o LDAP junto com você, e faremos isso do ponto de vista de quem precisa defender um ambiente, acompanhando a conversa entre os dois lados. Deus sabe que gosto muito de teoria, mas também gosto dos bytes e dos logs; então vamos aliá-los para tirar um maior proveito dessa brincadeira.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-10-23T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-10-23T00:00:00+00:00">
+    <meta property="og:image" content="https://pe1xera.github.io/ldap.png">
+
+
+
+
+
+
+    <meta property="article:published_time" content="2026-10-23 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text ">
+                $cd /home/pe1xera</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/posts">Posts</a></li><li><a href="/posts/whoami/">Whoami</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+
+            <span class="theme-toggle not-selectable">
+                <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+   3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+   13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+ </svg>
+            </span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        16 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://pe1xera.github.io/posts/ldap/">Lightweight Directory Access Protocol (LDAP)</a>
+      </h1>
+
+      
+
+      
+        <figure class="post-cover">
+          <img src="https://pe1xera.github.io/ldap.png" alt="Lightweight Directory Access Protocol (LDAP)" />
+          
+          
+        </figure>
+      
+
+      
+
+      <div class="post-content">
+        <p>Querido leitor, há uma diferença considerável entre olhar para um log e conseguir lê-lo. Reconhecer o nome de uma operação ajuda, claro, mas não basta para entender por que ela aconteceu, o que o cliente pediu ao servidor e se aquela conversa combina com o comportamento esperado do ambiente.</p>
+<p>Neste texto, quero olhar para o LDAP junto com você, e faremos isso do ponto de vista de quem precisa defender um ambiente, acompanhando a conversa entre os dois lados. Deus sabe que gosto muito de teoria, mas também gosto dos bytes e dos logs; então vamos aliá-los para tirar um maior proveito dessa brincadeira.</p>
+<p>Como de costume, sou totalmente aberto a correções, quanto a erros técnicos e gramaticais, e fico feliz caso alguém os aponte para mim. Segurança é uma área que exige curiosidade, mas exige também humildade para rever o que julgamos saber e talvez estejamos errados.</p>
+<hr>
+<h2 id="era-uma-vez-uma-árvore">Era uma vez uma árvore</h2>
+<p>O LDAP não surgiu do nada. O nome em si já é um mini-spoiler, vejamos: “<em>Lightweight Directory Access Protocol”</em>, que (em tradução livre) seria algo como um “protocolo leve para acessar diretórios”. Um DAP, porém com &ldquo;L&rdquo; de leve! O diretório ao qual ele se refere é o <strong>X.500</strong>, uma família de padrões desenvolvida no âmbito do CCITT, hoje ITU-T (International Telecommunication Union), e da ISO/IEC.</p>
+<p>O X.500 foi pensado para oferecer um serviço de diretório em larga escala, entre outras coisas para localizar nomes e endereços ligados ao antigo padrão X.400. A proposta era que se tivesse entradas organizadas em um formato de árvore, regras para descrever seus atributos e protocolos diferentes para acessar, distribuir e replicar as informações. Tudo isso seguindo o modelo OSI.</p>
+<p>Como sabemos, esse tipo de padrão nunca é desenvolvido somente por uma pessoa, então vamos dar nome aos bois, pois nada mais justo do que dar os créditos a quem tem o direito.</p>
+<p>Tudo começa em Londres, onde <strong>Steve Kille</strong> trabalhava no ISODE Consortium. Junto com ele estavam <strong>Tim Howes</strong>, da Universidade de Michigan, e <strong>Wengyik Yeong</strong>, da Performance Systems International. Os três compartilhavam um incômodo comum: o X.500 era elegante no papel, mas pesado demais na prática.</p>
+<p>Para entender esse incômodo, precisamos dar um passo atrás. O X.500 foi projetado dentro do modelo OSI, a famosa pilha de sete camadas que dominou o imaginário da computação nos anos 80. Naquela visão de mundo, hoje ultrapassada (de certo modo), cada protocolo deveria ter sua sessão, sua apresentação, seu controle formal. O resultado era que uma simples consulta a um diretório exigia uma sequência de negociações e handshakes que deixava qualquer aplicação lenta e inchada.</p>
+<p>A ideia de Kille, Howes e Yeong foi quase herética para a época: <strong>e se simplificássemos o transporte, mas mantivéssemos a essência do modelo de dados?</strong> Ou seja, em vez de carregar toda a pilha OSI, eles colocariam os elementos do diretório diretamente sobre o TCP. Em vez de codificações exóticas, usariam algo já conhecido, o BER. O protocolo continuaria falando a mesma língua do X.500 (a mesma árvore, os mesmos atributos), mas de um jeito que uma aplicação simples pudesse implementar em poucos dias.</p>
+<p>O resultado saiu como a <strong>RFC 1487</strong>, em julho de 1993. O nome dizia tudo: <em>Lightweight Directory Access Protocol</em>, em tradução livre: um &ldquo;protocolo leve para acessar diretórios&rdquo;. Leve em relação ao X.500, não em relação ao que viria depois.</p>
+<p>Com o tempo o protocolo evoluiu: o RFC 1487 foi substituído pelo RFC 1777 (LDAPv2) e, mais tarde, chegou a versão que sustenta praticamente tudo o que vemos hoje, o <strong>LDAPv3</strong> (RFC 4511).</p>
+<hr>
+<h2 id="o-que-é-um-diretório-afinal">O que é um diretório, afinal?</h2>
+<p>A palavra &ldquo;diretório&rdquo; carrega uma ambiguidade perigosa. No dia-a-dia, pensamos logo em pastas de arquivos. Em LDAP, é mais como um <strong>banco de dados especializado em leitura</strong>, otimizado para consultas e não para escrita. Pense na Lista de Endereços do Outlook. No dia a dia, ninguém &ldquo;edita&rdquo; esse diretório, só consulta. Busca-se o nome de um colega, o e-mail de um setor, o ramal de alguém. As atualizações existem (como quando alguém é contratado, muda de time ou sai da empresa), mas elas são raras, controladas e feitas por quem administra, não por quem consulta. O LDAP é a engrenagem que, por baixo dos panos, faz esse tipo de diretório funcionar.</p>
+<p>A diferença entre um banco de dados, que conhecemos bem, e um diretório está na <strong>forma</strong> dos dados. Um banco relacional organiza tudo em tabelas com colunas rígidas. Um diretório organiza tudo em uma <strong>árvore hierárquica</strong>, onde cada nó tem um nome e um conjunto de atributos.</p>
+<p>Antes de seguir, vejamos o diagrama abaixo. Ele mostra a estrutura conceitual que o LDAP usa, e que o Active Directory herdou quase inteiramente.</p>
+<pre tabindex="0"><code>                       [dc=empresa,dc=com]          ← raiz do domínio
+                                |
+                +---------------+---------------+
+                |                               |
+      [ou=Usuarios]                      [ou=Computadores]
+                |                               |
+        +-------+-------+               +-------+-------+
+        |               |               |               |
+ [cn=bilbo]      [cn=tauriel]     [cn=PC-BILBO]   [cn=SRV-SMAUG]
+</code></pre><p>Cada linha dessa árvore é uma <strong>entrada</strong> (<em>entry</em>). Cada entrada tem um <strong>nome único</strong> que a identifica na árvore (o <em>Distinguished Name</em>, ou DN), além de um conjunto de <strong>atributos</strong> que descrevem o que aquela entrada é, como nome, e-mail, telefone, senha e grupos.</p>
+<p>Quando abrimos o &ldquo;Active Directory users and Computers&rdquo; no Windows, estamos vendo essa árvore renderizada. Quando uma ferramenta consulta o AD, está caminhando por ela.</p>
+<hr>
+<h2 id="um-pseudo-cpf-da-entrada">Um pseudo-CPF da entrada</h2>
+<p>Aqui chegamos no primeiro conceito que precisa ficar cravado, porque ele vai aparecer em <strong>todo</strong> log e <strong>toda</strong> captura de pacote daqui pra frente, o <strong>DN</strong> (<em>Distinguished Name</em>, ou Nome Distinguido).</p>
+<p>O DN é o endereço completo de uma entrada na árvore. Ele é escrito da entrada mais específica para a mais genérica, separado por vírgulas. Voltando ao diagrama anterior, o DN do usuário Bilbo aparece assim.</p>
+<pre tabindex="0"><code>cn=bilbo,ou=Usuarios,dc=empresa,dc=com
+</code></pre><p>Lê-se da direita para a esquerda, começando pelo domínio e terminando na entrada.</p>
+<ul>
+<li><code>dc=com</code> → faz parte do domínio <code>.com</code></li>
+<li><code>dc=empresa</code> → no domínio <code>empresa.com</code></li>
+<li><code>ou=Usuarios</code> → dentro da unidade organizacional &ldquo;Usuarios&rdquo;</li>
+<li><code>cn=bilbo</code> → a entrada do usuário Bilbo</li>
+</ul>
+<p>Cada uma dessas siglas tem um significado que vale memorizar, como mostra a tabela a seguir.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Sigla</th>
+          <th>Significado</th>
+          <th>Exemplo</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>dc</code></td>
+          <td><em>Domain Component</em></td>
+          <td><code>dc=empresa</code></td>
+      </tr>
+      <tr>
+          <td><code>ou</code></td>
+          <td><em>Organizational Unit</em></td>
+          <td><code>ou=Usuarios</code></td>
+      </tr>
+      <tr>
+          <td><code>cn</code></td>
+          <td><em>Common Name</em></td>
+          <td><code>cn=bilbo</code></td>
+      </tr>
+      <tr>
+          <td><code>uid</code></td>
+          <td><em>User ID</em></td>
+          <td><code>uid=bbaggins</code></td>
+      </tr>
+  </tbody>
+</table>
+<p>O DN é o equivalente LDAP do que um CPF é para uma pessoa, pois não importa quantos &ldquo;Bilbos&rdquo; existam, o DN de cada um é único. É por isso que todo <code>BindRequest</code> (autenticação) e todo <code>SearchRequest</code> (consulta) têm um DN envolvido. Ele é a chave que localiza o nó na árvore.</p>
+<p>Vale notar que a mesma árvore pode conter usuários como <code>cn=tauriel</code> e <code>cn=thorin</code> na <code>ou=Usuarios</code>, e contas privilegiadas como <code>cn=gandalf</code> em uma <code>ou=Admins</code>. O DN de cada um segue a mesma lógica, mudando apenas o caminho até a raiz.</p>
+<hr>
+<h2 id="a-conversa-entre-cliente-e-servidor">A conversa entre cliente e servidor</h2>
+<p>Agora que sabemos o que existe dentro do diretório, podemos entender <strong>como</strong> as coisas conversam com ele.</p>
+<p>Toda comunicação LDAP é uma <strong>conversa</strong> entre dois lados, e isso é importante, porque facilita o entendimento. Temos, então, o <strong>cliente</strong> (que quer algo) e o <strong>servidor</strong> (que tem os dados). O protocolo define que essa conversa acontece em ciclos de <strong>requisição e resposta</strong>, sempre na mesma estrutura.</p>
+<pre tabindex="0"><code>   CLIENTE                                       SERVIDOR
+     |                                              |
+     |---- Requisição (messageID=1, operação) -----&gt;|
+     |                                              |
+     |&lt;--- Resposta  (messageID=1, resultado) ------|
+     |                                              |
+</code></pre><p>Há três coisas importantes nesse diagrama. Primeiro, <strong>toda requisição tem uma resposta</strong>. Não existe requisição &ldquo;silenciosa&rdquo;. Isso é ouro para a análise, pois se uma requisição sai mas a resposta não volta, ou o pacote se perdeu, ou alguém está bloqueando, e isso por si só é um sinal.</p>
+<p>Segundo, <strong>o <code>messageID</code> correlaciona tudo</strong>. Cada requisição leva um número de identificação único. A resposta carrega o mesmo número. Em uma captura de pacotes com milhares de mensagens, é o <code>messageID</code> que diz qual resposta pertence a qual pergunta. Sem ele, seria uma bagunça.</p>
+<p>Terceiro, <strong>o &ldquo;verbo&rdquo; da operação muda</strong>. A estrutura é a mesma, mas o conteúdo da requisição diz o que o cliente quer fazer. E é aí que entram as operações.</p>
+<hr>
+<h2 id="as-duas-operações-que-precisamos-conhecer">As duas operações que precisamos conhecer</h2>
+<p>O LDAP define cerca de uma dúzia de operações, como adicionar, modificar, excluir, comparar e abandonar. Mas para quem está começando na análise, <strong>duas</strong> concentram 90% do que veremos em logs e capturas.</p>
+<h3 id="bindrequest-o-aperto-de-mão-de-autenticação">BindRequest, o &ldquo;aperto de mão&rdquo; de autenticação</h3>
+<p>Toda sessão LDAP começa com um <strong>Bind</strong>. É o momento em que o cliente se apresenta ao servidor e diz <em>&ldquo;sou eu, aqui estão minhas credenciais&rdquo;</em>. Sem um Bind (ou com um Bind anônimo), o servidor não vai entregar muita coisa.</p>
+<p>O BindRequest carrega dois elementos essenciais. O primeiro é o <strong>DN</strong> da entrada que está tentando se autenticar, ou seja, quem é. O segundo é a <strong>credencial</strong>, que em geral é uma senha, mas pode ser um certificado, um ticket Kerberos, ou simplesmente <em>nada</em> (bind anônimo).</p>
+<p>O que o servidor devolve é um <strong>BindResponse</strong> com um código de resultado.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Código</th>
+          <th>Significado</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>success</code> (0)</td>
+          <td>Autenticou</td>
+      </tr>
+      <tr>
+          <td><code>invalidCredentials</code> (49)</td>
+          <td>Usuário ou senha errados</td>
+      </tr>
+      <tr>
+          <td><code>noSuchObject</code> (32)</td>
+          <td>O DN informado não existe</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Por que isso importa para o SOC?</strong> Porque é aqui que ataques de força bruta, <em>password spraying</em> e enumeração de usuários acontecem. Um <code>noSuchObject</code> repetido significa que o atacante está testando nomes de usuário para ver quais existem, e pode estar tentando <code>cn=bilbo</code>, <code>cn=tauriel</code>, <code>cn=thorin</code>, <code>cn=gandalf</code>, e assim por diante. Um <code>invalidCredentials</code> repetido significa que ele já sabe que o usuário existe e está chutando a senha. A distinção entre os dois códigos é a diferença entre &ldquo;descobrindo o terreno&rdquo; e &ldquo;atacando&rdquo;.</p>
+<h3 id="searchrequest-a-operação-mais-comum-e-a-mais-ruidosa">SearchRequest, a operação mais comum e a mais ruidosa</h3>
+<p>Depois de autenticado, o cliente quase sempre vai querer <strong>buscar</strong> algo. É o <code>SearchRequest</code>. E é aqui que a maior parte do volume de logs LDAP nasce.</p>
+<p>Um SearchRequest é composto por alguns parâmetros que determinam o que volta, como mostrado a seguir.</p>
+<pre tabindex="0"><code>   SearchRequest
+   ├── baseObject: &#34;dc=empresa,dc=com&#34;     ← de onde começar a busca
+   ├── scope: wholeSubtree (2)             ← até onde descer na árvore
+   ├── filter: (objectClass=user)          ← o que procurar
+   └── attributes: [&#34;cn&#34;, &#34;mail&#34;]          ← o que trazer de volta
+</code></pre><p>Vamos dissecar cada um deles.</p>
+<p><strong><code>baseObject</code></strong> é o ponto de partida. Pode ser a raiz do domínio (<code>dc=empresa,dc=com</code>), uma OU específica (<code>ou=Usuarios,dc=empresa,dc=com</code>), ou até uma única entrada (<code>cn=bilbo,ou=Usuarios,dc=empresa,dc=com</code>).</p>
+<p><strong><code>scope</code></strong> diz o quão fundo descer a partir do <code>baseObject</code>.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Scope</th>
+          <th>Valor</th>
+          <th>O que faz</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>baseObject</code></td>
+          <td>0</td>
+          <td>Só consulta a entrada base, sem descer</td>
+      </tr>
+      <tr>
+          <td><code>singleLevel</code></td>
+          <td>1</td>
+          <td>Desce um nível (filhos diretos)</td>
+      </tr>
+      <tr>
+          <td><code>wholeSubtree</code></td>
+          <td>2</td>
+          <td>Desce <strong>todos</strong> os níveis (subárvore inteira)</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong><code>filter</code></strong> é o coração da busca. É a &ldquo;condição WHERE&rdquo; do LDAP. Um filtro como <code>(objectClass=user)</code> retorna tudo que é usuário. Um filtro como <code>(&amp;(objectClass=user)(adminCount=1))</code> retorna só os administradores, incluindo, talvez, o <code>cn=gandalf</code>. Um filtro como <code>(sAMAccountName=bilbo)</code> retorna o usuário Bilbo, se existir.</p>
+<p>O filtro tem sua própria sintaxe, e encontraremos variações dele nos logs.</p>
+<pre tabindex="0"><code>(objectClass=user)                        → igualdade simples
+(&amp;(objectClass=user)(memberOf=Grupo))     → AND de duas condições
+(|(cn=bilbo)(cn=tauriel))                 → OR
+(!(objectClass=computer))                 → NOT
+(sAMAccountName=bil*)                     → wildcard (substring)
+</code></pre><p><strong><code>attributes</code></strong> é a lista do que o cliente quer receber de volta. Se ele pedir <code>[&quot;cn&quot;, &quot;mail&quot;]</code>, o servidor devolve só esses campos. Se pedir <code>[&quot;*&quot;]</code>, devolve <strong>todos</strong> os atributos, e é aí que a coisa começa a ficar interessante para a análise.</p>
+<hr>
+<h2 id="o-que-essa-conversa-deixa-de-rastro">O que essa conversa deixa de rastro</h2>
+<p>Uma vez entendida a conversa, podemos olhar para os logs com outros olhos. Quando um cliente faz uma busca e o servidor responde, esse diálogo pode deixar vestígios em vários lugares. Os dois principais merecem atenção.</p>
+<h3 id="1-a-captura-de-rede">1. A captura de rede</h3>
+<p>Tendo visibilidade de rede, vemos a conversa crua. No Wireshark, um SearchRequest aparece assim, de forma simplificada.</p>
+<pre tabindex="0"><code>Lightweight-Directory-Access-Protocol
+    messageID: 5
+    protocolOp: searchRequest (3)
+        baseObject: &#34;dc=empresa,dc=com&#34;
+        scope: wholeSubtree (2)
+        filter: (objectClass=user)
+        attributes: cn, mail
+</code></pre><p>Isso é ouro, pois vemos a intenção exata do cliente. Mas essa visibilidade depende de estarmos capturando o tráfego, o que nem sempre é viável em escala.</p>
+<h3 id="2-os-logs-do-servidor">2. Os logs do servidor</h3>
+<p>O Active Directory registra buscas LDAP no <strong>Event ID 1644</strong>, quando a consulta &ldquo;custa caro&rdquo; o suficiente para justificar um registro. Os critérios são ajustáveis (tempo de processamento, número de entradas visitadas), mas por padrão o 1644 aparece quando o servidor acha que a busca foi pesada.</p>
+<p>O evento registra o <strong>DN base</strong> da busca, o <strong>filtro</strong> que foi usado, o <strong>cliente</strong> de origem (IP), o <strong>número de entradas</strong> que a busca visitou e o <strong>tempo</strong> de processamento.</p>
+<p>Para o analista, o 1644 é a fonte de telemetria mais acessível. Mas ele tem um problema que precisa ser entendido em camadas.</p>
+<hr>
+<h2 id="as-coisas-podem-sair-do-controle">As coisas podem sair do controle</h2>
+<p>Aqui está a armadilha em que muitos analistas caem, <strong>confiar apenas no Event ID 1644</strong>. A intuição é razoável, pois parece que &ldquo;se alguém está enumerando o AD, o 1644 vai pegar&rdquo;. Mas essa intuição é falsa por razões estruturais, não por má configuração.</p>
+<p>Vamos entender por quê, um caso por vez, sem pressa.</p>
+<h3 id="caso-1-o-bind-não-gera-1644-e-o-search-pode-não-gerar">Caso 1, o Bind não gera 1644 (e o Search pode não gerar)</h3>
+<p>O primeiro detalhe é contraintuitivo, <strong>o <code>BindRequest</code> não gera Event ID 1644</strong>. Esse evento é gerado apenas para operações de <strong>busca</strong>. Ou seja, o momento em que o atacante tenta autenticar com senhas chutadas não aparece no 1644. Ele aparece em outros eventos (4624/4625 nos logs de segurança do Windows), mas no LDAP puro, o Bind passa silencioso.</p>
+<p>O segundo detalhe é que nem toda busca gera 1644. Se a busca for &ldquo;barata&rdquo; (poucas entradas visitadas, tempo curto), o servidor não registra nada. Isso significa que um atacante inteligente pode <strong>diluir suas buscas</strong> em consultas pequenas e nunca disparar o gatilho.</p>
+<pre tabindex="0"><code>   Atacante ingênuo:              Atacante cuidadoso:
+   ------------------             ------------------
+   Uma busca                     Muitas buscas
+   com scope=subtree             com scope=base
+   retornando 10.000             retornando 1 entrada
+   entradas                      cada
+        |                              |
+        v                              v
+   Event 1644 gerado             Nenhum 1644 gerado
+   (visível)                     (invisível)
+</code></pre><h3 id="caso-2-o-ldap-ping-nem-chega-ao-motor-ldap">Caso 2, o LDAP Ping nem chega ao motor LDAP</h3>
+<p>Existe uma operação especial no Active Directory chamada <strong>LDAP Ping</strong>. Ela não é uma busca normal, mas sim uma consulta que clientes fazem para descobrir a qual domínio um Controlador de Domínio pertence. Ela é usada, por exemplo, quando um computador está ingressando no domínio e precisa saber quem responder.</p>
+<p>O detalhe crucial é que <strong>o LDAP Ping é tratado pelo <code>netlogon.dll</code>, não pelo motor LDAP (<code>ntdsa.dll</code>)</strong>. Como o motor LDAP nunca processa a requisição, o <strong>Event 1644 nunca é gerado</strong>, não importa quantos pings o atacante faça.</p>
+<p>Ferramentas como o <code>ldapnomnom</code> abusam exatamente disso. Elas enviam LDAP Pings em massa para enumerar nomes de usuário, testando <code>bilbo</code>, <code>tauriel</code>, <code>thorin</code>, <code>gandalf</code>, sem gerar um único 1644. O rastro existe, mas está em outro lugar, no <strong><code>netlogon.log</code></strong>, que registra cada username sondado.</p>
+<pre tabindex="0"><code>                          ┌─────────────────────────┐
+   Cliente LDAP ──────────▶│  porta 389 (TCP/UDP)    │
+                          └────────────┬────────────┘
+                                       │
+                          ┌────────────▼────────────┐
+                          │     Qual motor atende?   │
+                          └──┬──────────────────┬───┘
+                             │                  │
+                    Busca normal         LDAP Ping
+                             │                  │
+                             ▼                  ▼
+                    ┌──────────────┐   ┌──────────────┐
+                    │  ntdsa.dll   │   │ netlogon.dll │
+                    │  (motor LDAP)│   │  (Netlogon)  │
+                    └──────┬───────┘   └──────┬───────┘
+                           │                  │
+                           ▼                  ▼
+                    ┌──────────────┐   ┌──────────────┐
+                    │ Event 1644   │   │ netlogon.log │
+                    │  (se pesado) │   │  (sempre)    │
+                    └──────────────┘   └──────────────┘
+</code></pre><p>A lição é que <strong>&ldquo;não tem 1644&rdquo; não significa &ldquo;não teve atividade LDAP&rdquo;</strong>, mas sim &ldquo;a atividade não passou pelo motor LDAP que gera esse evento&rdquo;.</p>
+<h3 id="caso-3-o-adws-esconde-o-ip-real">Caso 3, o ADWS esconde o IP real</h3>
+<p>Desde o Windows Server 2008 R2, todo Controlador de Domínio tem um serviço chamado <strong>ADWS</strong> (<em>Active Directory Web Services</em>) rodando na porta 9389. Ele expõe uma interface SOAP que fala LDAP por baixo. Praticamente toda ferramenta moderna de administração do AD, incluindo o módulo PowerShell <code>ActiveDirectory</code> e ferramentas de ataque como o SOAPHound, usa o ADWS em vez de falar LDAP direto.</p>
+<p>O problema é que o ADWS roda <strong>dentro do próprio DC</strong>. Quando ele recebe uma requisição do atacante e a repassa ao motor LDAP local, o motor vê a consulta vindo de <code>localhost</code> (<code>[::1]</code>). O Event 1644 é gerado, mas o campo <strong><code>Client</code></strong> mostra <code>[::1]</code> em vez do IP do atacante.</p>
+<pre tabindex="0"><code>   Atacante                              DC
+      │                                  │
+      │──── SOAP :9389 ─────────────────▶│
+      │                                  │
+      │                          ┌───────▼────────┐
+      │                          │  ADWS (SOAP)   │
+      │                          └───────┬────────┘
+      │                                  │
+      │                          ┌───────▼────────┐
+      │                          │ Motor LDAP     │
+      │                          │ (vê [::1])     │
+      │                          └───────┬────────┘
+      │                                  │
+      │                          ┌───────▼────────┐
+      │                          │ Event 1644     │
+      │                          │ Client: [::1]  │
+      │                          └────────────────┘
+</code></pre><p>O 1644 existe, mas a origem está mascarada. Para recuperar o IP real, é preciso correlacionar com o <strong>Event 5156</strong> (Windows Filtering Platform), que registra a conexão de rede verdadeira na porta 9389.</p>
+<h3 id="caso-4-a-ofuscação-de-filtros">Caso 4, a ofuscação de filtros</h3>
+<p>Existe um caso ainda mais sutil. Ferramentas como o SOAPHound constroem filtros LDAP que não fazem sentido sintático no schema do AD. Por exemplo, buscam por um atributo que <strong>não existe</strong>, como <code>(!soaphound=*)</code>.</p>
+<p>O que o motor LDAP faz com isso? Ele aplica uma <strong>otimização interna</strong>. Como o atributo não existe, a comparação sempre resulta em falso, e a negação disso é sempre verdadeiro. O que o Event 1644 registra, então, não é o filtro original, mas a forma <strong>normalizada</strong> que o motor usou internamente.</p>
+<pre tabindex="0"><code>   Filtro enviado pelo atacante:    (!soaphound=*)
+   Filtro registrado no Event 1644: ( ! (FALSE) )
+</code></pre><p>Qualquer regra Sigma que procure a string <code>soaphound</code> no log nunca vai disparar. O ataque é invisível para assinatura por string.</p>
+<p>O mesmo acontece com variações de espaçamento (filtros equivalentes que aparecem com espaços diferentes no log) e com filtros baseados em OIDs (que aparecem como operações bitwise em vez de strings legíveis).</p>
+<hr>
+<h2 id="como-amarrar-os-pontos">Como amarrar os pontos</h2>
+<p>Se cada fonte tem uma cegueira, a resposta não é escolher uma fonte, mas <strong>correlacionar</strong>. O LDAP defensivo é um exercício de montar quebra-cabeça com peças que estão em lugares diferentes.</p>
+<p>Aqui está o mapa de cobertura, resumido.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Cenário</th>
+          <th>O que o 1644 vê</th>
+          <th>O que escapa</th>
+          <th>Onde procurar</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Enumeração clássica (TCP 389)</td>
+          <td>Filtro normalizado, DN base, nº de entradas</td>
+          <td>Consultas pequenas diluídas</td>
+          <td>Regra estatística no próprio 1644</td>
+      </tr>
+      <tr>
+          <td>LDAP Ping (UDP 389)</td>
+          <td><strong>Nada</strong></td>
+          <td>Tudo</td>
+          <td><code>netlogon.log</code></td>
+      </tr>
+      <tr>
+          <td>LDAP Ping via TCP</td>
+          <td><strong>Nada</strong></td>
+          <td>Tudo</td>
+          <td><code>netlogon.log</code> + <strong>Event 5156</strong> (IP real)</td>
+      </tr>
+      <tr>
+          <td>Enumeração via ADWS (9389)</td>
+          <td>Filtro + <code>Client: [::1]</code></td>
+          <td>IP real do atacante</td>
+          <td><strong>Event 5156</strong> correlacionado ao 1644</td>
+      </tr>
+      <tr>
+          <td>Filtros ofuscados (SOAPHound, OIDs)</td>
+          <td>Sintaxe transformada (<code>(!FALSE)</code>)</td>
+          <td>A consulta original</td>
+          <td>Estatística nos campos de performance do 1644</td>
+      </tr>
+  </tbody>
+</table>
+<p>A tradução disso em prática de SOC aparece nos pontos a seguir.</p>
+<p><strong>1. Não confiar em assinatura de string de filtro.</strong> O motor LDAP reescreve filtros antes de logar. Regras que procuram por <code>soaphound</code>, <code>bloodhound</code> ou nomes específicos de ferramentas vão falhar contra adversários que ofuscam.</p>
+<p><strong>2. Usar o 1644 pelo que ele é bom, a estatística.</strong> Os campos de <em>número de entradas visitadas</em> e <em>tempo de processamento</em> não são afetados por ofuscação. Uma explosão desses valores para um IP não inventariado é um sinal forte, independente do filtro.</p>
+<p><strong>3. Correlacionar o 1644 com o 5156.</strong> Se o 1644 mostra <code>Client: [::1]</code>, o 5156 mostra o IP real que abriu a conexão na 9389. A junção dos dois reconstrói a origem.</p>
+<p><strong>4. Monitorar o <code>netlogon.log</code>.</strong> Se o 1644 está silencioso mas o <code>netlogon.log</code> mostra um bombardeio de usernames (bilbo, tauriel, thorin, gandalf&hellip;), estamos diante de um LDAP Ping enumerando usuários. O evento que &ldquo;deveria&rdquo; aparecer não aparece porque o caminho de código é outro.</p>
+<p><strong>5. Ter visibilidade de rede como complemento.</strong> Em ambientes pequenos, uma captura de pacotes com filtro <code>ldap</code> no Wireshark já revela a conversa crua. Em ambientes grandes, um Zeek com o parser de LDAP ligado (ou o Suricata com regras específicas) faz o mesmo em escala.</p>
+<hr>
+<h2 id="os-logs-são-tudo-meu-irmão">Os logs são tudo, meu irmão!</h2>
+<p>Voltando ao que dissemos na introdução, há uma diferença entre olhar para um log e conseguir lê-lo. O Event ID 1644, sozinho, é uma linha. Mas quando entendemos que ele é o <strong>eco de uma conversa</strong> entre cliente e servidor, com um <code>BindRequest</code> ou um <code>SearchRequest</code> na origem, o log deixa de ser texto e passa a ser uma <strong>narrativa</strong>.</p>
+<p>E como toda narrativa, ela pode ter buracos, com partes contadas pelo <code>netlogon.log</code>, partes escondidas atrás de um <code>[::1]</code> do ADWS, partes reescritas pelo motor LDAP antes de virarem registro. O trabalho do analista não é decorar as peças, mas saber <strong>onde cada peça se encaixa</strong>, e por qual caminho de código a conversa passou até virar o log que estamos lendo.</p>
+<p>É por isso que gostamos dos bytes e das RFCs ao mesmo tempo. As RFCs contam a teoria, a intenção original de quem desenhou o protocolo. Os bytes contam a prática nua e crua, aquilo que realmente está rolando na trincheira.</p>
+<p>É na costura entre teoria e prática, entre o que deveria acontecer e o que de fato aconteceu, que a análise acontece.</p>
+<p>Obrigado pela leitura até aqui, querido leitor!</p>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+      
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        3389 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2026-10-22 21:00
+        
+
+         
+          
+        
+      </p>
+    </div>
+      <hr />
+      <div class="sharing-buttons">
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fpe1xera.github.io%2fposts%2fldap%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
+  <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=https%3a%2f%2fpe1xera.github.io%2fposts%2fldap%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
+  <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
+      <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=Lightweight%20Directory%20Access%20Protocol%20%28LDAP%29&amp;caption=Lightweight%20Directory%20Access%20Protocol%20%28LDAP%29&amp;canonicalUrl=https%3a%2f%2fpe1xera.github.io%2fposts%2fldap%2f" target="_blank" rel="noopener" aria-label="" title="Share on tumblr">
+  <div class="resp-sharing-button resp-sharing-button--tumblr resp-sharing-button--small">
+    <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=Lightweight%20Directory%20Access%20Protocol%20%28LDAP%29&amp;body=https%3a%2f%2fpe1xera.github.io%2fposts%2fldap%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
+  <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=https%3a%2f%2fpe1xera.github.io%2fposts%2fldap%2f&amp;media=https%3a%2f%2fpe1xera.github.io%2fposts%2fldap%2f;description=Lightweight%20Directory%20Access%20Protocol%20%28LDAP%29" target="_blank" rel="noopener" aria-label="" title="Share on pinterest">
+  <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fpe1xera.github.io%2fposts%2fldap%2f&amp;title=Lightweight%20Directory%20Access%20Protocol%20%28LDAP%29&amp;summary=Lightweight%20Directory%20Access%20Protocol%20%28LDAP%29&amp;source=https%3a%2f%2fpe1xera.github.io%2fposts%2fldap%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
+  <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fpe1xera.github.io%2fposts%2fldap%2f&amp;resubmit=true&amp;title=Lightweight%20Directory%20Access%20Protocol%20%28LDAP%29" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
+  <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.xing.com/app/user?op=share;url=https%3a%2f%2fpe1xera.github.io%2fposts%2fldap%2f;title=Lightweight%20Directory%20Access%20Protocol%20%28LDAP%29" target="_blank" rel="noopener" aria-label="" title="Share on xing">
+  <div class="resp-sharing-button resp-sharing-button--xing resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.461c.518 0 .766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="whatsapp://send?text=Lightweight%20Directory%20Access%20Protocol%20%28LDAP%29%20https%3a%2f%2fpe1xera.github.io%2fposts%2fldap%2f" target="_blank" rel="noopener" aria-label="" title="Share on whatsapp">
+  <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fpe1xera.github.io%2fposts%2fldap%2f&amp;t=Lightweight%20Directory%20Access%20Protocol%20%28LDAP%29" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
+  <div class="resp-sharing-button resp-sharing-button--hackernews resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=Lightweight%20Directory%20Access%20Protocol%20%28LDAP%29&amp;url=https%3a%2f%2fpe1xera.github.io%2fposts%2fldap%2f" target="_blank" rel="noopener" aria-label="" title="Share on telegram">
+  <div class="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </div>
+  </div>
+</a>
+
+      </div>
+
+    
+    <div class="pagination">
+        
+        <div class="pagination__title">
+            <span class="pagination__title-h">Veja outros posts</span>
+            <hr />
+        </div>
+        
+
+        <div class="pagination__buttons">
+            
+
+            
+            <span class="button next">
+                <a href="https://pe1xera.github.io/posts/kerberos/">
+                    <span class="button__text">RFC 4120 - Tickets para o Inferno</span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+            
+        </div>
+    </div>
+
+
+    
+
+    
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.e89fda0f29b95d33f6f4224dd9e5cf69d84aff3818be2b0d73e731689cc374261b016d17d46f8381962fb4a1577ba3017b1f23509d894f6e66431f988c00889e.js" integrity="sha512-6J/aDym5XTP29CJN2eXPadhK/zgYvisNc&#43;cxaJzDdCYbAW0X1G&#43;DgZYvtKFXe6MBex8jUJ2JT25mQx&#43;YjACIng=="></script>
+
+
+
+
+    </body>
+</html>

@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Tue, 15 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 23 Oct 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://pe1xera.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lightweight Directory Access Protocol (LDAP)</title>
+      <link>https://pe1xera.github.io/posts/ldap/</link>
+      <pubDate>Fri, 23 Oct 2026 00:00:00 +0000</pubDate>
+      <guid>https://pe1xera.github.io/posts/ldap/</guid>
+      <description>&lt;p&gt;Querido leitor, há uma diferença considerável entre olhar para um log e conseguir lê-lo. Reconhecer o nome de uma operação ajuda, claro, mas não basta para entender por que ela aconteceu, o que o cliente pediu ao servidor e se aquela conversa combina com o comportamento esperado do ambiente.&lt;/p&gt;&#xA;&lt;p&gt;Neste texto, quero olhar para o LDAP junto com você, e faremos isso do ponto de vista de quem precisa defender um ambiente, acompanhando a conversa entre os dois lados. Deus sabe que gosto muito de teoria, mas também gosto dos bytes e dos logs; então vamos aliá-los para tirar um maior proveito dessa brincadeira.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>RFC 4120 - Tickets para o Inferno</title>
       <link>https://pe1xera.github.io/posts/kerberos/</link>
